@@ -1,0 +1,139 @@
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="index.js" type="text/javascript"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@300;400;500;600&family=Saira:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <meta charset="utf-8">
+
+    <audio id="key-beep">
+      <source src="audio/beep.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="simon-beep">
+      <source src="audio/simon.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="crack">
+      <source src="audio/shortCrack.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="long-crack">
+      <source src="audio/longCrack.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="error">
+      <source src="audio/error.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="ok">
+      <source src="audio/ok.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="rec">
+      <source src="audio/recording.mp3" type="audio/mpeg">
+    </audio>
+
+    <title>Escape from Axiom 300</title>
+  </head>
+
+<body>
+
+  <div class="start-screen">
+    <div class="sound-on"></div>
+    <h1>Escape from Axiom 300</h1>
+    <body>On his way back home from a misison in space, astronaut Yoseff Cooper is woken up by an alarm sound from his spaceship.</body>
+    <body>After checking the systems he finds out that the automatic pilot isn’t working.</body>
+    <body>He contacts earth to get help fixing the automatic pilot...</body>
+    <div class="start-button">
+      <div class="button-text">
+        START NOW
+      </div>
+    </div>
+  </div>
+
+  <div class="ava-bar">
+    <div class="ava-screen" id="o2-level">
+    </div>
+
+    <div class="ava-screen" id="destination">
+    </div>
+
+    <div class="ava-screen" id="left-cam">
+    </div>
+
+    <div class="ava-screen" id="front-cam">
+    </div>
+
+    <div class="ava-on" id="ava">
+    </div>
+
+    <div class="ava-screen" id="back-cam">
+    </div>
+
+    <div class="ava-screen" id="right-cam">
+    </div>
+
+    <div class="ava-screen" id="speed">
+    </div>
+
+    <div class="ava-screen" id="fuel-level">
+    </div>
+  </div>
+
+  <div class="pc-bar">
+    <div class="pc">
+      <div class="screen">
+        <div class="screen-buttons">
+          <div class="auto-pilot">
+            <h2>AUTO PILOT ON</h2>
+            <body>AUTOPILOT ERROR</body>
+          </div>
+
+          <div class="contact-earth">
+            <h2>CONTACT EARTH</h2>
+            <body>CONECTION IS STABLE</body>
+          </div>
+
+          <div class="auto-pilot">
+            <h2>AUTO PILOT ON</h2>
+            <body>AUTOPILOT ERROR</body>
+          </div>
+
+          <div class="auto-pilot">
+            <h2>AUTO PILOT ON</h2>
+            <body>AUTOPILOT ERROR</body>
+          </div>
+
+          <div class="small-buttons">
+            <div class="ship-info">
+              SHIP INFO
+            </div>
+            <div class="photos">
+              PHOTOS
+            </div>
+          </div>
+        </div>
+
+        <!-- p5 canvas! -->
+      </div>
+
+      <div class="control-bar">
+        <div class="button" id="pc-button">
+        </div>
+
+        <div class="button" id="ava-button">
+        </div>
+
+        <div class="button" id="o2-button">
+        </div>
+
+        <div class="speaker">
+          <div class="speaker-hole"></div>
+          <div class="speaker-hole"></div>
+          <div class="speaker-hole"></div>
+          <div class="speaker-hole"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+
+</html>

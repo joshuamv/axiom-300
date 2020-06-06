@@ -1,0 +1,244 @@
+
+body{
+  margin: 0;
+  padding: 0;
+  background-color: #090A0D;
+}
+
+/* start screen */
+
+.start-screen{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(12px);
+  z-index: 2;
+}
+
+.sound-on{
+  color: #FFFFFF;
+  font-family: Saira;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 130.5%;
+  letter-spacing: 0.02em;
+}
+
+h1{
+  font-family: Saira;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 66px;
+  line-height: 130.5%;
+  letter-spacing: 0.02em;
+  color: #FFFFFF;
+}
+
+h2{
+  font-family: Saira Condensed;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 33px;
+  line-height: 130.5%;
+  letter-spacing: 0.02em;
+  color: #FFFFFF;
+}
+
+body{
+  font-family: Saira Condensed;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 33px;
+  line-height: 130.5%;
+  letter-spacing: 0.02em;
+  color: #FFFFFF;
+}
+
+.start-button{
+  margin: auto;
+  justify-content: center;
+  width: 244px;
+  height: 67px;
+  padding: 10px 60px;
+  background: #FFFFFF;
+  box-shadow: 0px -4px 30px #000000;
+  border-radius: 1000px;
+}
+
+.button-text{
+  font-family: Saira Condensed;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 30px;
+  line-height: 47px;
+  color: #16161B;
+  margin: auto;
+  align-self: center;
+}
+
+
+/* ava bar */
+
+.ava-bar{
+  background-color: #090A0D;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin: auto;
+  margin-top: 40px;
+}
+
+.ava-on{
+  width: 75px;
+  height: 205px;
+  background: #C83232;
+  margin-left: 16px;
+  margin-right: 16px;
+}
+
+.ava-off{
+  width: 75px;
+  height: 205px;
+  background: #2D3543;
+  margin-left: 16px;
+  margin-right: 16px;
+}
+
+.ava-screen{
+  width: 100px;
+  height: 100px;
+  border: 8px solid #2D3543;
+  border-radius: 10px;
+  margin-left: 16px;
+  margin-right: 16px;
+}
+
+#o2-level{
+  background: #6E5490;
+}
+
+#destination{
+  background: #007194;
+}
+
+#left-cam{
+  background: #000000;
+}
+
+#front-cam{
+  background: #000000;
+}
+
+#back-cam{
+  background: #000000;
+}
+
+#right-cam{
+  background: #000000;
+}
+
+#speed{
+  background: #004A95;
+}
+
+#fuel-level{
+  background: #007EB9;
+}
+
+
+
+/* computer */
+
+.pc-bar{
+  height: 100%;
+  width: 100%;
+  background: #2D3543;
+  padding-top: 100px;
+  padding-bottom: 100px;
+  margin-top: 48px;
+}
+
+.pc{
+  background: #AAAFB7;
+  border-radius: 20px;
+  width: 810px;
+  height: 440px;
+  display: flex;
+  flex-direction: row;
+  margin: auto;
+}
+
+.screen{
+  margin: auto;
+  width: 640px;
+  height: 400px;
+  background: #090A0D;
+  border-radius: 10px;
+}
+
+.control-bar{
+  display: flex;
+  flex-direction: column;
+}
+
+.button{
+  width: 86px;
+  height: 35px;
+  /* box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1); */
+  margin: 16px 0px;
+}
+
+#pc-button{
+  background: #5EF188;
+  border: 2px solid #1FCE51;
+}
+
+#ava-button{
+  background: #EA440F;
+  border: 2px solid #CF3200;
+}
+
+#o2-button{
+  background: #9FF4F6;
+  border: 2px solid #64D4D7;
+}
+
+.speaker{
+  display: flex;
+  flex-direction: row;
+}
+
+.speaker-hole{
+  width: 6px;
+  height: 32px;
+  background: #090A0D;
+  border-radius: 1000px;
+  margin: 16px 4px;
+}
+
+
+
+@media screen and (max-width: 1000px) and (min-width: 800px) {
+
+  /* tablet */
+
+}
+
+
+@media screen and (max-width: 800px) and (min-width: 0px) {
+
+  /* phone */
+
+}
+
+@media screen and (max-height: 10000px) and (min-height: 800px) {
+
+  /* browser window not tall enough */
+
+}
