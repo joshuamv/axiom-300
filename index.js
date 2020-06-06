@@ -4,7 +4,7 @@
 var currentMission = []; //sets dialogues for ava and earth
 var pcPassword = []; //currently logged password
 var pcUnlocked = true; //locked or unlocked
-var avaMental = true; //true = crazy dialogues
+var avaMental = false; //true = crazy dialogues
 //on off buttons
 var pc = true;
 var ava = true;
@@ -19,6 +19,7 @@ $(document).ready(function() {
   $("#pc-button").on("click", pcButton);
   $("#ava-button").on("click", avaButton);
   $("#o2-button").on("click", oxygenButton);
+  $(".ava-on").on("click", ava);
 
 });
 
@@ -31,9 +32,13 @@ function startGame() {
   // play background music when start now is clicked
 
   $(".start-screen").hide();
+  currentMission = 1;
 }
 
 function ava() {
+  if (currentMission = 1) {
+    // console.log("missiom 1 is this: poop")
+  }
   // ava speaks dialogues according to the current mission
   //red orb moves when ava speaks
 }
@@ -48,12 +53,13 @@ function pcButton() {
 }
 
 function avaButton() {
-  if (avaMental = true) {
+
+  if (avaMental == true) {
     $('#ava').toggleClass('ava-on ava-off');
     //do nothing, ava says line about not letting you do that
   }
 
-  if (ava == true) {
+  if (ava == true && avaMental == false) {
     $('#ava').toggleClass('ava-on ava-off');
     ava = false;
     //power off sound effect
@@ -66,11 +72,11 @@ function avaButton() {
 }
 
 function oxygenButton() {
-  if (avaMental = true) {
+  if (avaMental == true) {
     //do nothing, ava says line about not letting you do that
   }
 
-  if (oxygen == true) {
+  if (oxygen == true && avaMental == false) {
     oxygen = false;
   } else {
     oxygen = true;

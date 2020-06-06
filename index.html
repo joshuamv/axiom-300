@@ -36,14 +36,16 @@
 <body>
 
   <div class="start-screen">
-    <div class="sound-on"></div>
-    <h1>Escape from Axiom 300</h1>
-    <body>On his way back home from a misison in space, astronaut Yoseff Cooper is woken up by an alarm sound from his spaceship.</body>
-    <body>After checking the systems he finds out that the automatic pilot isn’t working.</body>
-    <body>He contacts earth to get help fixing the automatic pilot...</body>
-    <div class="start-button">
-      <div class="button-text">
-        START NOW
+    <div class="start-container">
+      <div class="sound-on">TURN YOUR SOUND ON TO PLAY</div>
+      <h1>Escape from Axiom 300</h1>
+      <body>On his way back home from a misison in space, astronaut Yoseff Cooper is woken up by an alarm sound from his spaceship.</body>
+      <body>After checking the systems he finds out that the automatic pilot isn’t working.</body>
+      <body>He contacts earth to get help fixing the automatic pilot...</body>
+      <div class="start-button">
+        <div class="button-text">
+          START NOW
+        </div>
       </div>
     </div>
   </div>
@@ -81,37 +83,32 @@
     <div class="pc">
       <div class="screen">
         <div class="screen-buttons">
-          <div class="auto-pilot">
+
+          <div class="screen-widget" id="auto-pilot">
             <h2>AUTO PILOT ON</h2>
             <body>AUTOPILOT ERROR</body>
           </div>
 
-          <div class="contact-earth">
+          <div class="screen-widget" id="contact-earth">
             <h2>CONTACT EARTH</h2>
             <body>CONECTION IS STABLE</body>
           </div>
 
-          <div class="auto-pilot">
-            <h2>AUTO PILOT ON</h2>
-            <body>AUTOPILOT ERROR</body>
-          </div>
-
-          <div class="auto-pilot">
-            <h2>AUTO PILOT ON</h2>
-            <body>AUTOPILOT ERROR</body>
-          </div>
-
           <div class="small-buttons">
-            <div class="ship-info">
+            <div class="screen-button" id="ship-info">
               SHIP INFO
             </div>
-            <div class="photos">
+            <div class="screen-button" id="photos">
               PHOTOS
             </div>
           </div>
+
         </div>
 
-        <!-- p5 canvas! -->
+        <div class="radar">
+          p5 canvas or gif
+        </div>
+
       </div>
 
       <div class="control-bar">
