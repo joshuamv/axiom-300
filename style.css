@@ -3,6 +3,13 @@ body{
   margin: 0;
   padding: 0;
   background-color: #090A0D;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  cursor: default;
 }
 
 /* start screen */
@@ -51,6 +58,16 @@ h2{
   font-style: normal;
   font-weight: 600;
   font-size: 24px;
+  line-height: 130.5%;
+  letter-spacing: 0.02em;
+  color: #FFFFFF;
+}
+
+h3{
+  font-family: Saira Condensed;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 38px;
   line-height: 130.5%;
   letter-spacing: 0.02em;
   color: #FFFFFF;
@@ -195,6 +212,28 @@ body{
   flex-direction: row;
 }
 
+#off-screen{
+  margin: auto;
+  justify-content: center;
+  width: 640px;
+  height: 400px;
+  background: #090A0D;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: row;
+}
+
+#locked-screen{
+  display: flex;
+  margin: auto;
+  justify-content: center;
+  width: 640px;
+  height: 400px;
+  background: #090A0D;
+  border-radius: 10px;
+  flex-direction: row;
+}
+
 .screen-buttons{
   display: flex;
   flex-direction: column;
@@ -211,23 +250,6 @@ body{
   cursor: pointer;
 }
 
-.small-buttons{
-  display: flex;
-  flex-direction: row;
-  cursor: pointer;
-}
-
-.screen-button{
-  margin: 12px;
-  display: flex;
-  flex-direction: column;
-  width: 96px;
-  height: 100px;
-  border: 2px solid #FFFFFF;
-  border-radius: 10px;
-  cursor: pointer;
-}
-
 .radar{
   margin: 12px;
   width: 350px;
@@ -235,6 +257,63 @@ body{
   border: 2px solid #FFFFFF;
   border-radius: 10px;
   cursor: pointer;
+}
+
+.welcome{
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  margin-top: 50px;
+}
+
+.password-field{
+  display: flex;
+  flex-direction: column;
+}
+
+.enter-field{
+  display: flex;
+  flex-direction: row;
+}
+
+input {
+  font-family: Saira Condensed;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 24px;
+  line-height: 100.5%;
+  text-align: justify;
+  letter-spacing: 0.3em;
+  color: #FFFFFF;
+  background-color: #090A0D;
+  width: 216px;
+  padding: 12px 20px;
+  margin: 16px 0;
+  box-sizing: border-box;
+  border: 2px solid white;
+  border-radius: 10px;
+  -webkit-text-security: disc;
+}
+
+.password-button{
+  display: flex;
+  justify-content: center;
+  width: 60px;
+  margin: 16px 0;
+  margin-left: 10px;
+  padding: 12px 20px;
+  border: 2px solid white;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+#forgot{
+  display: none;
+  font-size: 16px;
+}
+
+.wrong-password{
+  border: 3px solid red;
 }
 
 .control-bar{
@@ -245,7 +324,7 @@ body{
 .button{
   width: 86px;
   height: 35px;
-  /* box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1); */
+  box-shadow: 0px 4px 11px rgba(0, 0, 0, 0.05);
   margin: 16px 0px;
   cursor: pointer;
 }
@@ -278,23 +357,22 @@ body{
   margin: 16px 4px;
 }
 
+/* backgrounds */
 
-
-@media screen and (max-width: 1000px) and (min-width: 800px) {
-
-  /* tablet */
-
+.ok-background{
+  background: #0A7528;
 }
 
-
-@media screen and (max-width: 800px) and (min-width: 0px) {
-
-  /* phone */
-
+.warning-background{
+  background: #AF5D21;
 }
 
-@media screen and (max-height: 10000px) and (min-height: 800px) {
+.error-background{
+  background: #9E1214;
+}
 
-  /* browser window not tall enough */
+@media screen and (max-width: 1300px) and (min-width: 0px) {
+
+  /* full screen needed! */
 
 }
