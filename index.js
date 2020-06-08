@@ -373,7 +373,7 @@ function avaSpeech() {
   }
   if (currentMission == 330 && ava == true) {
     $('#ok')[0].play();
-    // We have the coordinates, let’s contact earth to get permission to land. 3.3
+    // We have the coordinates, let’s contact earth to get permission to land 3.3
   }
 
   //MISSION 4//
