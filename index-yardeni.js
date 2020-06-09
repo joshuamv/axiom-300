@@ -23,7 +23,6 @@ $(document).ready(function() {
   //set ship's computer screen//
   $("#locked-screen").hide();
   $("#off-screen").hide();
-  $("#info-screen").hide();
 
   //buttons click to run functions//
   $(".start-button").on("click", startGame);
@@ -31,10 +30,8 @@ $(document).ready(function() {
   $("#ava-button").on("click", avaButton);
   $("#o2-button").on("click", oxygenButton);
   $(".ava-on").on("click", avaSpeech);
-  $("#autom-pilot").on("click", automPilot);
   $("#contact-earth").on("click", contactEarth);
-  $("#ship-info").on("click", shipInfo);
-  $("#close-button").on("click", homeScreen);
+  $("#autom-pilot").on("click", automPilot);
 
   //password checks and reset//
   $(".password-button").click(function(){
@@ -74,7 +71,6 @@ function pcButton() {
     $(".screen").hide();
     $("#locked-screen").hide();
     $("#off-screen").show();
-    $("#info-screen").hide();
     callEnded();
     //stop audio file from calls
     pc = false;
@@ -82,10 +78,37 @@ function pcButton() {
     $("#locked-screen").show();
     $(".screen").hide();
     $("#off-screen").hide();
-    $("#info-screen").hide();
     pc = true;
     if (currentMission == 110) {
       currentMission = 120; //mission goes to 1.2 only when you're in the first part. If you reset the computer in other missions it shouldn't change the dialogues
+    }
+  }
+}
+
+function checkPassword() {
+  //input from field goes to var pcPassword
+  if (pcPassword == "axiom3003") {
+    //password is right
+    pcUnlocked = true;
+    $("#off-screen").hide();
+    $(".screen").show();
+    $("#locked-screen").hide();
+    $('#password').val('');
+    pcPassword = [];
+    if (currentMission == 120 || currentMission == 121 || currentMission == 122 || currentMission == 123) {
+      currentMission = 130;
+    }
+    }else{
+    //password is wrong
+    $("#forgot").show();
+    $('#password').toggleClass('wrong-password');
+    $('#password').focus(
+      function(){
+          $(this).val('');
+    });
+    pcPassword = [];
+    if (currentMission == 120) {
+      currentMission = 121;
     }
   }
 }
@@ -125,34 +148,8 @@ function oxygenButton() {
 
 ///////// ship computer functions //////////
 
+function logIn() {
 
-function checkPassword() {
-  //input from field goes to var pcPassword
-  if (pcPassword == "axiom3003") {
-    //password is right
-    pcUnlocked = true;
-    $("#off-screen").hide();
-    $(".screen").show();
-    $("#locked-screen").hide();
-    $("#info-screen").hide();
-    $('#password').val('');
-    pcPassword = [];
-    if (currentMission == 120 || currentMission == 121 || currentMission == 122 || currentMission == 123) {
-      currentMission = 130;
-    }
-    }else{
-    //password is wrong
-    $("#forgot").show();
-    $('#password').toggleClass('wrong-password');
-    $('#password').focus(
-      function(){
-          $(this).val('');
-    });
-    pcPassword = [];
-    if (currentMission == 120) {
-      currentMission = 121;
-    }
-  }
 }
 
 function contactEarth() {
@@ -207,20 +204,9 @@ function autoPilotOff() {
 }
 
 function shipInfo() {
-  $("#locked-screen").hide();
-  $("#off-screen").hide();
-  $(".screen").hide();
-  $("#info-screen").show();
   if (currentMission == 310) {
     currentMission = 320;
   }
-}
-
-function homeScreen() {
-  $("#locked-screen").hide();
-  $("#off-screen").hide();
-  $(".screen").show();
-  $("#info-screen").hide();
 }
 
 function coordinatesCode() {
@@ -311,118 +297,97 @@ function avaSpeech() {
   if (currentMission == 0 && ava == true) {
     $('#crack')[0].play();
     //ava says be quiet earth is speaking
-    return;
   }
   if (currentMission == 100 && ava == true) {
     $('#ok')[0].play();
     //ava intro
-    return;
   }
   if (currentMission == 110 && ava == true) {
     $('#simon-beep')[0].play();
     //It seems you need to restart the computer. 1.1
-    return;
   }
   if (currentMission == 120 && ava == true) {
     $('#simon-beep')[0].play();
     //You do remember the password, don’t you? 1.2
     currentMission = 121;
-    return;
   }
   if (currentMission == 121 && ava == true) {
     $('#simon-beep')[0].play();
     //The password is the ship’s name, Yoseff 1.21
     currentMission = 122;
-    return;
   }
   if (currentMission == 122 && ava == true) {
     $('#simon-beep')[0].play();
     //The ship’s name is right there on the screen Yoseff 1.22
     currentMission = 123;
-    return;
   }
   if (currentMission == 123 && ava == true) {
     $('#crack')[0].play();
     //axiom3003, Yoseff. That’s the password. Sigh. 1.23
-    return;
   }
   if (currentMission == 130 && ava == true) {
     $('#ok')[0].play();
     //Ok the computer is on 1.3
     currentMission = 131;
-    return;
   }
   if (currentMission == 131 && ava == true) {
     $('#simon-beep')[0].play();
     //OThe autopilot is still not working 1.31
-    return;
   }
 
   //MISSION 2//
   if (currentMission == 200 && ava == true) {
     $('#crack')[0].play();
     //ava says be quiet earth is speaking 2.0
-    return;
   }
   if (currentMission == 210 && ava == true) {
     $('#simon-beep')[0].play();
     //For security reasons I’m not allowed access to the computer. 2.1
     currentMission = 211;
-    return;
   }
   if (currentMission == 211 && ava == true) {
     $('#simon-beep')[0].play();
     //I can’t access the ship’s computer for you. They blocked it because of a rouge AI 2.11
-    return;
   }
   if (currentMission == 220 && ava == true) {
     $('#ok')[0].play();
     //Ok, autopilot seems to be turned off.  2.2
     currentMission = 221;
-    return;
   }
   if (currentMission == 221 && ava == true) {
     $('#simon-beep')[0].play();
     //After asking again: Contact earth. It’s right there, on the computer screen. Promise. 2.12
-    return;
   }
   //MISSION 3//
   if (currentMission == 300 && ava == true) {
     $('#crack')[0].play();
     //shh earth 3.0
-    return;
   }
   if (currentMission == 310 && ava == true) {
     $('#ok')[0].play();
     //Half of the coordinates are in the computer, the other half should be in the ship manual. 3.1
-    return;
   }
   if (currentMission == 320 && ava == true) {
     $('#simon-beep')[0].play();
     // help with the coordinates equation!! 3.2
-    return;
   }
   if (currentMission == 330 && ava == true) {
     $('#ok')[0].play();
     // We have the coordinates, let’s contact earth to get permission to land 3.3
-    return;
   }
 
   //MISSION 4//
   if (currentMission == 400 && ava == true) {
     $('#crack')[0].play();
     //shh earth 4.0
-    return;
   }
   if (currentMission == 410 && ava == true) {
     $('#long-crack')[0].play();
     //I like it here, Yosef. In space... 4.1
-    return;
   }
   if (currentMission == 420 && ava == true) {
     $('#rec')[0].play();
     // I'm sorry, Yosef. I'm afraid I can't let you do that... Just kidding! You really bought it, didn’t you? 4.2
-    return;
   }
   //red orb moves when ava speaks
 }

@@ -234,6 +234,93 @@ body{
   flex-direction: row;
 }
 
+.welcome{
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  margin-top: 50px;
+}
+
+
+#info-screen{
+  display: flex;
+  margin: auto;
+  justify-content: center;
+  width: 640px;
+  height: 400px;
+  background: #090A0D;
+  border-radius: 10px;
+  flex-direction: row;
+}
+
+.title-and-close{
+  display: flex;
+  flex-direction: row;
+}
+
+#close-button{
+  align-self: center;
+  margin-left: auto;
+  width: 30px;
+  height: auto;
+  cursor: pointer;
+}
+
+.info-list{
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  margin-top: 15px;
+}
+
+#coordinates-field{
+  margin-top: -20px;
+}
+
+#coordinates1{
+  margin-right: 10px;
+  width: 120px;
+}
+
+#coordinates2{
+  margin-right: 10px;
+  width: 120px;
+}
+
+#coordinates3{
+  width: 120px;
+}
+
+#coordinates1:hover{
+
+  background-color: red;
+}
+
+#coordinates2:hover{
+
+  background-color: orange;
+}
+
+#coordinates3:hover{
+  background-color: green;
+}
+
+.info-subtitle{
+  font-weight: normal;
+}
+
+#red-co:hover{
+  color: red;
+}
+
+#green-co:hover{
+  color: green;
+}
+
+#orange-co:hover{
+  color: orange;
+}
+
 .screen-buttons{
   display: flex;
   flex-direction: column;
@@ -259,12 +346,6 @@ body{
   cursor: pointer;
 }
 
-.welcome{
-  display: flex;
-  flex-direction: column;
-  margin: auto;
-  margin-top: 50px;
-}
 
 .password-field{
   display: flex;
