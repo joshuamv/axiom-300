@@ -98,22 +98,29 @@ $(document).on('mousemove', function(e){
 
 ///////////////// functions ///////////////////
 
-function earthSpeaking() {
+function speakingStarts() {
   $('body').css('cursor', 'none');
   $("#mouse-text").show();
-  $(".start-screen").hide();
-  $('#autom-pilot').toggleClass('error-background warning-background');
+}
+
+function speakingOver() {
+  $('body').css('cursor', 'default');
+  $("#mouse-text").hide();
 }
 
 function startGame() {
   //play backgorund music
   $('#background')[0].play();
-  earthSpeaking();
+  speakingStarts();
+  $(".start-screen").hide();
+  $('#autom-pilot').toggleClass('error-background warning-background');
   currentMission = 0;
   callStarted();
   currentMission = 100;
-  setTimeout(avaSpeech, 20500)
-  setTimeout(callEnded, 20502)
+  setTimeout(avaSpeech, 20500);
+  setTimeout(callEnded, 20502);
+  setTimeout(speakingStarts, 20503);
+  setTimeout(speakingOver, 31000);
 }
 
 function pcButton() {
@@ -429,6 +436,7 @@ function earthSpeech(){
 }
 
 function avaSpeech() {
+  speakingStarts();
   console.log(currentMission);
   //MISSION 1//
   if (currentMission == 0 && ava == true) {
@@ -444,40 +452,47 @@ function avaSpeech() {
   if (currentMission == 110 && ava == true) {
     $('#ava110')[0].play();
     //It seems you need to restart the computer. 1.1
+    setTimeout(speakingOver, 7000)
     return;
   }
   if (currentMission == 120 && ava == true) {
     $('#ava120')[0].play();
     //You do remember the password, don’t you? 1.2
     currentMission = 121;
+    setTimeout(speakingOver, 5000)
     return;
   }
   if (currentMission == 121 && ava == true) {
     $('#ava121')[0].play();
     //The password is the ship’s name, Yoseff 1.21
     currentMission = 122;
+    setTimeout(speakingOver, 8000)
     return;
   }
   if (currentMission == 122 && ava == true) {
     $('#ava122')[0].play();
     //The ship’s name is right there on the screen Yoseff 1.22
     currentMission = 123;
+    setTimeout(speakingOver, 9000)
     return;
   }
   if (currentMission == 123 && ava == true) {
     $('#ava123')[0].play();
     //axiom3003, Yoseff. That’s the password. Sigh. 1.23
+    setTimeout(speakingOver, 6000)
     return;
   }
   if (currentMission == 130 && ava == true) {
     $('#ava130')[0].play();
     //Ok the computer is on 1.3
     currentMission = 131;
+    setTimeout(speakingOver, 9000)
     return;
   }
   if (currentMission == 131 && ava == true) {
     $('#ava131')[0].play();
     //OThe autopilot is still not working 1.31
+    setTimeout(speakingOver, 7000)
     return;
   }
 
@@ -491,22 +506,26 @@ function avaSpeech() {
     $('#ava210')[0].play();
     //For security reasons I’m not allowed access to the computer. 2.1
     currentMission = 211;
+    setTimeout(speakingOver, 9000)
     return;
   }
   if (currentMission == 211 && ava == true) {
     $('#ava211')[0].play();
     //I can’t access the ship’s computer for you. They blocked it because of a rouge AI 2.11
+    setTimeout(speakingOver, 12000)
     return;
   }
   if (currentMission == 220 && ava == true) {
     $('#ava220')[0].play();
     //Ok, autopilot seems to be turned off.  2.2
     currentMission = 221;
+    setTimeout(speakingOver, 6000)
     return;
   }
   if (currentMission == 221 && ava == true) {
     $('#ava221')[0].play();
     //After asking again: Contact earth. It’s right there, on the computer screen. Promise. 2.12
+    setTimeout(speakingOver, 5000)
     return;
   }
   //MISSION 3//
@@ -518,28 +537,33 @@ function avaSpeech() {
   if (currentMission == 310 && ava == true) {
     $('#ava310')[0].play();
     //Half of the coordinates are in the computer, the other half should be in the ship manual. 3.1
+    setTimeout(speakingOver, 6000)
     return;
   }
   if (currentMission == 320 && ava == true) {
     $('#ava320')[0].play();
     // help with the coordinates equation!! 3.2
     currentMission = 321;
+    setTimeout(speakingOver, 5000)
     return;
   }
   if (currentMission == 321 && ava == true) {
     $('#ava321')[0].play();
     // help with the coordinates equation!! 3.2
     currentMission = 322;
+    setTimeout(speakingOver, 8000)
     return;
   }
   if (currentMission == 322 && ava == true) {
     $('#ava322')[0].play();
     // help with the coordinates equation!! 3.2
+    setTimeout(speakingOver, 4000)
     return;
   }
   if (currentMission == 330 && ava == true) {
     $('#ava330')[0].play();
     // We have the coordinates, let’s contact earth to get permission to land 3.3
+    setTimeout(speakingOver, 4000)
     return;
   }
 
@@ -552,11 +576,13 @@ function avaSpeech() {
   if (currentMission == 410 && ava == true) {
     $('#ava410')[0].play();
     //I like it here, Yosef. In space... 4.1
+    setTimeout(speakingOver, 12000)
     return;
   }
   if (currentMission == 420 && ava == true) {
     $('#ava420')[0].play();
     // I'm sorry, Yosef. I'm afraid I can't let you do that... Just kidding! You really bought it, didn’t you? 4.2
+    setTimeout(speakingOver, 12000)
     return;
   }
   //red orb moves when ava speaks
@@ -569,23 +595,28 @@ function screenClicked() {
 }
 
 function avaComplains() {
+  speakingStarts();
   if (avaComplaint == 1) {
     $('#ava900')[0].play();
     avaComplaint = 2;
+    setTimeout(speakingOver, 2000)
     return;
   }
   if (avaComplaint == 2) {
     $('#ava910')[0].play();
     avaComplaint = 3;
+    setTimeout(speakingOver, 7000)
     return;
   }
   if (avaComplaint == 3) {
     $('#ava920')[0].play();
     avaComplaint = 4;
+    setTimeout(speakingOver, 6000)
     return;
   }
   if (avaComplaint == 4) {
     $('#ava930')[0].play();
+    setTimeout(speakingOver, 1000)
     return;
   }
 }
