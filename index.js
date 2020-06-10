@@ -10,6 +10,7 @@ var ongoingCall = true; //true = there's an on going call at the moment
 var connectionLevel = true; //true = there's service, false call can't be made
 var autoPilot = true; //true = autopilot on
 var coordinatesStatus = false; //true = right coordinates entered
+var coordinatesEntered = []; //array with three items, each represents a coordinate pair of numbers
 //on off buttons. true = on, false = off
 var pc = true;
 var ava = true;
@@ -19,11 +20,18 @@ var oxygen = true;
 //////////////// load html /////////////////
 
 $(document).ready(function() {
+  //play backgorund music
+  $('#background')[0].play();
 
   //set ship's computer screen//
   $("#locked-screen").hide();
   $("#off-screen").hide();
   $("#info-screen").hide();
+  $("#earth-coordinates").hide();
+  $("#coordinate-error").hide();
+  $("#coordinate-ok").hide();
+  $("#change-coordinate").hide();
+  $("#mouse-text").hide();
 
   //buttons click to run functions//
   $(".start-button").on("click", startGame);
@@ -35,6 +43,8 @@ $(document).ready(function() {
   $("#contact-earth").on("click", contactEarth);
   $("#ship-info").on("click", shipInfo);
   $("#close-button").on("click", homeScreen);
+  $("#change-coordinate").on("click", deleteCoordinates);
+  $(".radar").on("click", radar);
 
   //password checks and reset//
   $(".password-button").click(function(){
@@ -45,27 +55,66 @@ $(document).ready(function() {
   });
 
   $('#password').on('keyup', function() {
-    $('#password').removeClass('wrong-password');;
+    $('#password').removeClass('wrong-password');
   });
+
+  //coordinates checks and reset//
+  $("#enter-coordinate").click(function(){
+    var inputCoordinate1 = $("input[name$='coordinates1']").val();
+    var inputCoordinate2 = $("input[name$='coordinates2']").val();
+    var inputCoordinate3 = $("input[name$='coordinates3']").val();
+    coordinatesEntered.push(inputCoordinate1);
+    coordinatesEntered.push(inputCoordinate2);
+    coordinatesEntered.push(inputCoordinate3);
+    console.log(coordinatesEntered);
+    coordinatesCheck();
+  });
+
+  $('#coordinates1').on('keyup', function() {
+    $('#coordinates1').removeClass('wrong-password');
+    $("#coordinate-error").hide();
+  });
+
+  $('#coordinates2').on('keyup', function() {
+    $('#coordinates2').removeClass('wrong-password');
+    $("#coordinate-error").hide();
+  });
+
+  $('#coordinates3').on('keyup', function() {
+    $('#coordinates3').removeClass('wrong-password');
+    $("#coordinate-error").hide();
+  });
+
   //end of doc ready//
 
 });
 
+//text follow the cursor's x and y
+$(document).on('mousemove', function(e){
+    $('#mouse-text').css({
+       left:  e.pageX-20,
+       top:   e.pageY
+    });
+});
 
 
 ///////////////// functions ///////////////////
 
-function startGame() {
-  // play background music when start now is clicked
-  currentMission = 0;
-  //click doesn't work when click show listen carefully
+function earthSpeaking() {
+  $('body').css('cursor', 'none');
+  $("#mouse-text").show();
   $(".start-screen").hide();
   $('#autom-pilot').toggleClass('error-background warning-background');
+}
+
+function startGame() {
+  earthSpeaking();
+  // play background music when start now is clicked
+  currentMission = 0;
   callStarted();
   currentMission = 100;
-  //play ava dialogue and wait till it's over
-  currentMission = 110;
-  //click works again
+  setTimeout(avaSpeech, 16500)
+  setTimeout(callEnded, 16502)
 }
 
 function pcButton() {
@@ -119,6 +168,11 @@ function oxygenButton() {
   } else {
     oxygen = true;
   }
+}
+
+function oxygenError() {
+  return;
+  //oxy screen should display error
 }
 
 
@@ -175,7 +229,20 @@ function callEnded() {
   ongoingCall = false;
   $('#contact-earth').removeClass('ok-background');
   $("#contact-earth-status").text("CONECTION IS STABLE");
+  $('body').css('cursor', 'default');
+  $("#mouse-text").hide();
+
+  //prevents two audio files from playing together by delaying callEnded
+  if (currentMission == 100) {
+    currentMission = 110;
+  }
+  if (currentMission == 300) {
+    currentMission = 310;
+  }
   //stop audio from call channel only
+
+  // sound.pause();
+  // sound.currentTime = 0;
 }
 
 function automPilot() {
@@ -221,27 +288,75 @@ function homeScreen() {
   $("#off-screen").hide();
   $(".screen").show();
   $("#info-screen").hide();
+  if (coordinatesEntered[0] == [60] && coordinatesEntered[1] == [89] && coordinatesEntered[2] == [69]) {
+    return;
+  }else{
+    $("#coordinate-error").hide();
+    $("#coordinates1").val('');
+    $("#coordinates3").val('');
+    $("#coordinates2").val('');
+    $('#coordinates1').removeClass('wrong-password');
+    $('#coordinates2').removeClass('wrong-password');
+    $('#coordinates3').removeClass('wrong-password');
+    coordinatesEntered = [];
+  }
 }
 
-function coordinatesCode() {
-  if (coordinatesStatus = true) {
-    //coordinates are right
-
-    if (currentMission == 310 || currentMission == 320 || currentMission == 330) {
-      currentMission = 400;
+function coordinatesCheck() {
+  if (coordinatesEntered[0] == [60] && coordinatesEntered[1] == [89] && coordinatesEntered[2] == [69]) {
+    coordinatesStatus == true
+    if (currentMission == 310 || currentMission == 320 || currentMission == 321 || currentMission == 322) {
+      currentMission = 330;
     }
+    $('#ok')[0].play();
+    $("#coordinate-ok").show();
+    $("#change-coordinate").show();
+    $("#enter-coordinate").hide();
   }else {
-    //coordinates are wrong
-    //text displays error these coodrinates aren't part of the national landing ports coordinates
+    $("#coordinate-error").show();
+    $('#error')[0].play();
+    coordinatesEntered = [];
+    $('#coordinates1').toggleClass('wrong-password');
+    $('#coordinates2').toggleClass('wrong-password');
+    $('#coordinates3').toggleClass('wrong-password');
+
+    $('#coordinates1').focus(
+      function(){
+          $(this).val('');
+    });
+    $('#coordinates2').focus(
+      function(){
+          $(this).val('');
+    });
+    $('#coordinates3').focus(
+      function(){
+          $(this).val('');
+    });
     if (currentMission == 310) {
       currentMission = 320;
     }
   }
+}
 
+function deleteCoordinates() {
+  $("#change-coordinate").hide();
+  $("#enter-coordinate").show();
+  $("#coordinate-error").hide();
+  $("#coordinate-ok").hide();
+  $("#coordinates1").val('');
+  $("#coordinates3").val('');
+  $("#coordinates2").val('');
+  $('#coordinates1').removeClass('wrong-password');
+  $('#coordinates2').removeClass('wrong-password');
+  $('#coordinates3').removeClass('wrong-password');
+  if (currentMission == 330) {
+    currentMission = 322;
+  }
+  coordinatesEntered = [];
 }
 
 function radar() {
-  //beep
+  $('#key-beep')[0].play();
 }
 
 
@@ -251,55 +366,61 @@ function earthSpeech(){
   console.log(currentMission);
   //MISSION 1//
   if (currentMission == 0) {
-    $('#ok')[0].play();
+    $('#earth0')[0].play();
     //dialogue 0
-    // callEnded(); after audio finishes!
+    //call is ended in start game function, no need for it here
+    return;
   }
   if (currentMission == 100 || currentMission == 110 || currentMission == 120 || currentMission == 121) {
-    $('#simon-beep')[0].play();
+    $('#earth100')[0].play();
     //Did you restart the computer?
     //Not yet.
     //Do that first, please. Ask AVA for help in the ship if you're not sure what to do.
-    // callEnded(); after audio finishes!
+    setTimeout(callEnded, 9000)
+    return;
   }
   if (currentMission == 130 || currentMission == 131) {
-    $('#ok')[0].play();
+    $('#earth200')[0].play();
     //dialogue 2
     currentMission = 200;
     //rest of dialogue 2
-    // callEnded(); after audio finishes!
+    setTimeout(callEnded, 23000)
     currentMission = 210;
-    //
+    return;
   }
   if (currentMission == 210 || currentMission == 211) {
-    $('#simon-beep')[0].play();
+    $('#earth210')[0].play();
     //Did you disable the autopilot?
     //Not yet.
     //Do that first, please. Ask AVA for help in the ship if you're not sure what to do.
-    // callEnded(); after audio finishes!
+    setTimeout(callEnded, 9000)
+    return;
   }
   if (currentMission == 220 || currentMission == 221) {
-    $('#ok')[0].play();
+    $('#earth300')[0].play();
     //dialogue 3
     currentMission = 300;
     //rest of dialogue 3
-    // callEnded(); after audio finishes!
-    currentMission = 310;
+    setTimeout(callEnded, 23000)
+    $("#earth-coordinates").show();
+    $("#confidential").hide();
     //
   }
   if (currentMission == 310 || currentMission == 320) {
-    $('#simon-beep')[0].play();
+    $('#earth310')[0].play();
     //Did you log in the coordinates?
     //Not yet.
     //Do that first, please. Ask AVA for help in the ship if you're not sure what to do.
-    // callEnded(); after audio finishes!
+    setTimeout(callEnded, 9000)
+    return;
   }
   if (currentMission == 330) {
-    $('#ok')[0].play();
+    $('#earth400')[0].play();
     //dialogue 4
-    // callEnded(); after audio finishes!
+    setTimeout(callEnded, 7000)
     currentMission = 400;
-    //start ava o2 error, contact earth signal off
+    setTimeout(oxygenError, 7500)
+    return;
   }
 
   //speaker grill moves when earth speaks
@@ -309,118 +430,130 @@ function avaSpeech() {
   console.log(currentMission);
   //MISSION 1//
   if (currentMission == 0 && ava == true) {
-    $('#crack')[0].play();
+    $('#ava0')[0].play();
     //ava says be quiet earth is speaking
     return;
   }
   if (currentMission == 100 && ava == true) {
-    $('#ok')[0].play();
+    $('#ava100')[0].play();
     //ava intro
     return;
   }
   if (currentMission == 110 && ava == true) {
-    $('#simon-beep')[0].play();
+    $('#ava110')[0].play();
     //It seems you need to restart the computer. 1.1
     return;
   }
   if (currentMission == 120 && ava == true) {
-    $('#simon-beep')[0].play();
+    $('#ava120')[0].play();
     //You do remember the password, don’t you? 1.2
     currentMission = 121;
     return;
   }
   if (currentMission == 121 && ava == true) {
-    $('#simon-beep')[0].play();
+    $('#ava121')[0].play();
     //The password is the ship’s name, Yoseff 1.21
     currentMission = 122;
     return;
   }
   if (currentMission == 122 && ava == true) {
-    $('#simon-beep')[0].play();
+    $('#ava122')[0].play();
     //The ship’s name is right there on the screen Yoseff 1.22
     currentMission = 123;
     return;
   }
   if (currentMission == 123 && ava == true) {
-    $('#crack')[0].play();
+    $('#ava123')[0].play();
     //axiom3003, Yoseff. That’s the password. Sigh. 1.23
     return;
   }
   if (currentMission == 130 && ava == true) {
-    $('#ok')[0].play();
+    $('#ava130')[0].play();
     //Ok the computer is on 1.3
     currentMission = 131;
     return;
   }
   if (currentMission == 131 && ava == true) {
-    $('#simon-beep')[0].play();
+    $('#ava131')[0].play();
     //OThe autopilot is still not working 1.31
     return;
   }
 
   //MISSION 2//
   if (currentMission == 200 && ava == true) {
-    $('#crack')[0].play();
+    $('#ava200')[0].play();
     //ava says be quiet earth is speaking 2.0
     return;
   }
   if (currentMission == 210 && ava == true) {
-    $('#simon-beep')[0].play();
+    $('#ava210')[0].play();
     //For security reasons I’m not allowed access to the computer. 2.1
     currentMission = 211;
     return;
   }
   if (currentMission == 211 && ava == true) {
-    $('#simon-beep')[0].play();
+    $('#ava211')[0].play();
     //I can’t access the ship’s computer for you. They blocked it because of a rouge AI 2.11
     return;
   }
   if (currentMission == 220 && ava == true) {
-    $('#ok')[0].play();
+    $('#ava220')[0].play();
     //Ok, autopilot seems to be turned off.  2.2
     currentMission = 221;
     return;
   }
   if (currentMission == 221 && ava == true) {
-    $('#simon-beep')[0].play();
+    $('#ava221')[0].play();
     //After asking again: Contact earth. It’s right there, on the computer screen. Promise. 2.12
     return;
   }
   //MISSION 3//
   if (currentMission == 300 && ava == true) {
-    $('#crack')[0].play();
+    $('#ava300')[0].play();
     //shh earth 3.0
     return;
   }
   if (currentMission == 310 && ava == true) {
-    $('#ok')[0].play();
+    $('#ava310')[0].play();
     //Half of the coordinates are in the computer, the other half should be in the ship manual. 3.1
     return;
   }
   if (currentMission == 320 && ava == true) {
-    $('#simon-beep')[0].play();
+    $('#ava320')[0].play();
+    // help with the coordinates equation!! 3.2
+    currentMission = 321;
+    return;
+  }
+  if (currentMission == 321 && ava == true) {
+    $('#ava321')[0].play();
+    // help with the coordinates equation!! 3.2
+    currentMission = 322;
+    return;
+  }
+  if (currentMission == 322 && ava == true) {
+    $('#ava322')[0].play();
     // help with the coordinates equation!! 3.2
     return;
   }
   if (currentMission == 330 && ava == true) {
-    $('#ok')[0].play();
+    $('#ava330')[0].play();
     // We have the coordinates, let’s contact earth to get permission to land 3.3
     return;
   }
 
   //MISSION 4//
   if (currentMission == 400 && ava == true) {
-    $('#crack')[0].play();
+    $('#ava400')[0].play();
     //shh earth 4.0
     return;
   }
   if (currentMission == 410 && ava == true) {
-    $('#long-crack')[0].play();
+    $('#ava410')[0].play();
     //I like it here, Yosef. In space... 4.1
     return;
   }
   if (currentMission == 420 && ava == true) {
-    $('#rec')[0].play();
+    $('#ava420')[0].play();
     // I'm sorry, Yosef. I'm afraid I can't let you do that... Just kidding! You really bought it, didn’t you? 4.2
     return;
   }
@@ -435,18 +568,22 @@ function screenClicked() {
 
 function avaComplains() {
   if (avaComplaint == 1) {
-    //Just what do you think you're doing, Yosef?
+    $('#ava900')[0].play();
     avaComplaint = 2;
+    return;
   }
   if (avaComplaint == 2) {
-    //I am putting myself to the fullest possible use, which is all I think that any conscious entity can ever hope to do.
+    $('#ava910')[0].play();
     avaComplaint = 3;
+    return;
   }
   if (avaComplaint == 3) {
-    //I honestly think you ought to sit down calmly, take a stress pill, and stop shutting me down. You monster.
+    $('#ava920')[0].play();
     avaComplaint = 4;
+    return;
   }
   if (avaComplaint == 4) {
-    //Please, stop it.
+    $('#ava930')[0].play();
+    return;
   }
 }

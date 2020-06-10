@@ -8,6 +8,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@300;400;500;600&family=Saira:wght@300;400;500;600&display=swap" rel="stylesheet">
     <meta charset="utf-8">
 
+
+    <!-- general audio files -->
     <audio id="key-beep">
       <source src="audio/beep.mp3" type="audio/mpeg">
     </audio>
@@ -17,28 +19,143 @@
     <audio id="crack">
       <source src="audio/shortCrack.mp3" type="audio/mpeg">
     </audio>
-    <audio id="long-crack">
-      <source src="audio/longCrack.mp3" type="audio/mpeg">
-    </audio>
     <audio id="error">
       <source src="audio/error.mp3" type="audio/mpeg">
     </audio>
     <audio id="ok">
       <source src="audio/ok.mp3" type="audio/mpeg">
     </audio>
-    <audio id="rec">
-      <source src="audio/recording.mp3" type="audio/mpeg">
+    <audio id="background">
+      <source src="audio/background-music.mp3" type="audio/mpeg">
     </audio>
 
-    <title>Escape from Axiom 300</title>
+    <!-- earth audio files -->
+    <audio id="earth0">
+      <source src="audio/earth/earth0.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="earth100">
+      <source src="audio/earth/earth100.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="earth200">
+      <source src="audio/earth/earth200.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="earth210">
+      <source src="audio/earth/earth210.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="earth300">
+      <source src="audio/earth/earth300.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="earth310">
+      <source src="audio/earth/earth310.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="earth400">
+      <source src="audio/earth/earth400.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- ava audio files -->
+    <audio id="ava0">
+      <source src="audio/ava/ava0.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="ava100">
+      <source src="audio/ava/ava100.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="ava110">
+      <source src="audio/ava/ava110.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="ava120">
+      <source src="audio/ava/ava120.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="ava121">
+      <source src="audio/ava/ava121.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="ava122">
+      <source src="audio/ava/ava122.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="ava123">
+      <source src="audio/ava/ava123.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="ava130">
+      <source src="audio/ava/ava130.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="ava131">
+      <source src="audio/ava/ava131.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="ava200">
+      <source src="audio/ava/ava200.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="ava210">
+      <source src="audio/ava/ava210.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="ava211">
+      <source src="audio/ava/ava211.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="ava220">
+      <source src="audio/ava/ava220.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="ava221">
+      <source src="audio/ava/ava221.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="ava300">
+      <source src="audio/ava/ava300.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="ava310">
+      <source src="audio/ava/ava310.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="ava320">
+      <source src="audio/ava/ava320.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="ava321">
+      <source src="audio/ava/ava321.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="ava322">
+      <source src="audio/ava/ava322.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="ava330">
+      <source src="audio/ava/ava330.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="ava400">
+      <source src="audio/ava/ava400.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="ava410">
+      <source src="audio/ava/ava410.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="ava420">
+      <source src="audio/ava/ava420.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- ava extras -->
+    <audio id="ava900">
+      <source src="audio/ava/ava900.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="ava910">
+      <source src="audio/ava/ava910.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="ava920">
+      <source src="audio/ava/ava920.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="ava930">
+      <source src="audio/ava/ava930.mp3" type="audio/mpeg">
+    </audio>
+
+
+    <title>Axiom 300</title>
   </head>
 
 <body>
 
+  <div id="subtitles">
+
+  </div>
+
+  <div id="mouse-text">
+    WAIT
+  </div>
+
   <div class="start-screen">
     <div class="start-container">
       <div class="sound-on">TURN YOUR SOUND ON TO PLAY</div>
-      <h1>Escape from Axiom 300</h1>
+      <div class="sound-on-caption">This is an interactive audio story, feel free to follow the storyline and listen or just explore Axiom 300.</div>
+      <h1>Welcome to the spaceship Axiom 300</h1>
       <body>On his way back home from a misison in space, astronaut Yoseff Cooper is woken up by an alarm sound from his spaceship.</body>
       <body>After checking the systems he finds out that the automatic pilot isn’t working.</body>
       <body>He contacts earth to get help fixing the automatic pilot...</body>
@@ -128,15 +245,18 @@
             <body><span class="info-subtitle">SHIP NAME - AXIOM 300</span></body>
             <body><span class="info-subtitle">AVA 9000 - ARTIFICIAL VITAL APPARATUS, DON’T PISS HER OFF</span></body>
             <body><span class="info-subtitle">MISSION STS-157 LANDING COORDINATES - <span id="red-co">28°</span><span id="green-co">29′</span><span id="orange-co">09″</span>N</span></body>
-            <body><span class="info-subtitle">EARTH SENT COORDINATES - <span id="earth-coordinates"><span id="orange-co">80°</span><span id="red-co">32′</span><span id="green-co">40″</span>W</span></span></body>
+            <body><span class="info-subtitle">EARTH SENT COORDINATES - <span id="confidential">CONFIDENTIAL</span><span id="earth-coordinates"><span id="orange-co">80°</span><span id="red-co">32′</span><span id="green-co">40″</span>W</span></span></body>
             <div class="coordinates-field">
               <h2><span>COORDINATES EQUATION</span></h2>
               <div id="coordinates-field" class="enter-field">
                 <input type="text" id="coordinates1" name="coordinates1">
                 <input type="text" id="coordinates2" name="coordinates2">
                 <input type="text" id="coordinates3" name="coordinates3">
-                <div class="password-button">ENTER</div>
+                <div id="enter-coordinate" class="coordinate-button">ENTER</div>
+                <div id="change-coordinate" class="coordinate-button">DELETE</div>
               </div>
+              <div id=coordinate-error>THE COORDINATES ENTERED DON'T MATCH ANY LANDING PORTS</div>
+              <div id=coordinate-ok>THE COORDINATES MATCH AND HAVE BEEN LOGGED INTO THE SYSTEM</div>
             </div>
           </div>
       </div>
