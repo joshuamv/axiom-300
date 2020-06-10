@@ -117,9 +117,9 @@ function startGame() {
   currentMission = 0;
   callStarted();
   currentMission = 100;
-  setTimeout(avaSpeech, 20500);
-  setTimeout(callEnded, 20502);
-  setTimeout(speakingStarts, 20503);
+  setTimeout(avaSpeech, 21200);
+  setTimeout(callEnded, 21202);
+  setTimeout(speakingStarts, 21203);
   setTimeout(speakingOver, 31000);
 }
 
@@ -214,6 +214,29 @@ function checkPassword() {
     }
   }
 }
+
+$('input').bind("enterKey",function(e){
+  alert("Enter");
+});
+
+(function($) {
+    $.fn.onEnter = function(func) {
+        this.bind('keypress', function(e) {
+            if (e.keyCode == 13) func.apply(this, [e]);
+        });
+        return this;
+     };
+})(jQuery);
+
+$( function () {
+    console.log($("input"));
+    $("#password").onEnter( function() {
+      var inputPassword = $("input[name$='password']").val();
+      pcPassword.push(inputPassword);
+      console.log(pcPassword);
+      checkPassword();
+    });
+});
 
 function contactEarth() {
   if (ongoingCall == false && connectionLevel == true) {
@@ -345,6 +368,48 @@ function coordinatesCheck() {
     }
   }
 }
+
+$( function () {
+    console.log($("input"));
+    $("#coordinates1").onEnter( function() {
+      var inputCoordinate1 = $("input[name$='coordinates1']").val();
+      var inputCoordinate2 = $("input[name$='coordinates2']").val();
+      var inputCoordinate3 = $("input[name$='coordinates3']").val();
+      coordinatesEntered.push(inputCoordinate1);
+      coordinatesEntered.push(inputCoordinate2);
+      coordinatesEntered.push(inputCoordinate3);
+      console.log(coordinatesEntered);
+      coordinatesCheck();
+    });
+});
+
+$( function () {
+    console.log($("input"));
+    $("#coordinates2").onEnter( function() {
+      var inputCoordinate1 = $("input[name$='coordinates1']").val();
+      var inputCoordinate2 = $("input[name$='coordinates2']").val();
+      var inputCoordinate3 = $("input[name$='coordinates3']").val();
+      coordinatesEntered.push(inputCoordinate1);
+      coordinatesEntered.push(inputCoordinate2);
+      coordinatesEntered.push(inputCoordinate3);
+      console.log(coordinatesEntered);
+      coordinatesCheck();
+    });
+});
+
+$( function () {
+    console.log($("input"));
+    $("#coordinates3").onEnter( function() {
+      var inputCoordinate1 = $("input[name$='coordinates1']").val();
+      var inputCoordinate2 = $("input[name$='coordinates2']").val();
+      var inputCoordinate3 = $("input[name$='coordinates3']").val();
+      coordinatesEntered.push(inputCoordinate1);
+      coordinatesEntered.push(inputCoordinate2);
+      coordinatesEntered.push(inputCoordinate3);
+      console.log(coordinatesEntered);
+      coordinatesCheck();
+    });
+});
 
 function deleteCoordinates() {
   $("#change-coordinate").hide();
