@@ -20,9 +20,6 @@ var oxygen = true;
 //////////////// load html /////////////////
 
 $(document).ready(function() {
-  //play backgorund music
-  $('#background')[0].play();
-
   //set ship's computer screen//
   $("#locked-screen").hide();
   $("#off-screen").hide();
@@ -109,6 +106,8 @@ function earthSpeaking() {
 }
 
 function startGame() {
+  //play backgorund music
+  $('#background')[0].play();
   earthSpeaking();
   currentMission = 0;
   callStarted();
