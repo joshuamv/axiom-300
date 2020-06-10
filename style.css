@@ -32,15 +32,27 @@ body{
 }
 
 .sound-on{
-  margin-left: auto;
-  margin-right: auto;
   color: #F1F1F1;
   font-family: Saira;
   font-style: normal;
   font-weight: 600;
-  font-size: 16px;
+  font-size: 18px;
   line-height: 130.5%;
   letter-spacing: 0.02em;
+}
+
+#sound-icon{
+  align-self: center;
+  margin-right: 10px;
+  width: 25px;
+  height: auto;
+}
+
+.sound-container{
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  flex-direction: row;
 }
 
 .sound-on-caption{
@@ -98,6 +110,7 @@ body{
 .start-button{
   display: flex;
   margin: auto;
+  margin-top: 50px;
   justify-content: center;
   width: 244px;
   height: 67px;

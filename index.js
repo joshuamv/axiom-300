@@ -32,6 +32,7 @@ $(document).ready(function() {
   $("#coordinate-ok").hide();
   $("#change-coordinate").hide();
   $("#mouse-text").hide();
+  $("#enter-coordinates").hide();
 
   //buttons click to run functions//
   $(".start-button").on("click", startGame);
@@ -109,12 +110,11 @@ function earthSpeaking() {
 
 function startGame() {
   earthSpeaking();
-  // play background music when start now is clicked
   currentMission = 0;
   callStarted();
   currentMission = 100;
-  setTimeout(avaSpeech, 16500)
-  setTimeout(callEnded, 16502)
+  setTimeout(avaSpeech, 20500)
+  setTimeout(callEnded, 20502)
 }
 
 function pcButton() {
@@ -221,6 +221,8 @@ function contactEarth() {
 function callStarted() {
   $('#contact-earth').toggleClass('ok-background');
   $("#contact-earth-status").text("ON-GOING CALL");
+  $('body').css('cursor', 'none');
+  $("#mouse-text").show();
   ongoingCall = true;
   earthSpeech();
 }
@@ -239,20 +241,20 @@ function callEnded() {
   if (currentMission == 300) {
     currentMission = 310;
   }
-  //stop audio from call channel only
-
-  // sound.pause();
-  // sound.currentTime = 0;
 }
 
 function automPilot() {
   if (autoPilot == false) {
     autoPilotOn();
+    $("#enter-coordinates").hide();
+    $("#system-ok").show();
   }else{
     autoPilotOff();
     if (currentMission == 210 || currentMission == 211) {
       currentMission = 220;
     }
+    $("#enter-coordinates").show();
+    $("#system-ok").hide();
   }
 }
 
@@ -262,7 +264,7 @@ function autoPilotOn() {
   $("#autopilot-status").text("AUTOPILOT ERROR");
   autoPilot = true;
   if (currentMission > 220 && ava == true) {
-    //speech You should probably leave the autopilot off, it's not working properly
+    $('#ava940')[0].play();
   }
 }
 
@@ -388,6 +390,7 @@ function earthSpeech(){
     currentMission = 210;
     return;
   }
+
   if (currentMission == 210 || currentMission == 211) {
     $('#earth210')[0].play();
     //Did you disable the autopilot?
