@@ -12,14 +12,17 @@ var autoPilot = true; //true = autopilot on
 var coordinatesStatus = false; //true = right coordinates entered
 var coordinatesEntered = []; //array with three items, each represents a coordinate pair of numbers
 //on off buttons. true = on, false = off
+var oxygenLevel = 84;
 var pc = true;
 var ava = true;
 var oxygen = true;
-
+var intervalUp;
+var intervalDown;
 
 //////////////// load html /////////////////
 
 $(document).ready(function() {
+
   //set ship's computer screen//
   $("#locked-screen").hide();
   $("#off-screen").hide();
@@ -30,6 +33,20 @@ $(document).ready(function() {
   $("#change-coordinate").hide();
   $("#mouse-text").hide();
   $("#enter-coordinates").hide();
+  $("#o2-off").hide();
+  $("#o2-error").hide();
+  $("#o2-low").hide();
+  $("#o2-low-but-on").hide();
+
+  //set AVA screens to global vars
+  $("#o2-percent").html(oxygenLevel + "%");
+  $("#o2-percent-error").html(oxygenLevel + "%");
+  $("#o2-percent-off").html(oxygenLevel + "%");
+  $("#o2-percent-low").html(oxygenLevel + "%");
+  $("#o2-percent-rising").html(oxygenLevel + "%");
+  var barOxygenLevel = oxygenLevel/1.5625; //map AVA screen values//
+  $(".bar-filling").width(barOxygenLevel);
+
 
   //buttons click to run functions//
   $(".start-button").on("click", startGame);
@@ -126,21 +143,25 @@ function startGame() {
 function pcButton() {
   pcUnlocked = false;
   if (pc == true) {
+    $('#phybutton')[0].play();
     $(".screen").hide();
     $("#locked-screen").hide();
     $("#off-screen").show();
     $("#info-screen").hide();
+    $('#pc-button').toggleClass('pc-off');
     callEnded();
-    //stop audio file from calls
     pc = false;
   } else {
+    $('#phybutton')[0].play();
     $("#locked-screen").show();
     $(".screen").hide();
     $("#off-screen").hide();
     $("#info-screen").hide();
+    $('#pc-button').removeClass('pc-off');
     pc = true;
     if (currentMission == 110) {
-      currentMission = 120; //mission goes to 1.2 only when you're in the first part. If you reset the computer in other missions it shouldn't change the dialogues
+      currentMission = 120; //mission goes to 1.2 only when you're in the first part.
+      // If you reset the computer in other missions it shouldn't change the dialogues
     }
   }
 }
@@ -148,31 +169,135 @@ function pcButton() {
 function avaButton() {
 
   if (avaMental == true) {
+    $('#phybutton')[0].play();
     $('#ava').toggleClass('ava-on ava-off');
     //do nothing, ava says line about not letting you do that
   }
 
   if (ava == true && avaMental == false) {
+    $('#phybutton')[0].play();
     $('#ava').toggleClass('ava-on ava-off');
     ava = false;
+    $('#ava-button').toggleClass('ava-off');
     //power off sound effect
   } else {
+    $('#phybutton')[0].play();
     $('#ava').toggleClass('ava-on ava-off');
+    $('#ava-button').removeClass('ava-off');
     ava = true;
     //power on sound effect
     avaComplains();
   }
 }
 
+function downInterval(speed){
+  var intervalUp = setInterval(function(){
+    --oxygenLevel;
+    if(oxygenLevel === 0) {
+      clearInterval(intervalUp);
+      console.log("down stopped")
+    }
+    oxyDown();
+  }, speed);
+}
+
+function oxyDown() {
+  $("#o2-percent").html(oxygenLevel + "%");
+  $("#o2-percent-error").html(oxygenLevel + "%");
+  $("#o2-percent-off").html(oxygenLevel + "%");
+  $("#o2-percent-low").html(oxygenLevel + "%");
+  $("#o2-percent-rising").html(oxygenLevel + "%");
+  var barOxygenLevel = oxygenLevel/1.5625; //map AVA screen values//
+  $(".bar-filling").width(barOxygenLevel);
+  if (oxygenLevel === 0) {
+    //game over screen you died
+  }
+  if (oxygenLevel < 20) {
+    $("#o2-level").hide();
+    $("#o2-off").hide();
+    $("#o2-error").hide();
+    $("#o2-low").show();
+    $("#o2-low-but-on").hide();
+  }
+}
+
+function upInterval(speed){
+  var intervalDown = setInterval(function(){
+    ++oxygenLevel;
+    if(oxygenLevel === 100){
+      console.log("down stopped")
+      clearInterval(intervalDown);
+    }
+    oxyUp();
+  }, speed);
+}
+
+function oxyUp() {
+  $("#o2-percent").html(oxygenLevel + "%");
+  $("#o2-percent-error").html(oxygenLevel + "%");
+  $("#o2-percent-off").html(oxygenLevel + "%");
+  $("#o2-percent-low").html(oxygenLevel + "%");
+  $("#o2-percent-rising").html(oxygenLevel + "%");
+  var barOxygenLevel = oxygenLevel/1.5625; //map AVA screen values//
+  $(".bar-filling").width(barOxygenLevel);
+  if (oxygenLevel > 20) {
+    $("#o2-level").show();
+    $("#o2-off").hide();
+    $("#o2-error").hide();
+    $("#o2-low").hide();
+    $("#o2-low-but-on").hide();
+  }
+}
+
 function oxygenButton() {
   if (avaMental == true) {
+    $('#phybutton')[0].play();
     //do nothing, ava says line about not letting you do that
   }
-
   if (oxygen == true && avaMental == false) {
+    $('#phybutton')[0].play();
     oxygen = false;
+    $("#o2-level").hide();
+    $("#o2-off").show();
+    $("#o2-error").hide();
+    $("#o2-low").hide();
+    $("#o2-low-but-on").hide();
+    $('#coordinates3').removeClass('wrong-password');
+    $('#o2-button').toggleClass('o2-off');
+    console.log("up stopped");
+    downInterval(100);
+    clearInterval(intervalDown);
   } else {
+    $('#phybutton')[0].play();
     oxygen = true;
+    if (oxygenLevel < 20) {
+      $("#o2-level").hide();
+      $("#o2-off").hide();
+      $("#o2-error").hide();
+      $("#o2-low").hide();
+      $("#o2-low-but-on").show();
+    } else {
+      $("#o2-level").show();
+      $("#o2-off").hide();
+      $("#o2-error").hide();
+      $("#o2-low").hide();
+      $("#o2-low-but-on").hide();
+    }
+    $('#o2-button').removeClass('o2-off');
+    console.log("down stopped");
+    upInterval(100);
+    clearInterval(intervalUp);
+  }
+}
+
+function oxyLow() {
+  //if oxy var is lower than hide o2 screens and show low screen
+  if (oxygenLevel < 20) {
+    $("#o2-level").hide();
+    $("#o2-off").hide();
+    $("#o2-error").hide();
+    $("#o2-low").show();
+    $("#o2-low-but-on").show();
   }
 }
 
@@ -452,6 +577,7 @@ function earthSpeech(){
     setTimeout(callEnded, 9000)
     return;
   }
+
   if (currentMission == 130 || currentMission == 131) {
     $('#earth200')[0].play();
     //dialogue 2
@@ -470,7 +596,17 @@ function earthSpeech(){
     setTimeout(callEnded, 9000)
     return;
   }
-  if (currentMission == 220 || currentMission == 221) {
+
+  if (currentMission == 220 || currentMission == 221 && autoPilot == true) {
+    $('#earth210')[0].play();
+    //Did you disable the autopilot?
+    //Not yet.
+    //Do that first, please. Ask AVA for help in the ship if you're not sure what to do.
+    setTimeout(callEnded, 9000)
+    return;
+  }
+
+  if (currentMission == 220 || currentMission == 221 && autoPilot == false) {
     $('#earth300')[0].play();
     //dialogue 3
     currentMission = 300;
@@ -480,6 +616,7 @@ function earthSpeech(){
     $("#confidential").hide();
     //
   }
+
   if (currentMission == 310 || currentMission == 320) {
     $('#earth310')[0].play();
     //Did you log in the coordinates?
@@ -580,7 +717,13 @@ function avaSpeech() {
     setTimeout(speakingOver, 12000)
     return;
   }
-  if (currentMission == 220 && ava == true) {
+  if (currentMission == 220 && ava == true && && autoPilot == true) {
+    $('#ava210')[0].play();
+    //For security reasons I’m not allowed access to the computer. 2.1
+    setTimeout(speakingOver, 9000)
+    return;
+  }
+  if (currentMission == 220 && ava == true && && autoPilot == false) {
     $('#ava220')[0].play();
     //Ok, autopilot seems to be turned off.  2.2
     currentMission = 221;

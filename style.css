@@ -22,21 +22,45 @@ body{
   top: 0px;
   background: rgba(0, 0, 0, 0.7);
   backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   z-index: 2;
 }
 
 .start-container{
   display: flex;
   flex-direction: column;
-  margin: 100px;
+  margin: 80px;
+}
+
+.intro-container{
+  display: flex;
+  flex-direction: column;
+  margin-left: 220px;
+  margin-right: 220px;
+}
+
+.intro-text{
+  margin-bottom: 20px;
+  font-size: 30px;
+  line-height: 140%;
+}
+
+.sound-on-caption{
+  color: #F1F1F1;
+  font-family: Saira;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 20px;
+  line-height: 140%;
+  letter-spacing: 0.02em;
 }
 
 .sound-on{
   color: #F1F1F1;
   font-family: Saira;
   font-style: normal;
-  font-weight: 600;
-  font-size: 18px;
+  font-weight: 500;
+  font-size: 16px;
   line-height: 130.5%;
   letter-spacing: 0.02em;
 }
@@ -55,23 +79,11 @@ body{
   flex-direction: row;
 }
 
-.sound-on-caption{
-  margin-left: auto;
-  margin-right: auto;
-  color: #F1F1F1;
-  font-family: Saira;
-  font-style: normal;
-  font-weight: 300;
-  font-size: 14px;
-  line-height: 130.5%;
-  letter-spacing: 0.02em;
-}
-
 h1{
   font-family: Saira;
   font-style: normal;
   font-weight: 600;
-  font-size: 66px;
+  font-size: 60px;
   line-height: 130.5%;
   letter-spacing: 0.02em;
   color: #FFFFFF;
@@ -121,6 +133,14 @@ body{
   cursor: pointer;
 }
 
+.start-button:hover{
+  background: #CED6E1;
+}
+
+.start-button:active{
+  background: #8999AE;
+}
+
 .button-text{
   font-family: Saira Condensed;
   font-style: normal;
@@ -149,6 +169,7 @@ body{
   justify-content: center;
   margin: auto;
   margin-top: 40px;
+  align-items: center;
 }
 
 .ava-on{
@@ -170,6 +191,8 @@ body{
 }
 
 .ava-screen{
+  display: flex;
+  flex-direction: column;
   width: 100px;
   height: 100px;
   border: 8px solid #2D3543;
@@ -177,10 +200,64 @@ body{
   margin-left: 16px;
   margin-right: 16px;
   cursor: pointer;
+  font-size: 16px;
+}
+
+.small-screen-text{
+  margin-left: auto;
+  margin-right: auto;
+  justify-content: center;
 }
 
 #o2-level{
   background: #6E5490;
+}
+
+#o2-error{
+  background: #9E1214;
+}
+
+#o2-off{
+  background: #AF5D21;
+}
+
+#o2-low{
+  background: #9E1214;
+}
+
+#o2-low-but-on{
+  background: #AF5D21;
+}
+
+.bar{
+  margin-left: auto;
+  margin-right: auto;
+  width: 70px;
+  height: 21px;
+  border-radius: 4px;
+  border: 2px solid #FFFFFF;
+}
+
+.bar-filling{
+  background-color: white;
+  width: 55px;
+  height: 15px;
+  border-radius: 2px;
+  margin-right: auto;
+  margin-left: 3px;
+  margin-top: 3px;
+  margin-bottom: 3px;
+}
+
+.fuel-bar-filling{
+  background-color: white;
+  width: 55px;
+  height: 15px;
+  border-radius: 2px;
+  margin-right: auto;
+  margin-left: 3px;
+  margin-top: 3px;
+  margin-bottom: 3px;
 }
 
 #destination{
@@ -207,6 +284,41 @@ body{
   background: #004A95;
 }
 
+.speed-graphs{
+  display: flex;
+  flex-direction: row;
+}
+
+.column{
+  display: flex;
+  flex-direction: column-reverse;
+  margin-left: auto;
+  margin-right: auto;
+  width: 27px;
+  height: 45px;
+  border-radius: 4px;
+  border: 2px solid #FFFFFF;
+}
+
+.column-filling{
+  background-color: white;
+  width: 21px;
+  height: 30px;
+  border-radius: 2px;
+  margin-right: 3px;
+  margin-left: 3px;
+  margin-top: auto;
+  margin-bottom: 3px;
+}
+
+#left-engine{
+  height: 20px;
+}
+
+#right-engine{
+  height: 35px;
+}
+
 #fuel-level{
   background: #007EB9;
 }
@@ -219,9 +331,9 @@ body{
   height: 100%;
   width: 100%;
   background: #2D3543;
-  padding-top: 100px;
-  padding-bottom: 100px;
-  margin-top: 48px;
+  padding-top: 60px;
+  padding-bottom: 40px;
+  margin-top: 45px;
 }
 
 .pc{
@@ -235,14 +347,14 @@ body{
 }
 
 .screen{
+  display: flex;
+  flex-direction: row;
   margin: auto;
   justify-content: center;
   width: 640px;
   height: 400px;
   background: #090A0D;
   border-radius: 10px;
-  display: flex;
-  flex-direction: row;
 }
 
 #off-screen{
@@ -385,10 +497,11 @@ body{
 .screen-buttons{
   display: flex;
   flex-direction: column;
+  margin: auto;
 }
 
 .screen-widget{
-  margin: 12px;
+  margin-bottom: 21px;
   display: flex;
   flex-direction: column;
   width: 216px;
@@ -398,10 +511,44 @@ body{
   cursor: pointer;
 }
 
+#ship-info{
+  margin-bottom: 0px;
+}
+
+
+.widget-text-container{
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  font-family: Saira Condensed;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 24px;
+  line-height: normal;
+  letter-spacing: 0.02em;
+  color: #FFFFFF;
+  margin-left: 12px;
+  margin-top: 12px;
+  margin-bottom: 0px;
+}
+
+#autopilot-title-status{
+  font-weight: 600;
+}
+
+#contact-earth-title{
+  font-weight: 600;
+}
+
+#ship-info-title{
+  font-weight: 600;
+}
+
 .radar{
-  margin: 12px;
+  margin: auto;
+  margin-left: 0px;
   width: 350px;
-  height: 356px;
+  height: 350px;
   border: 2px solid #FFFFFF;
   border-radius: 10px;
   cursor: pointer;
@@ -461,14 +608,19 @@ input {
 .control-bar{
   display: flex;
   flex-direction: column;
+  margin: auto;
+  margin-left: 0px;
 }
 
 .button{
+  display: flex;
   width: 86px;
   height: 35px;
   box-shadow: 0px 4px 11px rgba(0, 0, 0, 0.05);
   margin: 16px 0px;
+  font-weight: normal;
   cursor: pointer;
+  font-family: 'Squada One';
 }
 
 #pc-button{
@@ -486,9 +638,51 @@ input {
   border: 2px solid #64D4D7;
 }
 
+.pc-off{
+  background: #0F7E2F !important;
+}
+
+.ava-off{
+  background: #72240B !important;
+}
+
+.o2-off{
+  background: #3A8A8C !important;
+}
+
+#pc-button:hover{
+  background: #47DF72;
+}
+
+#ava-button:hover{
+  background: #DE3C08;
+}
+
+#o2-button:hover{
+  background: #84E7EA;
+}
+
+#pc-button:active{
+  background: #1EAE48;
+}
+
+#ava-button:active{
+  background: #8B3013;
+}
+
+#o2-button:active{
+  background: #57B9BB;
+}
+
+.real-button-text{
+  margin: auto;
+}
+
 .speaker{
   display: flex;
   flex-direction: row;
+  margin-right: auto;
+  margin-left: auto;
 }
 
 .speaker-hole{
