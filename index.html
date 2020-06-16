@@ -6,6 +6,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/p5@1.0.0/lib/p5.js"></script>
     <script src="index.js" type="text/javascript"></script>
+    <script language="javascript" type="text/javascript" src="sketch.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@300;400;500;600&family=Saira:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Squada+One&display=swap" rel="stylesheet">
     <meta charset="utf-8">
@@ -209,35 +210,35 @@
 
   <div class="ava-bar">
     <div class="ava-screen" id="o2-level">
-      <body><span class="small-screen-text">O2 NORMAL</span></body>
+      <body><span class="small-screen-title">O2 NORMAL</span></body>
       <body><span class="small-screen-text" id="o2-percent">82%</span></body>
       <div class="bar">
         <div class="bar-filling" id="o2-bar-level"></div>
       </div>
     </div>
     <div class="ava-screen" id="o2-error">
-      <body><span class="small-screen-text">O2 ERROR</span></body>
+      <body><span class="small-screen-title">O2 ERROR</span></body>
       <body><span class="small-screen-text" id="o2-percent-error">82%</span></body>
       <div class="bar">
         <div class="bar-filling" id="o2-bar-level"></div>
       </div>
     </div>
     <div class="ava-screen" id="o2-off">
-      <body><span class="small-screen-text">O2 OFF</span></body>
+      <body><span class="small-screen-title">O2 OFF</span></body>
       <body><span class="small-screen-text" id="o2-percent-off">82%</span></body>
       <div class="bar">
         <div class="bar-filling" id="o2-bar-level"></div>
       </div>
     </div>
     <div class="ava-screen" id="o2-low">
-      <body><span class="small-screen-text">O2 LOW</span></body>
+      <body><span class="small-screen-title">O2 LOW</span></body>
       <body><span class="small-screen-text" id="o2-percent-low">82%</span></body>
       <div class="bar">
         <div class="bar-filling" id="o2-bar-level"></div>
       </div>
     </div>
     <div class="ava-screen" id="o2-low-but-on">
-      <body><span class="small-screen-text">O2 RISING</span></body>
+      <body><span class="small-screen-title">O2 RISING</span></body>
       <body><span class="small-screen-text" id="o2-percent-rising">82%</span></body>
       <div class="bar">
         <div class="bar-filling" id="o2-bar-level"></div>
@@ -245,31 +246,31 @@
     </div>
 
     <div class="ava-screen" id="destination">
-      <body><span class="small-screen-text">DESTINATION</span></body>
+      <body><span class="small-screen-title">DESTINATION</span></body>
       <body><span class="small-screen-text" id="km">408 km</span></body>
     </div>
 
     <div class="ava-screen" id="left-cam">
-      <body><span class="small-screen-text">LEFT CAM</span></body>
+      <body><span class="small-screen-title">LEFT CAM</span></body>
     </div>
 
     <div class="ava-screen" id="front-cam">
-      <body><span class="small-screen-text">FRONT CAM</span></body>
+      <body><span class="small-screen-title">FRONT CAM</span></body>
     </div>
 
     <div class="ava-on" id="ava">
     </div>
 
     <div class="ava-screen" id="back-cam">
-      <body><span class="small-screen-text">BACK CAM</span></body>
+      <body><span class="small-screen-title">BACK CAM</span></body>
     </div>
 
     <div class="ava-screen" id="right-cam">
-      <body><span class="small-screen-text">RIGHT CAM</span></body>
+      <body><span class="small-screen-title">RIGHT CAM</span></body>
     </div>
 
     <div class="ava-screen" id="speed">
-      <body><span class="small-screen-text">ENGINES LOAD</span></body>
+      <body><span class="small-screen-title">ENGINES</span></body>
       <div class="speed-graphs">
         <div class="column">
           <div class="column-filling" id="left-engine"></div>
@@ -281,7 +282,7 @@
     </div>
 
     <div class="ava-screen" id="fuel-level">
-      <body><span class="small-screen-text">FUEL LEVEL</span></body>
+      <body><span class="small-screen-title">FUEL LEVEL</span></body>
       <body><span class="small-screen-text" id="fuel-percent">82%</span></body>
       <div class="bar">
         <div class="fuel-bar-filling" id="fuel-bar-level"></div>
@@ -339,7 +340,8 @@
           </div>
         </div>
         <div class="radar">
-          p5 canvas or gif!!!!!
+          <div id="p5-radar">
+          </div>
         </div>
       </div>
 

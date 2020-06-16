@@ -23,8 +23,10 @@ var intervalDown;
 
 $(document).ready(function() {
 
+  $("#game-over-screen").hide();
+  $("#dizzy").hide();
   $("#loading-screen").show();
-  setTimeout(loadingScreen, 1100);
+  setTimeout(loadingScreen, 1000);
 
   //set ship's computer screen//
   $("#locked-screen").hide();
@@ -40,8 +42,6 @@ $(document).ready(function() {
   $("#o2-error").hide();
   $("#o2-low").hide();
   $("#o2-low-but-on").hide();
-  $("#game-over-screen").hide();
-  $("#dizzy").hide();
 
   //set AVA screens to global vars
   $("#o2-percent").html(oxygenLevel + "%");
@@ -104,7 +104,6 @@ $(document).ready(function() {
     $('#coordinates3').removeClass('wrong-password');
     $("#coordinate-error").hide();
   });
-
   //end of doc ready//
 });
 
@@ -113,7 +112,7 @@ function loadingScreen() {
 }
 
 function gameOver() {
-  $("#game-over-screen").show();
+  $("#game-over-screen").fadeIn(500);
 }
 
 //text follow the cursor's x and y
@@ -237,7 +236,7 @@ function oxyDown() {
     $("#o2-low-but-on").hide();
   }
   if (oxygenLevel == 0) {
-    $("#dizzy").show();
+    $("#dizzy").fadeIn(2000);
     setTimeout(gameOver, 2000);
   }
 }

@@ -20,6 +20,7 @@ body{
   width: 100%;
   height: 100%;
   position: absolute;
+  font-family: sans-serif Condensed;
   left: 0px;
   top: 0px;
   background-color: black;
@@ -255,10 +256,19 @@ body{
   font-size: 16px;
 }
 
+.small-screen-title{
+  margin-top: 5px;
+  margin-left: auto;
+  margin-right: auto;
+  justify-content: center;
+}
+
 .small-screen-text{
   margin-left: auto;
   margin-right: auto;
   justify-content: center;
+  line-height: 100%;
+  margin-bottom: 10px;
 }
 
 #o2-level{
@@ -337,6 +347,7 @@ body{
 }
 
 .speed-graphs{
+  margin-top: 5px;
   display: flex;
   flex-direction: row;
 }
@@ -364,11 +375,11 @@ body{
 }
 
 #left-engine{
-  height: 20px;
+  height: 2px;
 }
 
 #right-engine{
-  height: 35px;
+  height: 2px;
 }
 
 #fuel-level{
@@ -604,6 +615,14 @@ body{
   border: 2px solid #FFFFFF;
   border-radius: 10px;
   cursor: pointer;
+}
+
+#p5-radar{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
 
 
