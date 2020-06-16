@@ -429,28 +429,6 @@ function contactEarth() {
   }
 }
 
-function speakerAnimation() {
-  var speaker1 = $("#speaker1");
-  var speaker2 = $("#speaker2");
-  var speaker3 = $("#speaker3");
-  var speaker4 = $("#speaker4");
-  speakerInterval(100, speaker1);
-  speakerInterval(100, speaker2);
-  speakerInterval(100, speaker3);
-  speakerInterval(100, speaker4);
-}
-
-function speakerInterval(speed, speaker){
-  var intervalSpeak = setInterval(function(){
-    speaker.animate({width: '6.5px'}, "fast");
-    speaker.animate({width: '6px'}, "fast");
-  }, speed);
-}
-
-function speakerStop() {
-  clearInterval(speakerInterval);
-}
-
 function callStarted() {
   $('#contact-earth').toggleClass('ok-background');
   $("#contact-earth-status").text("ON-GOING CALL");
@@ -667,8 +645,6 @@ function earthSpeech(){
   //MISSION 1//
   if (currentMission == 0) {
     $('#earth0')[0].play();
-    setTimeout(speakerAnimation, 11500);
-    setTimeout(speakerStop, 20000)
     //dialogue 0
     //call is ended in start game function, no need for it here
     return;
