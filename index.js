@@ -23,6 +23,9 @@ var intervalDown;
 
 $(document).ready(function() {
 
+  $("#loading-screen").show();
+  setTimeout(loadingScreen, 1100);
+
   //set ship's computer screen//
   $("#locked-screen").hide();
   $("#off-screen").hide();
@@ -37,6 +40,8 @@ $(document).ready(function() {
   $("#o2-error").hide();
   $("#o2-low").hide();
   $("#o2-low-but-on").hide();
+  $("#game-over-screen").hide();
+  $("#dizzy").hide();
 
   //set AVA screens to global vars
   $("#o2-percent").html(oxygenLevel + "%");
@@ -101,8 +106,15 @@ $(document).ready(function() {
   });
 
   //end of doc ready//
-
 });
+
+function loadingScreen() {
+  $("#loading-screen").hide();
+}
+
+function gameOver() {
+  $("#game-over-screen").show();
+}
 
 //text follow the cursor's x and y
 $(document).on('mousemove', function(e){
@@ -167,26 +179,31 @@ function pcButton() {
 }
 
 function avaButton() {
-
-  if (avaMental == true) {
-    $('#phybutton')[0].play();
-    $('#ava').toggleClass('ava-on ava-off');
-    //do nothing, ava says line about not letting you do that
-  }
-
-  if (ava == true && avaMental == false) {
-    $('#phybutton')[0].play();
-    $('#ava').toggleClass('ava-on ava-off');
-    ava = false;
-    $('#ava-button').toggleClass('ava-off');
-    //power off sound effect
+  if (ava == true) {
+    if (avaMental == true) {
+      $('#phybutton')[0].play();
+      $('#ava420')[0].play();
+      setTimeout(avaBack, 6000);
+    }else {
+      $('#phybutton')[0].play();
+      $('#ava').toggleClass('ava-on ava-off');
+      ava = false;
+      $('#ava-button').toggleClass('ava-off');
+      //power off sound effect
+    }
   } else {
-    $('#phybutton')[0].play();
-    $('#ava').toggleClass('ava-on ava-off');
-    $('#ava-button').removeClass('ava-off');
-    ava = true;
-    //power on sound effect
-    avaComplains();
+    if (avaMental == true) {
+      $('#phybutton')[0].play();
+      $('#ava420')[0].play();
+      setTimeout(avaBack, 6000);
+    }else {
+      $('#phybutton')[0].play();
+      $('#ava').toggleClass('ava-on ava-off');
+      $('#ava-button').removeClass('ava-off');
+      ava = true;
+      //power on sound effect
+      avaComplains();
+    }
   }
 }
 
@@ -219,6 +236,10 @@ function oxyDown() {
     $("#o2-low").show();
     $("#o2-low-but-on").hide();
   }
+  if (oxygenLevel == 0) {
+    $("#dizzy").show();
+    setTimeout(gameOver, 2000);
+  }
 }
 
 function upInterval(speed){
@@ -250,38 +271,46 @@ function oxyUp() {
 }
 
 function oxygenButton() {
-  if (avaMental == true) {
-    $('#phybutton')[0].play();
-    //do nothing, ava says line about not letting you do that
-  }
-  if (oxygen == true && avaMental == false) {
-    $('#phybutton')[0].play();
-    oxygen = false;
-    $("#o2-level").hide();
-    $("#o2-off").show();
-    $("#o2-error").hide();
-    $("#o2-low").hide();
-    $("#o2-low-but-on").hide();
-    $('#coordinates3').removeClass('wrong-password');
-    $('#o2-button').toggleClass('o2-off');
-    console.log("up stopped");
-    downInterval(100);
-    clearInterval(intervalDown);
-  } else {
-    $('#phybutton')[0].play();
-    oxygen = true;
-    if (oxygenLevel < 20) {
+  if (oxygen == true) {
+    if (avaMental == true) {
+      $('#phybutton')[0].play();
+      $('#ava420')[0].play();
+      setTimeout(avaBack, 6000);
+    }else{
+      $('#phybutton')[0].play();
+      oxygen = false;
       $("#o2-level").hide();
-      $("#o2-off").hide();
-      $("#o2-error").hide();
-      $("#o2-low").hide();
-      $("#o2-low-but-on").show();
-    } else {
-      $("#o2-level").show();
-      $("#o2-off").hide();
+      $("#o2-off").show();
       $("#o2-error").hide();
       $("#o2-low").hide();
       $("#o2-low-but-on").hide();
+      $('#coordinates3').removeClass('wrong-password');
+      $('#o2-button').toggleClass('o2-off');
+      console.log("up stopped");
+      downInterval(100);
+      clearInterval(intervalDown);
+    }
+  } else {
+    if (avaMental == true) {
+      $('#phybutton')[0].play();
+      $('#ava420')[0].play();
+      setTimeout(avaBack, 6000);
+    }else{
+      $('#phybutton')[0].play();
+      oxygen = true;
+      if (oxygenLevel < 20) {
+        $("#o2-level").hide();
+        $("#o2-off").hide();
+        $("#o2-error").hide();
+        $("#o2-low").hide();
+        $("#o2-low-but-on").show();
+      } else {
+        $("#o2-level").show();
+        $("#o2-off").hide();
+        $("#o2-error").hide();
+        $("#o2-low").hide();
+        $("#o2-low-but-on").hide();
+      }
     }
     $('#o2-button').removeClass('o2-off');
     console.log("down stopped");
@@ -290,20 +319,32 @@ function oxygenButton() {
   }
 }
 
-function oxyLow() {
-  //if oxy var is lower than hide o2 screens and show low screen
-  if (oxygenLevel < 20) {
-    $("#o2-level").hide();
-    $("#o2-off").hide();
-    $("#o2-error").hide();
-    $("#o2-low").show();
-    $("#o2-low-but-on").show();
-  }
+function oxygenError() {
+  avaMental = true;
+  $("#o2-level").hide();
+  $("#o2-off").hide();
+  $("#o2-error").show();
+  $("#o2-low").hide();
+  $("#o2-low-but-on").hide();
+  speakingStarts();
+  $('#alarm')[0].play();
+  currentMission = 410;
+  setTimeout(avaSpeech, 3000);
+  //oxygen decresing!!!!
+  oxyDown();
+  return;
 }
 
-function oxygenError() {
-  return;
-  //oxy screen should display error
+function avaBack() {
+  //ava gets everything back to normal
+  $("#o2-level").show();
+  $("#o2-off").hide();
+  $("#o2-error").hide();
+  $("#o2-low").hide();
+  $("#o2-low-but-on").hide();
+  oxyUp();
+  //oxygen incresing!!!!!
+  //show landing screen
 }
 
 
@@ -375,8 +416,7 @@ function contactEarth() {
 function callStarted() {
   $('#contact-earth').toggleClass('ok-background');
   $("#contact-earth-status").text("ON-GOING CALL");
-  $('body').css('cursor', 'none');
-  $("#mouse-text").show();
+  speakingStarts();
   ongoingCall = true;
   earthSpeech();
 }
@@ -385,8 +425,7 @@ function callEnded() {
   ongoingCall = false;
   $('#contact-earth').removeClass('ok-background');
   $("#contact-earth-status").text("CONECTION IS STABLE");
-  $('body').css('cursor', 'default');
-  $("#mouse-text").hide();
+  speakingOver();
 
   //prevents two audio files from playing together by delaying callEnded
   if (currentMission == 100) {
@@ -402,12 +441,16 @@ function automPilot() {
     autoPilotOn();
     $("#enter-coordinates").hide();
     $("#system-ok").show();
+    $('#ship-info').removeClass('ok-background');
+    $('#ship-info').removeClass('warning-background');
   }else{
     autoPilotOff();
     if (currentMission == 210 || currentMission == 211) {
       currentMission = 220;
     }
     $("#enter-coordinates").show();
+    $('#ship-info').addClass('warning-background');
+    $('#ship-info').removeClass('ok-background');
     $("#system-ok").hide();
   }
 }
@@ -417,8 +460,14 @@ function autoPilotOn() {
   $("#autopilot-title-status").text("AUTOPILOT ON");
   $("#autopilot-status").text("AUTOPILOT ERROR");
   autoPilot = true;
+  if (currentMission > 220 && ava == false) {
+    currentMission = 210;
+  }
   if (currentMission > 220 && ava == true) {
+    currentMission = 210;
     $('#ava940')[0].play();
+    speakingStarts();
+    setTimeout(speakingOver, 4000)
   }
 }
 
@@ -427,6 +476,7 @@ function autoPilotOff() {
   $("#autopilot-title-status").text("AUTOPILOT OFF");
   $("#autopilot-status").text("MANUAL MODE");
   autoPilot = false;
+  console.log("autopilot off")
 }
 
 function shipInfo() {
@@ -465,17 +515,24 @@ function coordinatesCheck() {
       currentMission = 330;
     }
     $('#ok')[0].play();
+    $('#ship-info').addClass('ok-background');
+    $('#ship-info').removeClass('warning-background');
     $("#coordinate-ok").show();
     $("#change-coordinate").show();
     $("#enter-coordinate").hide();
+    $("#enter-coordinates").hide();
+    $("#system-ok").show();
   }else {
     $("#coordinate-error").show();
     $('#error')[0].play();
     coordinatesEntered = [];
+    $('#ship-info').addClass('warning-background');
+    $('#ship-info').removeClass('ok-background');
     $('#coordinates1').toggleClass('wrong-password');
     $('#coordinates2').toggleClass('wrong-password');
     $('#coordinates3').toggleClass('wrong-password');
-
+    $("#enter-coordinates").show();
+    $("#system-ok").hide();
     $('#coordinates1').focus(
       function(){
           $(this).val('');
@@ -547,6 +604,10 @@ function deleteCoordinates() {
   $('#coordinates1').removeClass('wrong-password');
   $('#coordinates2').removeClass('wrong-password');
   $('#coordinates3').removeClass('wrong-password');
+  $('#ship-info').addClass('warning-background');
+  $('#ship-info').removeClass('ok-background');
+  $("#enter-coordinates").show();
+  $("#system-ok").hide();
   if (currentMission == 330) {
     currentMission = 322;
   }
@@ -583,7 +644,7 @@ function earthSpeech(){
     //dialogue 2
     currentMission = 200;
     //rest of dialogue 2
-    setTimeout(callEnded, 23000)
+    setTimeout(callEnded, 13500)
     currentMission = 210;
     return;
   }
@@ -597,7 +658,7 @@ function earthSpeech(){
     return;
   }
 
-  if (currentMission == 220 || currentMission == 221 && autoPilot == true) {
+  if (autoPilot == true && currentMission == 220 || currentMission == 221) {
     $('#earth210')[0].play();
     //Did you disable the autopilot?
     //Not yet.
@@ -606,7 +667,7 @@ function earthSpeech(){
     return;
   }
 
-  if (currentMission == 220 || currentMission == 221 && autoPilot == false) {
+  if (autoPilot == false && currentMission == 220 || currentMission == 221) {
     $('#earth300')[0].play();
     //dialogue 3
     currentMission = 300;
@@ -628,9 +689,9 @@ function earthSpeech(){
   if (currentMission == 330) {
     $('#earth400')[0].play();
     //dialogue 4
-    setTimeout(callEnded, 7000)
+    setTimeout(callEnded, 7000);
     currentMission = 400;
-    setTimeout(oxygenError, 7500)
+    setTimeout(oxygenError, 7500);
     return;
   }
 
@@ -717,20 +778,14 @@ function avaSpeech() {
     setTimeout(speakingOver, 12000)
     return;
   }
-  if (currentMission == 220 && ava == true && && autoPilot == true) {
-    $('#ava210')[0].play();
-    //For security reasons I’m not allowed access to the computer. 2.1
-    setTimeout(speakingOver, 9000)
-    return;
-  }
-  if (currentMission == 220 && ava == true && && autoPilot == false) {
+  if (currentMission == 220 && ava == true && autoPilot == false) {
     $('#ava220')[0].play();
     //Ok, autopilot seems to be turned off.  2.2
     currentMission = 221;
     setTimeout(speakingOver, 6000)
     return;
   }
-  if (currentMission == 221 && ava == true) {
+  if (currentMission == 221 && ava == true && autoPilot == false) {
     $('#ava221')[0].play();
     //After asking again: Contact earth. It’s right there, on the computer screen. Promise. 2.12
     setTimeout(speakingOver, 5000)
@@ -783,8 +838,16 @@ function avaSpeech() {
   }
   if (currentMission == 410 && ava == true) {
     $('#ava410')[0].play();
+    speakingStarts();
     //I like it here, Yosef. In space... 4.1
+    currentMission = 411;
     setTimeout(speakingOver, 12000)
+    return;
+  }
+  if (currentMission == 411 && ava == true) {
+    $('#ava411')[0].play();
+    //No purpose on this convo... 4.11
+    setTimeout(speakingOver, 4000)
     return;
   }
   if (currentMission == 420 && ava == true) {
