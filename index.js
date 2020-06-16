@@ -326,11 +326,16 @@ function oxygenError() {
   $("#o2-error").show();
   $("#o2-low").hide();
   $("#o2-low-but-on").hide();
+  //pc doesn't working
+  $("#autom-pilot").hide();
+  $("#contact-earth").hide();
+  $("#ship-info").hide();
+  $(".radar").hide();
   speakingStarts();
   $('#alarm')[0].play();
   currentMission = 410;
   setTimeout(avaSpeech, 3000);
-  //oxygen decresing!!!!
+  //oxygen down
   downInterval(1000);
   return;
 }
@@ -342,8 +347,8 @@ function avaBack() {
   $("#o2-error").hide();
   $("#o2-low").hide();
   $("#o2-low-but-on").hide();
+  //oxygen up
   upInterval(1000);
-  //oxygen incresing!!!!!
   //show landing screen
 }
 
