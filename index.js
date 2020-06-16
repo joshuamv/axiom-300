@@ -154,25 +154,37 @@ function startGame() {
 function pcButton() {
   pcUnlocked = false;
   if (pc == true) {
-    $('#phybutton')[0].play();
-    $(".screen").hide();
-    $("#locked-screen").hide();
-    $("#off-screen").show();
-    $("#info-screen").hide();
-    $('#pc-button').toggleClass('pc-off');
-    callEnded();
-    pc = false;
+    if (avaMental == true) {
+      $('#phybutton')[0].play();
+      $('#ava420')[0].play();
+      setTimeout(avaBack, 6000);
+    }else{
+      $('#phybutton')[0].play();
+      $(".screen").hide();
+      $("#locked-screen").hide();
+      $("#off-screen").show();
+      $("#info-screen").hide();
+      $('#pc-button').toggleClass('pc-off');
+      callEnded();
+      pc = false;
+    }
   } else {
-    $('#phybutton')[0].play();
-    $("#locked-screen").show();
-    $(".screen").hide();
-    $("#off-screen").hide();
-    $("#info-screen").hide();
-    $('#pc-button').removeClass('pc-off');
-    pc = true;
-    if (currentMission == 110) {
-      currentMission = 120; //mission goes to 1.2 only when you're in the first part.
-      // If you reset the computer in other missions it shouldn't change the dialogues
+    if (avaMental == true) {
+      $('#phybutton')[0].play();
+      $('#ava420')[0].play();
+      setTimeout(avaBack, 6000);
+    }else{
+      $('#phybutton')[0].play();
+      $("#locked-screen").show();
+      $(".screen").hide();
+      $("#off-screen").hide();
+      $("#info-screen").hide();
+      $('#pc-button').removeClass('pc-off');
+      pc = true;
+      if (currentMission == 110) {
+        currentMission = 120; //mission goes to 1.2 only when you're in the first part.
+        // If you reset the computer in other missions it shouldn't change the dialogues
+      }
     }
   }
 }
@@ -408,7 +420,7 @@ $( function () {
 });
 
 function contactEarth() {
-  $('#key-beep')[0].play();
+  $('#simon-beep')[0].play();
   if (ongoingCall == false && connectionLevel == true) {
     callStarted();
   }else{
@@ -463,7 +475,7 @@ function callEnded() {
 }
 
 function automPilot() {
-  $('#key-beep')[0].play();
+  $('#simon-beep')[0].play();
   if (autoPilot == false) {
     autoPilotOn();
     $("#enter-coordinates").hide();
@@ -507,7 +519,7 @@ function autoPilotOff() {
 }
 
 function shipInfo() {
-  $('#key-beep')[0].play();
+  $('#simon-beep')[0].play();
   $("#locked-screen").hide();
   $("#off-screen").hide();
   $(".screen").hide();
@@ -622,7 +634,7 @@ $( function () {
 });
 
 function deleteCoordinates() {
-  $('#key-beep')[0].play();
+  $('#simon-beep')[0].play();
   $("#change-coordinate").hide();
   $("#enter-coordinate").show();
   $("#coordinate-error").hide();

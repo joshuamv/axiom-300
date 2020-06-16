@@ -3,8 +3,9 @@
 var s = function( p ) { // p could be any variable name
   var circleSize = 0;
   p.setup = function() {
-    p.createCanvas(340, 350);
+    p.createCanvas(330, 350);
   };
+  $("#p5-radar").on("click", radarOn);
 
   p.draw = function() {
     p.background(0, 5);
@@ -25,6 +26,9 @@ var s = function( p ) { // p could be any variable name
     p.stroke(255, 190);
     p.line(0, 0, 265/2, 0);
     p.pop();
+  };
+  function radarOn() {
+    p.print("okok");
     //circle pulse
     p.fill(0, 0);
     p.strokeWeight(5);
@@ -34,7 +38,7 @@ var s = function( p ) { // p could be any variable name
        circleSize = 0
     }
     p.ellipse(0, 0, circleSize);
-  };
+  }
 };
 var myp5 = new p5(s, 'p5-radar');
 //
