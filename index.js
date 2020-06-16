@@ -225,9 +225,6 @@ function oxyDown() {
   $("#o2-percent-rising").html(oxygenLevel + "%");
   var barOxygenLevel = oxygenLevel/1.5625; //map AVA screen values//
   $(".bar-filling").width(barOxygenLevel);
-  if (oxygenLevel === 0) {
-    //game over screen you died
-  }
   if (oxygenLevel < 20) {
     $("#o2-level").hide();
     $("#o2-off").hide();
@@ -361,6 +358,7 @@ function checkPassword() {
   if (pcPassword == "axiom3003") {
     //password is right
     pcUnlocked = true;
+    $('#ok')[0].play();
     $("#off-screen").hide();
     $(".screen").show();
     $("#locked-screen").hide();
@@ -372,6 +370,7 @@ function checkPassword() {
     }
     }else{
     //password is wrong
+    $('#error')[0].play();
     $("#forgot").show();
     $('#password').toggleClass('wrong-password');
     $('#password').focus(
@@ -409,12 +408,35 @@ $( function () {
 });
 
 function contactEarth() {
+  $('#key-beep')[0].play();
   if (ongoingCall == false && connectionLevel == true) {
     callStarted();
   }else{
     callEnded();
     //stop speech audio//
   }
+}
+
+function speakerAnimation() {
+  var speaker1 = $("#speaker1");
+  var speaker2 = $("#speaker2");
+  var speaker3 = $("#speaker3");
+  var speaker4 = $("#speaker4");
+  speakerInterval(100, speaker1);
+  speakerInterval(100, speaker2);
+  speakerInterval(100, speaker3);
+  speakerInterval(100, speaker4);
+}
+
+function speakerInterval(speed, speaker){
+  var intervalSpeak = setInterval(function(){
+    speaker.animate({width: '6.5px'}, "fast");
+    speaker.animate({width: '6px'}, "fast");
+  }, speed);
+}
+
+function speakerStop() {
+  clearInterval(speakerInterval);
 }
 
 function callStarted() {
@@ -441,6 +463,7 @@ function callEnded() {
 }
 
 function automPilot() {
+  $('#key-beep')[0].play();
   if (autoPilot == false) {
     autoPilotOn();
     $("#enter-coordinates").hide();
@@ -484,6 +507,7 @@ function autoPilotOff() {
 }
 
 function shipInfo() {
+  $('#key-beep')[0].play();
   $("#locked-screen").hide();
   $("#off-screen").hide();
   $(".screen").hide();
@@ -598,6 +622,7 @@ $( function () {
 });
 
 function deleteCoordinates() {
+  $('#key-beep')[0].play();
   $("#change-coordinate").hide();
   $("#enter-coordinate").show();
   $("#coordinate-error").hide();
@@ -630,6 +655,8 @@ function earthSpeech(){
   //MISSION 1//
   if (currentMission == 0) {
     $('#earth0')[0].play();
+    setTimeout(speakerAnimation, 11500);
+    setTimeout(speakerStop, 20000)
     //dialogue 0
     //call is ended in start game function, no need for it here
     return;
@@ -698,8 +725,6 @@ function earthSpeech(){
     setTimeout(oxygenError, 7500);
     return;
   }
-
-  //speaker grill moves when earth speaks
 }
 
 function avaSpeech() {

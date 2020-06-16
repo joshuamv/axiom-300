@@ -842,3 +842,13 @@ input {
       zoom: 50%; /* Webkit browsers */
   }
 }
+
+@media only screen and (device-width: 768px) {
+  /* For general iPad layouts */
+  /* zoom out */
+  body {
+      -moz-transform: scale(0.85); /* Moz-browsers */
+      zoom: 0.85; /* Other non-webkit browsers */
+      zoom: 85%; /* Webkit browsers */
+  }
+}
