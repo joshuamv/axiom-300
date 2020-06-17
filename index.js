@@ -1054,12 +1054,12 @@ function leftcamAva() {
     speakingStarts();
     if (avaMental == true) {
       $('#ava994')[0].play();
-      setTimeout(speakingOver, 2000)
+      setTimeout(speakingOver, 3000)
       return;
     }
     else {
       $('#ava990')[0].play();
-      setTimeout(speakingOver, 7500)
+      setTimeout(speakingOver, 9000)
       return;
     }
   }
@@ -1123,7 +1123,7 @@ function destinationAva() {
     }
     else {
       $('#ava1000')[0].play();
-      setTimeout(speakingOver, 4000)
+      setTimeout(speakingOver, 7000)
       return;
     }
   }
