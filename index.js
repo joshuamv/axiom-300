@@ -205,6 +205,7 @@ function avaButton() {
       $('#phybutton')[0].play();
       $('#ava').toggleClass('ava-on ava-off');
       $('#ava-light').removeClass('ava-eye-dark-red');
+      $('#ava-light-background').removeClass('ava-click');
       $(".ava-eye-light-red").hide();
       $(".ava-eye-yellow").hide();
       $('#ava-light').addClass('ava-eye-red-off');
@@ -222,6 +223,7 @@ function avaButton() {
       $('#phybutton')[0].play();
       $('#ava').toggleClass('ava-on ava-off');
       $('#ava-light').addClass('ava-eye-dark-red');
+      $('#ava-light-background').addClass('ava-click');
       $(".ava-eye-light-red").show();
       $(".ava-eye-yellow").show();
       $('#ava-light').removeClass('ava-eye-red-off');
@@ -740,6 +742,10 @@ function earthSpeech(){
 }
 
 function avaSpeech() {
+  if (ava == true) {
+    speakingStarts();
+    console.log(currentMission);
+  }
   speakingStarts();
   console.log(currentMission);
   //MISSION 1//
@@ -898,6 +904,7 @@ function avaSpeech() {
     return;
   }
   //red orb moves when ava speaks
+  return;
 }
 
 /////// ships easter eggs ///////
@@ -914,7 +921,7 @@ function o2ava() {
     setTimeout(speakingOver, 1200)
     return;
   }
-  if (oxygen == true && avaMental == false) {
+  if (oxygen == false && avaMental == false) {
     $('#ava961')[0].play();
     setTimeout(speakingOver, 1400)
     return;

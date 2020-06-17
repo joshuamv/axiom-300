@@ -337,6 +337,13 @@ body{
   text-align: center;
 }
 
+.ava-click:hover{
+  width: 50px;
+  height: 50px;
+  border-radius: 1000px;
+  background-color: #72240B;
+}
+
 .ava-eye-dark-red{
   width: 34px;
   height: 34px;
