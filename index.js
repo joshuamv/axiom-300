@@ -1075,7 +1075,7 @@ function frontcamAva() {
     }
     else {
       $('#ava991')[0].play();
-      setTimeout(speakingOver, 10000)
+      setTimeout(speakingOver, 22000)
       return;
     }
   }
