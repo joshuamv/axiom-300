@@ -13,6 +13,7 @@ var coordinatesStatus = false; //true = right coordinates entered
 var coordinatesEntered = []; //array with three items, each represents a coordinate pair of numbers
 //on off buttons. true = on, false = off
 var oxygenLevel = 84;
+var fuelLevel = 46;
 var pc = true;
 var ava = true;
 var oxygen = true;
@@ -26,7 +27,7 @@ $(document).ready(function() {
   $("#game-over-screen").hide();
   $("#dizzy").hide();
   $("#loading-screen").show();
-  setTimeout(loadingScreen, 1000);
+  setTimeout(loadingScreen, 10000);
 
   //set ship's computer screen//
   $("#locked-screen").hide();
@@ -51,6 +52,10 @@ $(document).ready(function() {
   $("#o2-percent-rising").html(oxygenLevel + "%");
   var barOxygenLevel = oxygenLevel/1.5625; //map AVA screen values//
   $(".bar-filling").width(barOxygenLevel);
+  var barFuelLevel = fuelLevel/1.5625; //map AVA screen values//
+  $(".fuel-bar-filling").width(barFuelLevel);
+  $("#fuel-percent").html(fuelLevel + "%");
+  fuelDownInterval(1000);
 
 
   //buttons click to run functions//
@@ -69,6 +74,8 @@ $(document).ready(function() {
   $("#o2-off").on("click", o2ava);
   $("#o2-low").on("click", o2ava);
   $("#o2-low-but-on").on("click", o2ava);
+  $("#fuel-level").on("click", fuelAva);
+  $("#speed").on("click", engineAva);
   $(".radar").on("click", radar);
 
   //password checks and reset//
@@ -234,6 +241,36 @@ function avaButton() {
     }
   }
   return;
+}
+
+function fuelDownInterval(speed){
+  var intervalUp = setInterval(function(){
+    --fuelLevel;
+    if(fuelLevel === 0) {
+      clearInterval(intervalUp);
+      console.log("down stopped")
+    }
+    fuelDown();
+  }, speed);
+}
+
+function fuelDown() {
+  var barFuelLevel = fuelLevel/1.5625; //map AVA screen values//
+  $(".fuel-bar-filling").width(barFuelLevel);
+  $("#fuel-percent").html(fuelLevel + "%");
+  if (fuelLevel < 15) {
+    $("#fuel-level").addClass(".warning-background");
+    $("#fuel-level").removeClass(".fuel-level-background");
+  }
+  if (fuelLevel < 5) {
+    $("#fuel-level").addClass(".error-background");
+    $("#fuel-level").removeClass(".fuel-level-background");
+    $("#fuel-level").removeClass(".warning-background");
+  }
+  if (fuelLevel == 0) {
+    $("#game-over-text").html("NO FUEL = NO OXYGEN PRODUCTION, YOU DIED :(")
+    setTimeout(gameOver);
+  }
 }
 
 function downInterval(speed){
@@ -907,6 +944,32 @@ function avaSpeech() {
 
 /////// ships easter eggs ///////
 
+function fuelAva() {
+  if (ava == true) {
+    speakingStarts();
+    if (avaMental == true) {
+      $('#ava963')[0].play();
+      setTimeout(speakingOver, 2000)
+      return;
+    }
+    if (fuelLevel > 5 && fuelLevel < 15) {
+      $('#ava971')[0].play();
+      setTimeout(speakingOver, 3000)
+      return;
+    }
+    if (fuelLevel < 6) {
+      $('#ava972')[0].play();
+      setTimeout(speakingOver, 7000)
+      return;
+    }
+    else {
+      $('#ava970')[0].play();
+      setTimeout(speakingOver, 2000)
+      return;
+    }
+  }
+}
+
 function o2ava() {
   if (ava == true) {
     speakingStarts();
@@ -932,6 +995,22 @@ function o2ava() {
     }
   }
   return;
+}
+
+function engineAva() {
+  if (ava == true) {
+    speakingStarts();
+    if (avaMental == true) {
+      $('#ava963')[0].play();
+      setTimeout(speakingOver, 2000)
+      return;
+    }
+    else {
+      $('#ava980')[0].play();
+      setTimeout(speakingOver, 4000)
+      return;
+    }
+  }
 }
 
 function avaComplains() {

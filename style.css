@@ -598,11 +598,11 @@ body{
   height: 2px;
 }
 
-#fuel-level{
+.fuel-level-background{
   background: #007EB9;
 }
 
-#fuel-level:hover{
+.fuel-level-background:hover{
   background: #108FCB;
 }
 
