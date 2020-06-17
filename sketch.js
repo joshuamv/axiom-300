@@ -1,11 +1,13 @@
 
-// Sketch One
+
+/////// RADAR ///////
+
 var s = function( p ) { // p could be any variable name
   var circleSize = 0;
   p.setup = function() {
     p.createCanvas(330, 350);
   };
-  
+
   p.draw = function() {
     p.background(0, 5);
     //circular lines
@@ -37,8 +39,11 @@ var s = function( p ) { // p could be any variable name
   };
 };
 var myp5 = new p5(s, 'p5-radar');
-//
-// // Sketch Two
+
+
+
+/////// SHIP CAMERAS ///////
+
 // var t = function( p ) {
 //   var x = 100.0;
 //   var y = 100;
