@@ -19,6 +19,13 @@ var ava = true;
 var oxygen = true;
 var intervalUp;
 var intervalDown;
+//global vars
+var avaIntro;
+var callIntro;
+var speakingStartIntro;
+var speakingOverIntro;
+var oxyDownInterval;
+var oxyUpInterval;
 
 //////////////// load html /////////////////
 
@@ -27,7 +34,7 @@ $(document).ready(function() {
   $("#game-over-screen").hide();
   $("#dizzy").hide();
   $("#loading-screen").show();
-  setTimeout(loadingScreen, 10000);
+  setTimeout(loadingScreen, 1000);
 
   //set ship's computer screen//
   $("#locked-screen").hide();
@@ -43,6 +50,7 @@ $(document).ready(function() {
   $("#o2-error").hide();
   $("#o2-low").hide();
   $("#o2-low-but-on").hide();
+  $("#skip-intro").hide();
 
   //set AVA screens to global vars
   $("#o2-percent").html(oxygenLevel + "%");
@@ -55,7 +63,7 @@ $(document).ready(function() {
   var barFuelLevel = fuelLevel/1.5625; //map AVA screen values//
   $(".fuel-bar-filling").width(barFuelLevel);
   $("#fuel-percent").html(fuelLevel + "%");
-  fuelDownInterval(1000);
+  fuelDownInterval(10000);
 
 
   //buttons click to run functions//
@@ -76,7 +84,13 @@ $(document).ready(function() {
   $("#o2-low-but-on").on("click", o2ava);
   $("#fuel-level").on("click", fuelAva);
   $("#speed").on("click", engineAva);
+  $("#left-cam").on("click", leftcamAva);
+  $("#front-cam").on("click", frontcamAva);
+  $("#back-cam").on("click", backcamAva);
+  $("#right-cam").on("click", rightcamAva);
+  $("#destination").on("click", destinationAva);
   $(".radar").on("click", radar);
+  $("#skip-intro").on("click", skipIntro);
 
   //password checks and reset//
   $(".password-button").click(function(){
@@ -125,6 +139,7 @@ function loadingScreen() {
 
 function gameOver() {
   $("#game-over-screen").fadeIn(500);
+  $('#gameover')[0].play();
 }
 
 //text follow the cursor's x and y
@@ -148,19 +163,38 @@ function speakingOver() {
   $("#mouse-text").hide();
 }
 
+function skipIntro() {
+  $('#earth0')[0].pause();
+  speakingOver();
+  $("#skip-intro").hide();
+  currentMission = 100;
+  clearTimeout(avaIntro);
+  clearTimeout(callIntro);
+  clearTimeout(speakingStartIntro);
+  clearTimeout(speakingOverIntro);
+  callEnded();
+  return;
+}
+
+function pauseAva100() {
+  $('#ava100')[0].pause()
+  return;
+}
+
 function startGame() {
   //play backgorund music
   $('#background')[0].play();
+  $("#skip-intro").show();
   speakingStarts();
   $(".start-screen").hide();
   $('#autom-pilot').toggleClass('error-background warning-background');
   currentMission = 0;
   callStarted();
   currentMission = 100;
-  setTimeout(avaSpeech, 21200);
-  setTimeout(callEnded, 21202);
-  setTimeout(speakingStarts, 21203);
-  setTimeout(speakingOver, 31000);
+  avaIntro = setTimeout(avaSpeech, 21200);
+  callIntro = setTimeout(callEnded, 21202);
+  speakingStartIntro = setTimeout(speakingStarts, 21203);
+  speakingOverIntro = setTimeout(speakingOver, 31000);
 }
 
 function pcButton() {
@@ -274,10 +308,10 @@ function fuelDown() {
 }
 
 function downInterval(speed){
-  var intervalUp = setInterval(function(){
+  var oxyDownInterval = setInterval(function(){
     --oxygenLevel;
     if(oxygenLevel === 0) {
-      clearInterval(intervalUp);
+      clearInterval(oxyDownInterval);
       console.log("down stopped")
     }
     oxyDown();
@@ -306,11 +340,11 @@ function oxyDown() {
 }
 
 function upInterval(speed){
-  var intervalDown = setInterval(function(){
+  var oxyUpInterval = setInterval(function(){
     ++oxygenLevel;
     if(oxygenLevel === 100){
       console.log("down stopped")
-      clearInterval(intervalDown);
+      clearInterval(oxyUpInterval);
     }
     oxyUp();
   }, speed);
@@ -341,6 +375,7 @@ function oxygenButton() {
       setTimeout(avaBack, 6000);
     }else{
       $('#phybutton')[0].play();
+      $('#oxyoff')[0].play();
       oxygen = false;
       $("#o2-level").hide();
       $("#o2-off").show();
@@ -350,8 +385,8 @@ function oxygenButton() {
       $('#coordinates3').removeClass('wrong-password');
       $('#o2-button').toggleClass('o2-off');
       console.log("up stopped");
+      clearInterval(oxyUpInterval);
       downInterval(100);
-      clearInterval(intervalDown);
     }
   } else {
     if (avaMental == true) {
@@ -360,6 +395,7 @@ function oxygenButton() {
       setTimeout(avaBack, 6000);
     }else{
       $('#phybutton')[0].play();
+      $('#oxyon')[0].play();
       oxygen = true;
       if (oxygenLevel < 20) {
         $("#o2-level").hide();
@@ -377,8 +413,8 @@ function oxygenButton() {
     }
     $('#o2-button').removeClass('o2-off');
     console.log("down stopped");
+    clearInterval(oxyDownInterval);
     upInterval(100);
-    clearInterval(intervalUp);
   }
   return;
 }
@@ -564,6 +600,7 @@ function shipInfo() {
 }
 
 function homeScreen() {
+  $('#simon-beep')[0].play();
   $("#locked-screen").hide();
   $("#off-screen").hide();
   $(".screen").show();
@@ -709,7 +746,6 @@ function earthSpeech(){
   if (currentMission == 0) {
     $('#earth0')[0].play();
     //dialogue 0
-    //call is ended in start game function, no need for it here
     return;
   }
   if (currentMission == 100 || currentMission == 110 || currentMission == 120 || currentMission == 121) {
@@ -725,7 +761,6 @@ function earthSpeech(){
     $('#earth200')[0].play();
     //dialogue 2
     currentMission = 200;
-    //rest of dialogue 2
     setTimeout(callEnded, 13500)
     currentMission = 210;
     return;
@@ -792,6 +827,7 @@ function avaSpeech() {
   if (currentMission == 100 && ava == true) {
     $('#ava100')[0].play();
     //ava intro
+    $("#skip-intro").hide();
     return;
   }
   if (currentMission == 110 && ava == true) {
@@ -1012,6 +1048,87 @@ function engineAva() {
     }
   }
 }
+
+function leftcamAva() {
+  if (ava == true) {
+    speakingStarts();
+    if (avaMental == true) {
+      $('#ava994')[0].play();
+      setTimeout(speakingOver, 2000)
+      return;
+    }
+    else {
+      $('#ava990')[0].play();
+      setTimeout(speakingOver, 7500)
+      return;
+    }
+  }
+}
+
+function frontcamAva() {
+  if (ava == true) {
+    speakingStarts();
+    if (avaMental == true) {
+      $('#ava963')[0].play();
+      setTimeout(speakingOver, 2000)
+      return;
+    }
+    else {
+      $('#ava991')[0].play();
+      setTimeout(speakingOver, 10000)
+      return;
+    }
+  }
+}
+
+function backcamAva() {
+  if (ava == true) {
+    speakingStarts();
+    if (avaMental == true) {
+      $('#ava963')[0].play();
+      setTimeout(speakingOver, 2000)
+      return;
+    }
+    else {
+      $('#ava992')[0].play();
+      setTimeout(speakingOver, 11000)
+      return;
+    }
+  }
+}
+
+function rightcamAva() {
+  if (ava == true) {
+    speakingStarts();
+    if (avaMental == true) {
+      $('#ava963')[0].play();
+      setTimeout(speakingOver, 2000)
+      return;
+    }
+    else {
+      $('#ava993')[0].play();
+      setTimeout(speakingOver, 4000)
+      return;
+    }
+  }
+}
+
+function destinationAva() {
+  if (ava == true) {
+    speakingStarts();
+    if (avaMental == true) {
+      $('#ava963')[0].play();
+      setTimeout(speakingOver, 2000)
+      return;
+    }
+    else {
+      $('#ava1000')[0].play();
+      setTimeout(speakingOver, 4000)
+      return;
+    }
+  }
+}
+
 
 function avaComplains() {
   speakingStarts();

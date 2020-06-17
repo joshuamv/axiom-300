@@ -239,6 +239,40 @@ body{
   margin: auto;
 }
 
+.skip-button{
+  display: flex;
+  position: fixed;
+  bottom: 40px;
+  right: 40px;
+  z-index: 99;
+  justify-content: center;
+  width: auto;
+  height: auto;
+  padding: 0px 10px;
+  background: #FFFFFF;
+  box-shadow: 0px -4px 30px #000000;
+  border-radius: 1000px;
+  cursor: pointer;
+}
+
+.skip-text{
+  font-family: Saira Condensed;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 47px;
+  color: #16161B;
+  margin: auto;
+}
+
+.skip-button:hover{
+  background: #CED6E1;
+}
+
+.skip-button:active{
+  background: #8999AE;
+}
+
 #subtitles{
 
 }
@@ -765,6 +799,14 @@ body{
   cursor: pointer;
 }
 
+.coordinate-button:hover{
+  background-color: #353639;
+}
+
+.screen-button-text{
+  margin: auto;
+}
+
 #coordinate-error{
   margin-top: -15px;
   color: red;
@@ -889,6 +931,10 @@ input {
   border: 2px solid white;
   border-radius: 10px;
   cursor: pointer;
+}
+
+.password-button:hover{
+  background-color: #353639;
 }
 
 #forgot{
