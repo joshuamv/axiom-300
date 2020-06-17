@@ -454,6 +454,9 @@ function callEnded() {
 
 function automPilot() {
   $('#simon-beep')[0].play();
+  $('#ava950')[0].play();
+  speakingStarts();
+  setTimeout(speakingOver, 1500);
   if (autoPilot == false) {
     autoPilotOn();
     $("#enter-coordinates").hide();
