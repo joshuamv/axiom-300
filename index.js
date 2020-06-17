@@ -746,8 +746,6 @@ function avaSpeech() {
     speakingStarts();
     console.log(currentMission);
   }
-  speakingStarts();
-  console.log(currentMission);
   //MISSION 1//
   if (currentMission == 0 && ava == true) {
     $('#ava0')[0].play();
@@ -910,27 +908,30 @@ function avaSpeech() {
 /////// ships easter eggs ///////
 
 function o2ava() {
-  speakingStarts();
-  if (avaMental == true) {
-    $('#ava963')[0].play();
-    setTimeout(speakingOver, 2000)
-    return;
+  if (ava == true) {
+    speakingStarts();
+    if (avaMental == true) {
+      $('#ava963')[0].play();
+      setTimeout(speakingOver, 2000)
+      return;
+    }
+    if (oxygenLevel < 20 && avaMental == false) {
+      $('#ava962')[0].play();
+      setTimeout(speakingOver, 1200)
+      return;
+    }
+    if (oxygen == false && avaMental == false) {
+      $('#ava961')[0].play();
+      setTimeout(speakingOver, 1400)
+      return;
+    }
+    else {
+      $('#ava960')[0].play();
+      setTimeout(speakingOver, 2000)
+      return;
+    }
   }
-  if (oxygenLevel < 20 && avaMental == false) {
-    $('#ava962')[0].play();
-    setTimeout(speakingOver, 1200)
-    return;
-  }
-  if (oxygen == false && avaMental == false) {
-    $('#ava961')[0].play();
-    setTimeout(speakingOver, 1400)
-    return;
-  }
-  else {
-    $('#ava960')[0].play();
-    setTimeout(speakingOver, 2000)
-    return;
-  }
+  return;
 }
 
 function avaComplains() {
