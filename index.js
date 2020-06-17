@@ -64,6 +64,11 @@ $(document).ready(function() {
   $("#ship-info").on("click", shipInfo);
   $("#close-button").on("click", homeScreen);
   $("#change-coordinate").on("click", deleteCoordinates);
+  $("#o2-level").on("click", o2ava);
+  $("#o2-error").on("click", o2ava);
+  $("#o2-off").on("click", o2ava);
+  $("#o2-low").on("click", o2ava);
+  $("#o2-low-but-on").on("click", o2ava);
   $(".radar").on("click", radar);
 
   //password checks and reset//
@@ -187,6 +192,7 @@ function pcButton() {
       }
     }
   }
+  return;
 }
 
 function avaButton() {
@@ -198,6 +204,10 @@ function avaButton() {
     }else {
       $('#phybutton')[0].play();
       $('#ava').toggleClass('ava-on ava-off');
+      $('#ava-light').removeClass('ava-eye-dark-red');
+      $(".ava-eye-light-red").hide();
+      $(".ava-eye-yellow").hide();
+      $('#ava-light').addClass('ava-eye-red-off');
       ava = false;
       $('#ava-button').toggleClass('ava-off');
       //power off sound effect
@@ -207,15 +217,21 @@ function avaButton() {
       $('#phybutton')[0].play();
       $('#ava420')[0].play();
       setTimeout(avaBack, 6000);
+      return;
     }else {
       $('#phybutton')[0].play();
       $('#ava').toggleClass('ava-on ava-off');
+      $('#ava-light').addClass('ava-eye-dark-red');
+      $(".ava-eye-light-red").show();
+      $(".ava-eye-yellow").show();
+      $('#ava-light').removeClass('ava-eye-red-off');
       $('#ava-button').removeClass('ava-off');
       ava = true;
       //power on sound effect
       avaComplains();
     }
   }
+  return;
 }
 
 function downInterval(speed){
@@ -325,6 +341,7 @@ function oxygenButton() {
     upInterval(100);
     clearInterval(intervalUp);
   }
+  return;
 }
 
 function oxygenError() {
@@ -358,8 +375,8 @@ function avaBack() {
   //oxygen up
   upInterval(1000);
   //show landing screen
+  return;
 }
-
 
 
 ///////// ship computer functions //////////
@@ -454,9 +471,6 @@ function callEnded() {
 
 function automPilot() {
   $('#simon-beep')[0].play();
-  $('#ava950')[0].play();
-  speakingStarts();
-  setTimeout(speakingOver, 1500);
   if (autoPilot == false) {
     autoPilotOn();
     $("#enter-coordinates").hide();
@@ -638,6 +652,13 @@ function deleteCoordinates() {
 
 function radar() {
   $('#key-beep')[0].play();
+  setTimeout(nothingOnRadar, 800);
+}
+
+function nothingOnRadar() {
+  $('#ava950')[0].play();
+  speakingStarts();
+  setTimeout(speakingOver, 1500);
 }
 
 
@@ -881,8 +902,28 @@ function avaSpeech() {
 
 /////// ships easter eggs ///////
 
-function screenClicked() {
-  // play sound; ava reacts to the content of the screen
+function o2ava() {
+  speakingStarts();
+  if (avaMental == true) {
+    $('#ava963')[0].play();
+    setTimeout(speakingOver, 2000)
+    return;
+  }
+  if (oxygenLevel < 20 && avaMental == false) {
+    $('#ava962')[0].play();
+    setTimeout(speakingOver, 1200)
+    return;
+  }
+  if (oxygen == true && avaMental == false) {
+    $('#ava961')[0].play();
+    setTimeout(speakingOver, 1400)
+    return;
+  }
+  else {
+    $('#ava960')[0].play();
+    setTimeout(speakingOver, 2000)
+    return;
+  }
 }
 
 function avaComplains() {

@@ -53,6 +53,45 @@ body{
   display: block;
 }
 
+.full-screen-needed{
+  visibility: hidden;
+  position: fixed;
+  bottom: -200px;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  z-index: 100;
+  display: flex;
+  justify-content: center;
+  width: auto;
+  max-width: 650px;
+  height: 50px;
+  padding: 5px 10px;
+  background: #1D1243;
+  box-shadow: 0px -4px 30px #000000;
+  border-radius: 20px;
+  border: 2px solid #FFFFFF;
+  transition: 0.9s linear;
+}
+
+.notification-text-container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: #FFFFFF;
+}
+
+.notification-text{
+  font-weight: lighter;
+}
+
+.bold-text{
+  font-weight: bold;
+}
+
 .notification{
   display: flex;
   flex-direction: column;
@@ -73,10 +112,6 @@ body{
   background-image: url(img/blurred-background.png);
   background-size: cover;
   z-index: 2;
-}
-
-.full-screen-needed{
-  display: none;
 }
 
 .start-container{
@@ -225,10 +260,141 @@ body{
   align-items: center;
 }
 
+.ava-top{
+  display: flex;
+  flex-direction: column;
+  width: 75px;
+  height: 165px;
+  background: #2D3543;
+}
+
+.ava-branding{
+  display: flex;
+  flex-direction: row;
+  margin: 6px;
+  margin-bottom: auto;
+}
+
+.ava-text-background{
+  display: flex;
+  flex-direction: column;
+  padding: 3px;
+  width: 28px;
+  height: 10px;
+  background: #4B7D9B;
+}
+
+.ava-text{
+  color: #FFFFFF;
+  align-self: flex-end;
+  font-family: Helvetica;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 6px;
+  line-height: 7px;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.text-9000-background{
+  display: flex;
+  flex-direction: column;
+  padding: 3px;
+  width: 28px;
+  height: 10px;
+  background: #16161B;
+}
+
+.text-9000{
+  color: #FFFFFF;
+  align-self: flex-start;
+  font-family: Helvetica;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 6px;
+  line-height: 7px;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.ava-eye{
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.ava-eye-black{
+  width: 50px;
+  height: 50px;
+  border-radius: 1000px;
+  background: #16161B;
+  border: 2px solid #87837A;
+  margin: auto;
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.ava-eye-dark-red{
+  width: 34px;
+  height: 34px;
+  border-radius: 1000px;
+  background: #9E1214;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.ava-eye-red-off{
+  width: 34px;
+  height: 34px;
+  border-radius: 1000px;
+  background: #9E1214;
+  opacity: 0.25;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.ava-eye-light-red{
+  width: 22px;
+  height: 22px;
+  border-radius: 1000px;
+  background: #C83232;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.ava-eye-yellow{
+  width: 4px;
+  height: 4px;
+  border-radius: 1000px;
+  background: #F8B932;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.ava-bottom{
+  width: 75px;
+  height: 40px;
+  background: #6C6C6F;
+}
+
 .ava-on{
   width: 75px;
   height: 205px;
-  background: #C83232;
   margin-left: 16px;
   margin-right: 16px;
   cursor: pointer;
@@ -237,7 +403,6 @@ body{
 .ava-off{
   width: 75px;
   height: 205px;
-  background: #2D3543;
   margin-left: 16px;
   margin-right: 16px;
   cursor: default;
@@ -291,6 +456,26 @@ body{
   background: #AF5D21;
 }
 
+#o2-level:hover{
+  background: #8266A6;
+}
+
+#o2-error:hover{
+  background: #C62B2D;
+}
+
+#o2-off:hover{
+  background: #BF6F42;
+}
+
+#o2-low:hover{
+  background: #C62B2D;
+}
+
+#o2-low-but-on:hover{
+  background: #BF6F42;
+}
+
 .bar{
   margin-left: auto;
   margin-right: auto;
@@ -326,6 +511,10 @@ body{
   background: #007194;
 }
 
+#destination:hover{
+  background: #097EA3;
+}
+
 #left-cam{
   background: #000000;
 }
@@ -342,8 +531,28 @@ body{
   background: #000000;
 }
 
+#left-cam:hover{
+  background: #353639;
+}
+
+#front-cam:hover{
+  background: #353639;
+}
+
+#back-cam:hover{
+  background: #353639;
+}
+
+#right-cam:hover{
+  background: #353639;
+}
+
 #speed{
   background: #004A95;
+}
+
+#speed:hover{
+  background: #0C59A6;
 }
 
 .speed-graphs{
@@ -384,6 +593,10 @@ body{
 
 #fuel-level{
   background: #007EB9;
+}
+
+#fuel-level:hover{
+  background: #108FCB;
 }
 
 
@@ -572,6 +785,10 @@ body{
   border: 2px solid #FFFFFF;
   border-radius: 10px;
   cursor: pointer;
+}
+
+.screen-widget:hover{
+  background-color: #353639;
 }
 
 #ship-info{
@@ -778,18 +995,40 @@ input {
   background: #9E1214;
 }
 
-@media screen and (max-width: 1200px) and (min-width: 0px) {
+.ok-background:hover{
+  background: #34AC56;
+}
+
+.warning-background:hover{
+  background: #BF6F42;
+}
+
+.error-background:hover{
+  background: #C62B2D;
+}
+
+@media screen and (max-width: 1100px) and (min-width: 0px) {
 
   .full-screen-needed{
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    left: 0px;
-    top: 0px;
-    background-image: url(img/blurred-background.png);
-    background-size: cover;
+    visibility: visible;
+    position: fixed;
+    bottom: 20px;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
     z-index: 100;
-    display: block;
+    display: flex;
+    justify-content: center;
+    width: auto;
+    max-width: 650px;
+    height: 50px;
+    padding: 5px 10px;
+    background: #1D1243;
+    box-shadow: 0px -4px 30px #000000;
+    border-radius: 20px;
+    border: 2px solid #FFFFFF;
+    transition: 0.3s linear;
   }
 }
 
