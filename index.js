@@ -252,7 +252,7 @@ function avaButton() {
       $('#ava-light').addClass('ava-eye-red-off');
       ava = false;
       $('#ava-button').toggleClass('ava-off');
-      //power off sound effect
+      $('#avaoff')[0].play();
     }
   } else {
     if (avaMental == true) {
@@ -270,8 +270,8 @@ function avaButton() {
       $('#ava-light').removeClass('ava-eye-red-off');
       $('#ava-button').removeClass('ava-off');
       ava = true;
-      //power on sound effect
-      avaComplains();
+      $('#avaon')[0].play();
+      setTimeout(avaComplains, 500);
     }
   }
   return;
