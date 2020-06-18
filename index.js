@@ -252,7 +252,9 @@ function avaButton() {
       $('#ava-light').addClass('ava-eye-red-off');
       ava = false;
       $('#ava-button').toggleClass('ava-off');
-      $('#avaoff')[0].play();
+      setTimeout(function(){
+        $('#avaoff')[0].play();
+      }, 100);
     }
   } else {
     if (avaMental == true) {
@@ -270,11 +272,12 @@ function avaButton() {
       $('#ava-light').removeClass('ava-eye-red-off');
       $('#ava-button').removeClass('ava-off');
       ava = true;
-      $('#avaon')[0].play();
-      setTimeout(avaComplains, 500);
+      setTimeout(function(){
+        $('#avaon')[0].play();
+        setTimeout(avaComplains, 1700);
+      }, 100);
     }
   }
-  return;
 }
 
 function fuelDownInterval(speed){
