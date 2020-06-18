@@ -164,6 +164,8 @@ function speakingOver() {
 }
 
 function skipIntro() {
+  //button click
+  $('#gamebutton')[0].play();
   $('#earth0')[0].pause();
   speakingOver();
   $("#skip-intro").hide();
@@ -182,6 +184,8 @@ function pauseAva100() {
 }
 
 function startGame() {
+  //button click
+  $('#gamebutton')[0].play();
   //play backgorund music
   $('#background')[0].play();
   $("#skip-intro").show();
