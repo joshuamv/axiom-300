@@ -33,6 +33,7 @@ $(document).ready(function() {
 
   $("#game-over-screen").hide();
   $("#dizzy").hide();
+  $("#pc-bar").hide();
   $("#loading-screen").show();
   setTimeout(loadingScreen, 1000);
 
@@ -51,6 +52,7 @@ $(document).ready(function() {
   $("#o2-low").hide();
   $("#o2-low-but-on").hide();
   $("#skip-intro").hide();
+  $("#subtitles").hide();
 
   //set AVA screens to global vars
   $("#o2-percent").html(oxygenLevel + "%");
@@ -153,16 +155,6 @@ $(document).on('mousemove', function(e){
 
 ///////////////// functions ///////////////////
 
-function speakingStarts() {
-  $('body').css('cursor', 'none');
-  $("#mouse-text").show();
-}
-
-function speakingOver() {
-  $('body').css('cursor', 'default');
-  $("#mouse-text").hide();
-}
-
 function skipIntro() {
   //button click
   $('#gamebutton')[0].play();
@@ -178,17 +170,13 @@ function skipIntro() {
   return;
 }
 
-function pauseAva100() {
-  $('#ava100')[0].pause()
-  return;
-}
-
 function startGame() {
   //button click
   $('#gamebutton')[0].play();
   //play backgorund music
   $('#background')[0].play();
   $("#skip-intro").show();
+  $("#pc-bar").show();
   speakingStarts();
   $(".start-screen").hide();
   $('#autom-pilot').toggleClass('error-background warning-background');
@@ -196,9 +184,49 @@ function startGame() {
   callStarted();
   currentMission = 100;
   avaIntro = setTimeout(avaSpeech, 21200);
-  callIntro = setTimeout(callEnded, 21202);
-  speakingStartIntro = setTimeout(speakingStarts, 21203);
+  callIntro = setTimeout(callEnded, 21202); //not working!!! :(
+  speakingStartIntro = setTimeout(speakingStarts, 21400);
   speakingOverIntro = setTimeout(speakingOver, 31000);
+}
+
+function speakingStarts() {
+  $('*').css('cursor', 'none');
+  $('body').off('click');
+  //show pointer on skip button
+  $( "#skip-intro" ).mouseover(function() {
+    $('*').css('cursor', 'pointer');
+    $("#mouse-text").hide();
+  });
+  $( "#skip-intro" ).mouseout(function() {
+    $('*').css('cursor', 'none');
+    $("#mouse-text").show();
+  });
+  // bind click to skip button
+  $('#skip-button').on('click');
+  $("#mouse-text").show();
+  showSubtitles();
+}
+
+function speakingOver() {
+  setTimeout(function () {
+    hideSubtitles();
+    $("#mouse-text").hide();
+    $('*').css('cursor', 'default');
+    $('*').on('click');
+  }, 150);
+}
+
+function showSubtitles() {
+  $("#subtitles").show();
+}
+
+function hideSubtitles() {
+  $("#subtitles").hide();
+}
+
+function pauseAva100() {
+  $('#ava100')[0].pause()
+  return;
 }
 
 function pcButton() {
@@ -313,6 +341,28 @@ function fuelDown() {
     setTimeout(gameOver);
   }
 }
+
+// function downInterval() {
+//   for (var oxyPrecetage =0; i<84; i++){
+//
+//     if(oxygenButton == true){
+//       return;
+//     }
+//      do_something(i);
+//
+//   }
+//
+//   function do_something(j) {
+//     setTimeout(function() {
+//       --oxygenLevel;
+//       if(oxygenLevel === 0) {
+//         clearInterval(oxyDownInterval);
+//         console.log("down stopped")
+//       }
+//       oxyDown();
+//     }, 100 * j);
+//   }
+// }
 
 function downInterval(speed){
   var oxyDownInterval = setInterval(function(){
@@ -752,7 +802,18 @@ function earthSpeech(){
   //MISSION 1//
   if (currentMission == 0) {
     $('#earth0')[0].play();
-    //dialogue 0
+    //phone rings
+    setTimeout(function () {
+      $("#subtitles").html("*Ring, ring*");
+    }, 10);
+    //axiom dialogue
+    setTimeout(function () {
+      $("#subtitles").html("Earth from Axiom 300. The automatic pilot in the ship isn't working. Do you know what's going on?");
+    }, 4700);
+    //earth dialogue
+    setTimeout(function () {
+      $("#subtitles").html("Earth here. I just got an emergency alert about it. You need to restart the ship's computer. There's a bug in the system, a restart should solve it.");
+    }, 11500);
     return;
   }
   if (currentMission == 100 || currentMission == 110 || currentMission == 120 || currentMission == 121) {

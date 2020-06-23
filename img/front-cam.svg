@@ -1,0 +1,28 @@
+<svg width="125" height="124" viewBox="0 0 125 124" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect x="0.677002" y="0.000244141" width="124" height="124" fill="black"/>
+<g opacity="0.8">
+<circle cx="66.177" cy="90.5002" r="0.5" transform="rotate(-90 66.177 90.5002)" fill="white"/>
+<circle cx="74.177" cy="58.5002" r="0.5" transform="rotate(-90 74.177 58.5002)" fill="white"/>
+<circle cx="82.177" cy="50.5002" r="0.5" transform="rotate(-90 82.177 50.5002)" fill="white"/>
+<circle cx="84.177" cy="45.5002" r="0.5" transform="rotate(-90 84.177 45.5002)" fill="white"/>
+<circle cx="60.177" cy="29.5002" r="0.5" transform="rotate(-90 60.177 29.5002)" fill="white"/>
+<circle cx="52.177" cy="44.5002" r="0.5" transform="rotate(-90 52.177 44.5002)" fill="white"/>
+<circle cx="60.177" cy="69.5002" r="0.5" transform="rotate(-90 60.177 69.5002)" fill="white"/>
+<circle cx="84.177" cy="29.5002" r="0.5" transform="rotate(-90 84.177 29.5002)" fill="white"/>
+<circle cx="92.177" cy="77.5002" r="0.5" transform="rotate(-90 92.177 77.5002)" fill="white"/>
+<circle cx="100.177" cy="45.5002" r="0.5" transform="rotate(-90 100.177 45.5002)" fill="white"/>
+<circle cx="100.177" cy="101.5" r="0.5" transform="rotate(-90 100.177 101.5)" fill="white"/>
+<circle cx="44.177" cy="13.5002" r="0.5" transform="rotate(-90 44.177 13.5002)" fill="white"/>
+<circle cx="20.177" cy="53.5002" r="0.5" transform="rotate(-90 20.177 53.5002)" fill="white"/>
+<circle cx="12.177" cy="93.5002" r="0.5" transform="rotate(-90 12.177 93.5002)" fill="white"/>
+<circle cx="44.177" cy="109.5" r="0.5" transform="rotate(-90 44.177 109.5)" fill="white"/>
+<circle cx="12.177" cy="21.5002" r="0.5" transform="rotate(-90 12.177 21.5002)" fill="white"/>
+<circle cx="108.177" cy="13.5002" r="0.5" transform="rotate(-90 108.177 13.5002)" fill="white"/>
+<circle cx="116.177" cy="29.5002" r="0.5" transform="rotate(-90 116.177 29.5002)" fill="white"/>
+<circle cx="76.177" cy="114.5" r="0.5" transform="rotate(-90 76.177 114.5)" fill="white"/>
+</g>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M124.677 81.2212V118C124.677 121.314 121.991 124 118.677 124H6.67713C3.36342 124 0.677124 121.314 0.677124 118V80.7661C19.5484 72.8152 40.3244 68.4143 62.1425 68.4143C84.3734 68.4143 105.522 72.9833 124.677 81.2212Z" fill="#1B56AF"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M124.677 104.91V124H86.0729V119.133L90.9053 108.636L99.4349 99.3567H109.056H116.004L121.883 102.564L124.677 104.91Z" fill="#5E5649"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M122.699 80.1665L108.254 81.057L97.9842 80.03L88.9695 83.3392L79.4792 88.7023L78.8138 98.6299L75.5046 104.786L63.4447 107.346L55.2355 112.379L45.0397 110.596L42.0654 100.859L46.3475 91.2866L42.0654 83.3392V69.7403C48.8102 68.8656 55.6901 68.4143 62.677 68.4143C83.9404 68.4143 104.214 72.5943 122.699 80.1665Z" fill="#655E52"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M29.5107 124H0.677002V92.1848L17.0128 88.3567L23.7131 93.6907L31.8037 96.5977L31.4506 103.573L24.9804 110.828V118.729L29.5107 124Z" fill="#5A6250"/>
+</svg>

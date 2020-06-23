@@ -253,9 +253,9 @@ body{
   height: auto;
   padding: 0px 20px;
   background: #FFFFFF;
-  box-shadow: 0px -4px 30px #000000;
+  box-shadow: 0px -4px 30px #212938;
   border-radius: 1000px;
-  cursor: pointer;
+  cursor: pointer !important;
 }
 
 .skip-text{
@@ -276,12 +276,35 @@ body{
   background: #8999AE;
 }
 
-#subtitles{
-
+.subtitles{
+  position: fixed;
+  bottom: 20px;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  z-index: 99;
+  display: flex;
+  justify-content: center;
+  width: auto;
+  max-width: 650px;
+  height: 100px;
+  padding: 20px 20px;
+  background: #120834;
+  box-shadow: 0px -4px 30px #000000;
+  border-radius: 20px;
+  border: 2px solid #FFFFFF;
 }
 
 #mouse-text{
   position: absolute;
+  margin-left: auto;
+  margin-right: auto;
+  width: auto;
+  height: auto;
+  padding: 5px 15px;
+  background: #1D1243;
+  border-radius: 2000px;
 }
 
 
@@ -560,19 +583,27 @@ body{
 }
 
 #left-cam{
-  background: #000000;
+  /* background: #000000; */
+  background-image: url(img/left-cam.svg);
+  background-size: cover;
 }
 
 #front-cam{
-  background: #000000;
+  /* background: #000000; */
+  background-image: url(img/front-cam.svg);
+  background-size: cover;
 }
 
 #back-cam{
-  background: #000000;
+  /* background: #000000; */
+  background-image: url(img/back-cam.svg);
+  background-size: cover;
 }
 
 #right-cam{
-  background: #000000;
+  /* background: #000000; */
+  background-image: url(img/right-cam.svg);
+  background-size: cover;
 }
 
 #left-cam:hover{
@@ -1068,7 +1099,7 @@ input {
   .full-screen-needed{
     visibility: visible;
     position: fixed;
-    bottom: 20px;
+    bottom: 30px;
     left: 0;
     right: 0;
     margin-left: auto;
@@ -1088,53 +1119,28 @@ input {
   }
 }
 
-@media screen and (max-height: 810px) and (min-height: 745px) {
+@media screen and (max-height: 650px) and (min-height:0px) {
 
-  /* zoom out */
-  body {
-      -moz-transform: scale(0.9); /* Moz-browsers */
-      zoom: 0.9; /* Other non-webkit browsers */
-      zoom: 90%; /* Webkit browsers */
-  }
-}
-
-@media screen and (max-height: 745px) and (min-height: 660px) {
-
-  /* zoom out */
-  body {
-      -moz-transform: scale(0.8); /* Moz-browsers */
-      zoom: 0.8; /* Other non-webkit browsers */
-      zoom: 80%; /* Webkit browsers */
-  }
-}
-
-@media screen and (max-height: 660px) and (min-height:620px) {
-
-  /* zoom out */
-  body {
-      -moz-transform: scale(0.75); /* Moz-browsers */
-      zoom: 0.75; /* Other non-webkit browsers */
-      zoom: 75%; /* Webkit browsers */
-  }
-}
-
-@media screen and (max-height: 620px) and (min-height:420px) {
-
-  /* zoom out */
-  body {
-      -moz-transform: scale(0.67); /* Moz-browsers */
-      zoom: 0.67; /* Other non-webkit browsers */
-      zoom: 67%; /* Webkit browsers */
-  }
-}
-
-@media screen and (max-height: 420px) and (min-height:0px) {
-
-  /* zoom out */
-  body {
-      -moz-transform: scale(0.5); /* Moz-browsers */
-      zoom: 0.5; /* Other non-webkit browsers */
-      zoom: 50%; /* Webkit browsers */
+  .full-screen-needed{
+    visibility: visible;
+    position: fixed;
+    bottom: 30px;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    z-index: 100;
+    display: flex;
+    justify-content: center;
+    width: auto;
+    max-width: 650px;
+    height: 50px;
+    padding: 5px 10px;
+    background: #1D1243;
+    box-shadow: 0px -4px 30px #000000;
+    border-radius: 20px;
+    border: 2px solid #FFFFFF;
+    transition: 0.3s linear;
   }
 }
 
