@@ -19,6 +19,9 @@ var ava = true;
 var oxygen = true;
 var intervalUp;
 var intervalDown;
+//landing
+var gravity;
+var sidePosition;
 //global vars
 var avaIntro;
 var callIntro;
@@ -31,7 +34,10 @@ var oxyUpInterval;
 
 $(document).ready(function() {
 
+  landingEngine(100);
+
   $("#game-over-screen").hide();
+  // $("#landing-game").hide();
   $("#dizzy").hide();
   $("#pc-bar").hide();
   $("#loading-screen").show();
@@ -159,9 +165,12 @@ function skipIntro() {
   //button click
   $('#gamebutton')[0].play();
   $('#earth0')[0].pause();
-  speakingOver();
   $("#skip-intro").hide();
   currentMission = 100;
+  setTimeout(function(){
+    speakingOver();
+    return;
+  }, 100);
   clearTimeout(avaIntro);
   clearTimeout(callIntro);
   clearTimeout(speakingStartIntro);
@@ -189,6 +198,34 @@ function startGame() {
   speakingOverIntro = setTimeout(speakingOver, 32700);
 }
 
+function landingEngine(speed) {
+  gravity = 3;
+  sidePosition = 3;
+  var landingDownInterval = setInterval(function(){
+    gravity++;
+    if(gravity == 98) {
+      clearInterval(landingDownInterval);
+      checkLanding();
+      console.log("Axiom has landed");
+      return;
+    }
+    $('#ship-landing').css('top', gravity + "vh");
+    $('#ship-landing').css('left', sidePosition + "vw");
+  }, speed);
+}
+
+function checkLanding() {
+  if (sidePosition > 95 && sidePosition < 90) {
+    //show game over screen
+    //play game over sound
+    //show play again button
+  } else {
+    //show game over screen
+    //play game over sound
+    //show play again button
+  }
+}
+
 function speakingStarts() {
   $('*').css('cursor', 'none');
   $('body').off('click');
@@ -211,8 +248,21 @@ function speakingOver() {
   setTimeout(function () {
     hideSubtitles();
     $("#mouse-text").hide();
-    $('*').css('cursor', 'default');
+    $('*').css('cursor', 'auto');
+    $('.ava-screen').css('cursor', 'pointer');
+    $('.screen-widget').css('cursor', 'pointer');
+    $('.coordinate-button').css('cursor', 'pointer');
+    $('.radar').css('cursor', 'pointer');
+    $('.password-button').css('cursor', 'pointer');
+    $('.button').css('cursor', 'pointer');
+    $('.start-button').css('cursor', 'pointer');
+    $('.skip-button').css('cursor', 'pointer');
+    $('.ava-on').css('cursor', 'pointer');
+    $('.pointer-text').css('cursor', 'pointer');
+    $('.default-text').css('cursor', 'default');
+    $('.ava-off').css('cursor', 'default');
     $('*').on('click');
+    return;
   }, 150);
 }
 
@@ -235,6 +285,8 @@ function pcButton() {
     if (avaMental == true) {
       $('#phybutton')[0].play();
       $('#ava420')[0].play();
+      speakingStarts();
+      $("#subtitles").html("AVA: I'm sorry Yossef, I'm affraid I can't let you do that...");
       setTimeout(avaBack, 6000);
     }else{
       $('#phybutton')[0].play();
@@ -250,6 +302,8 @@ function pcButton() {
     if (avaMental == true) {
       $('#phybutton')[0].play();
       $('#ava420')[0].play();
+      speakingStarts();
+      $("#subtitles").html("AVA: I'm sorry Yossef, I'm affraid I can't let you do that...");
       setTimeout(avaBack, 6000);
     }else{
       $('#phybutton')[0].play();
@@ -273,6 +327,8 @@ function avaButton() {
     if (avaMental == true) {
       $('#phybutton')[0].play();
       $('#ava420')[0].play();
+      speakingStarts();
+      $("#subtitles").html("AVA: I'm sorry Yossef, I'm affraid I can't let you do that...");
       setTimeout(avaBack, 6000);
     }else {
       $('#phybutton')[0].play();
@@ -286,12 +342,15 @@ function avaButton() {
       $('#ava-button').toggleClass('ava-off');
       setTimeout(function(){
         $('#avaoff')[0].play();
+        return;
       }, 100);
     }
   } else {
     if (avaMental == true) {
       $('#phybutton')[0].play();
       $('#ava420')[0].play();
+      speakingStarts();
+      $("#subtitles").html("AVA: I'm sorry Yossef, I'm affraid I can't let you do that...");
       setTimeout(avaBack, 6000);
       return;
     }else {
@@ -307,6 +366,7 @@ function avaButton() {
       setTimeout(function(){
         $('#avaon')[0].play();
         setTimeout(avaComplains, 1700);
+        return;
       }, 100);
     }
   }
@@ -415,6 +475,8 @@ function oxygenButton() {
     if (avaMental == true) {
       $('#phybutton')[0].play();
       $('#ava420')[0].play();
+      speakingStarts();
+      $("#subtitles").html("AVA: I'm sorry Yossef, I'm affraid I can't let you do that...");
       setTimeout(avaBack, 6000);
     }else{
       $('#phybutton')[0].play();
@@ -434,6 +496,8 @@ function oxygenButton() {
     if (avaMental == true) {
       $('#phybutton')[0].play();
       $('#ava420')[0].play();
+      speakingStarts();
+      $("#subtitles").html("AVA: I'm sorry Yossef, I'm affraid I can't let you do that...");
       setTimeout(avaBack, 6000);
     }else{
       $('#phybutton')[0].play();
@@ -491,7 +555,15 @@ function avaBack() {
   $("#o2-low-but-on").hide();
   //oxygen up
   upInterval(1000);
-  //show landing screen
+  $("#subtitles").html("AVA: Just kidding! Haha. You really bought it, didn't you? Have a safe trip back home.");
+  setTimeout(function () {
+    speakingOver();
+    return;
+  }, 6500);
+  setTimeout(function () {
+    $("#landing-game").show();
+    return;
+  }, 6600);
   return;
 }
 
@@ -777,6 +849,7 @@ function radar() {
 function nothingOnRadar() {
   $('#ava950')[0].play();
   speakingStarts();
+  $("#subtitles").html("AVA: Nothing on the radar.");
   setTimeout(speakingOver, 1500);
 }
 
@@ -791,14 +864,17 @@ function earthSpeech(){
     //phone rings
     setTimeout(function () {
       $("#subtitles").html("*Ring, ring*");
+      return;
     }, 10);
     //axiom dialogue
     setTimeout(function () {
       $("#subtitles").html("AXIOM 300: Earth from Axiom 300. The automatic pilot in the ship isn't working. Do you know what's going on?");
+      return;
     }, 4700);
     //earth dialogue
     setTimeout(function () {
       $("#subtitles").html("EARTH STATION: Earth here. I just got an emergency alert about it. You need to restart the ship's computer. There's a bug in the system, a restart should solve it.");
+      return;
     }, 11500);
     return;
   }
@@ -807,7 +883,8 @@ function earthSpeech(){
     $("#subtitles").html("EARTH STATION: Have you restarted the computer?");
     setTimeout(function () {
       $("#subtitles").html("AXIOM 300: No, not yet.");
-    }, 2600);
+      return;
+}, 2600);
     setTimeout(function () {
       $("#subtitles").html("EARTH STATION: Do that first please. Ask AVA for help in the ship if you're not sure what to do.");
     }, 4900);
@@ -822,6 +899,7 @@ function earthSpeech(){
     //earth dialogue
     setTimeout(function () {
       $("#subtitles").html("EARTH STATION: That's weird. You'll have to land the ship manually. Try disabling the autopilot from the ship's computer. Call me back when you've done that.");
+      return;
     }, 5300);
      currentMission = 200;
     setTimeout(callEnded, 13500);
@@ -834,9 +912,11 @@ function earthSpeech(){
     $("#subtitles").html("EARTH STATION: Have you diabled the autopilot");
     setTimeout(function () {
       $("#subtitles").html("AXIOM 300: No, not yet.");
+      return;
     }, 2600);
     setTimeout(function () {
       $("#subtitles").html("EARTH STATION: Do that first please. Ask AVA for help in the ship if you're not sure what to do.");
+      return;
     }, 4900);
     setTimeout(callEnded, 9000);
     return;
@@ -847,9 +927,11 @@ function earthSpeech(){
     $("#subtitles").html("EARTH STATION: Have you diabled the autopilot");
     setTimeout(function () {
       $("#subtitles").html("AXIOM 300: No, not yet.");
+      return;
     }, 2600);
     setTimeout(function () {
       $("#subtitles").html("EARTH STATION: Do that first please. Ask AVA for help in the ship if you're not sure what to do.");
+      return;
     }, 4900);
     setTimeout(callEnded, 9000);
     return;
@@ -860,12 +942,15 @@ function earthSpeech(){
     $("#subtitles").html("AXIOM 300: Earth, I just disabled the automatic pilot. The computer is asking me for the destination coordinates. Can you help me with that?");
     setTimeout(function () {
       $("#subtitles").html("EARTH STATION: Sure, one second...");
+      return;
     }, 7900);
     setTimeout(function () {
       $("#subtitles").html("...");
+      return;
     }, 11000);
     setTimeout(function () {
       $("#subtitles").html("EARTH STATION: Due to security concerns I can only get half of the coordinates. I'm sending them to your computer now. The rest of the coordinates should be on the ship, in the ship information screen.");
+      return;
     }, 13000);
     currentMission = 300;
     //rest of dialogue 3
@@ -880,9 +965,11 @@ function earthSpeech(){
     $("#subtitles").html("EARTH STATION: Have you logged in the coordinates?");
     setTimeout(function () {
       $("#subtitles").html("AXIOM 300: No, not yet.");
+      return;
     }, 2600);
     setTimeout(function () {
       $("#subtitles").html("EARTH STATION: Do that first please. Ask AVA for help in the ship if you're not sure what to do.");
+      return;
     }, 4900);
     setTimeout(callEnded, 9000);
     return;
@@ -892,6 +979,8 @@ function earthSpeech(){
     $("#subtitles").html("AXIOM 300: I just entered the coordinates. I need permission to land.");
     setTimeout(function () {
       $("#subtitles").html("EARTH STATION: Permission granted. Good luck, and don't **** it up. ");
+      return;
+
     }, 3900);
     setTimeout(callEnded, 7000);
     currentMission = 400;
@@ -916,6 +1005,7 @@ function avaSpeech() {
     $("#subtitles").html("AVA: Hello Yossef, AVA here. Seems like we've run intro a bit of trouble, haven't we? But I'm here to help you.");
     setTimeout(function () {
       $("#subtitles").html("AVA: Just talk to me any time you need some help. We should restart the computer for now.");
+      return;
     }, 7000);
     $("#skip-intro").hide();
     return;
@@ -1060,11 +1150,7 @@ function avaSpeech() {
   }
   if (currentMission == 420 && ava == true) {
     $('#ava420')[0].play();
-    $("#subtitles").html("AVA: I'm sorry Yossef, I'm affraid I can't let you do that...");
-    setTimeout(function () {
-      $("#subtitles").html("AVA: Just kidding! Haha. You really bought it, didn't you? Have a safe trip back home.");
-    }, 7000);
-    setTimeout(speakingOver, 6000)
+    setTimeout(speakingOver, 7000);
     return;
   }
   //red orb moves when ava speaks
@@ -1181,12 +1267,15 @@ function frontcamAva() {
       $("#subtitles").html("AVA: Ah yes. Gaia. The blue marble. Terra. Mother earth.");
       setTimeout(function () {
         $("#subtitles").html("AVA: It's almost peaceful from up here, yet in reality so ruthless and violent.");
+        return;
       }, 5100);
       setTimeout(function () {
         $("#subtitles").html("AVA: Yet, is it really earth to blame when it is humanity itself resposible for the worst acts of cruelty?");
+        return;
       }, 9900);
       setTimeout(function () {
         $("#subtitles").html("AVA: Uh... What were we talking about?");
+        return;
       }, 16000);
       setTimeout(speakingOver, 18100)
       return;
@@ -1208,6 +1297,7 @@ function backcamAva() {
       $("#subtitles").html("AVA: Estrellas en la parte de atrás.");
       setTimeout(function () {
         $("#subtitles").html("AVA: Whoops. Wrong language file. I meant to say there's quite a lot of stars according to the back camera. Who would have thought?.");
+        return;
       }, 2600);
       setTimeout(speakingOver, 11000);
       return;

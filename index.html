@@ -229,7 +229,7 @@
   </div>
 
   <div id="mouse-text">
-    WAIT
+    WAIT...
   </div>
 
   <div class="game-over" id="game-over-screen">
@@ -242,16 +242,29 @@
   </div>
 
   <div class="loading" id="loading-screen">
-    <div class="notification">
+    <div class="notification default-text">
       LOADING...
     </div>
   </div>
 
   <div class="full-screen-needed">
     <div class="notification-text-container">
-      <div class="notification-text">
-        AXIOM 300 IS BETTER PLAYED <span class="bold-text">FULL SCREEN</span> ON A COMPUTER
+      <div class="notification-text default-text">
+        AXIOM 300 IS BETTER PLAYED <span class="bold-text default-text">FULL SCREEN</span> ON A COMPUTER
       </div>
+    </div>
+  </div>
+
+  <div class="landing-game" id="landing-game">
+    <div class="fuel-landing">
+      FUEL &nbsp;<span id="fuel-percent">82%</span>
+    </div>
+    <div class="ship-landing" id="ship-landing">
+    </div>
+    <div class="dock-landing">
+    </div>
+    <div class="text-landing">
+      USE THE ARROWS TO LAND ON THE DOCK
     </div>
   </div>
 
@@ -259,14 +272,14 @@
     <div class="start-container">
       <div class="sound-container">
         <img id=sound-icon src="img/sound-icon.svg" alt="sound-icon">
-        <div class="sound-on">TURN YOUR SOUND ON TO PLAY</div>
+        <div class="sound-on default-text">TURN YOUR SOUND ON TO PLAY</div>
       </div>
-      <div class="intro-container">
+      <div class="intro-container default-text">
         <h1>Welcome to Axiom 300</h1>
-        <body><span class="intro-text">On his way back home from a misison in space, astronaut Yossef Cooper is woken up by an alarm sound from his spaceship.</span></body>
-        <body><span class="intro-text">After checking the systems he finds out that the automatic pilot isn’t working.</span></body>
-        <body><span class="intro-text">He contacts earth to get help fixing the automatic pilot...</span></body>
-        <div class="sound-on-caption">This is an interactive audio story. Feel free to follow the storyline and listen, or just explore Axiom 300.</div>
+        <body><span class="intro-text default-text">On his way back home from a misison in space, astronaut Yossef Cooper is woken up by an alarm sound from his spaceship.</span></body>
+        <body><span class="intro-text default-text">After checking the systems he finds out that the automatic pilot isn’t working.</span></body>
+        <body><span class="intro-text default-text">He contacts earth to get help fixing the automatic pilot...</span></body>
+        <div class="sound-on-caption default-text">This is an interactive audio story. Feel free to follow the storyline and listen, or just explore Axiom 300.</div>
       </div>
       <div class="start-button">
         <div class="button-text">
@@ -284,76 +297,76 @@
 
   <div class="ava-bar">
     <div class="ava-screen" id="o2-level">
-      <body><span class="small-screen-title">O2 NORMAL</span></body>
-      <body><span class="small-screen-text" id="o2-percent">82%</span></body>
-      <div class="bar">
-        <div class="bar-filling" id="o2-bar-level"></div>
+      <body><span class="small-screen-title pointer-text">O2 NORMAL</span></body>
+      <body><span class="small-screen-text pointer-text" id="o2-percent">82%</span></body>
+      <div class="bar pointer-text">
+        <div class="bar-filling pointer-text" id="o2-bar-level"></div>
       </div>
     </div>
-    <div class="ava-screen" id="o2-error">
-      <body><span class="small-screen-title">O2 ERROR</span></body>
-      <body><span class="small-screen-text" id="o2-percent-error">82%</span></body>
-      <div class="bar">
-        <div class="bar-filling" id="o2-bar-level"></div>
+    <div class="ava-screen pointer-text" id="o2-error">
+      <body><span class="small-screen-title pointer-text">O2 ERROR</span></body>
+      <body><span class="small-screen-text pointer-text" id="o2-percent-error">82%</span></body>
+      <div class="bar pointer-text">
+        <div class="bar-filling pointer-text" id="o2-bar-level"></div>
       </div>
     </div>
-    <div class="ava-screen" id="o2-off">
-      <body><span class="small-screen-title">O2 OFF</span></body>
-      <body><span class="small-screen-text" id="o2-percent-off">82%</span></body>
-      <div class="bar">
-        <div class="bar-filling" id="o2-bar-level"></div>
+    <div class="ava-screen pointer-text" id="o2-off">
+      <body><span class="small-screen-title pointer-text">O2 OFF</span></body>
+      <body><span class="small-screen-text pointer-text" id="o2-percent-off">82%</span></body>
+      <div class="bar pointer-text">
+        <div class="bar-filling pointer-text" id="o2-bar-level"></div>
       </div>
     </div>
-    <div class="ava-screen" id="o2-low">
-      <body><span class="small-screen-title">O2 LOW</span></body>
-      <body><span class="small-screen-text" id="o2-percent-low">82%</span></body>
-      <div class="bar">
-        <div class="bar-filling" id="o2-bar-level"></div>
+    <div class="ava-screen pointer-text" id="o2-low">
+      <body><span class="small-screen-title pointer-text">O2 LOW</span></body>
+      <body><span class="small-screen-text pointer-text" id="o2-percent-low">82%</span></body>
+      <div class="bar pointer-text">
+        <div class="bar-filling pointer-text" id="o2-bar-level"></div>
       </div>
     </div>
-    <div class="ava-screen" id="o2-low-but-on">
-      <body><span class="small-screen-title">O2 RISING</span></body>
-      <body><span class="small-screen-text" id="o2-percent-rising">82%</span></body>
-      <div class="bar">
-        <div class="bar-filling" id="o2-bar-level"></div>
+    <div class="ava-screen pointer-text" id="o2-low-but-on">
+      <body><span class="small-screen-title pointer-text">O2 RISING</span></body>
+      <body><span class="small-screen-text pointer-text" id="o2-percent-rising">82%</span></body>
+      <div class="bar pointer-text">
+        <div class="bar-filling pointer-text" id="o2-bar-level"></div>
       </div>
     </div>
 
     <div class="ava-screen" id="destination">
-      <body><span class="small-screen-title">DESTINATION</span></body>
-      <body><span class="small-screen-text" id="km">408 km</span></body>
+      <body><span class="small-screen-title pointer-text">DESTINATION</span></body>
+      <body><span class="small-screen-text pointer-text" id="km">408 km</span></body>
     </div>
 
-    <div class="ava-screen" id="left-cam">
-      <body><span class="small-screen-title">LEFT CAM</span></body>
+    <div class="ava-screen pointer-text" id="left-cam">
+      <body><span class="small-screen-title pointer-text">LEFT CAM</span></body>
     </div>
 
-    <div class="ava-screen" id="front-cam">
-      <body><span class="small-screen-title">FRONT CAM</span></body>
+    <div class="ava-screen pointer-text" id="front-cam">
+      <body><span class="small-screen-title pointer-text">FRONT CAM</span></body>
     </div>
 
     <div class="ava-on" id="ava">
       <div class="ava-top">
         <div class="ava-branding">
           <div class="ava-text-background">
-            <div class="ava-text">
+            <div class="ava-text default-text">
               AVA
             </div>
           </div>
           <div class="text-9000-background">
-            <div class="text-9000">
+            <div class="text-9000 default-text">
               9000
             </div>
           </div>
         </div>
-        <div class="ava-eye">
-          <div class="ava-eye-border">
-            <div class="ava-eye-black ava-click" id="ava-light-background">
-              <div class="ava-eye-dark-red" id="ava-light">
+        <div class="ava-eye pointer-text">
+          <div class="ava-eye-border pointer-text">
+            <div class="ava-eye-black ava-click pointer-text" id="ava-light-background">
+              <div class="ava-eye-dark-red pointer-text" id="ava-light">
                 <!-- change class when off -->
-                <div class="ava-eye-light-red">
+                <div class="ava-eye-light-red pointer-text">
                   <!-- hide when off -->
-                  <div class="ava-eye-yellow">
+                  <div class="ava-eye-yellow pointer-text">
                     <!-- hide when off -->
                   </div>
                 </div>
@@ -368,30 +381,30 @@
 
 
     <div class="ava-screen" id="back-cam">
-      <body><span class="small-screen-title">BACK CAM</span></body>
+      <body><span class="small-screen-title pointer-text">BACK CAM</span></body>
     </div>
 
     <div class="ava-screen" id="right-cam">
-      <body><span class="small-screen-title">RIGHT CAM</span></body>
+      <body><span class="small-screen-title pointer-text">RIGHT CAM</span></body>
     </div>
 
     <div class="ava-screen" id="speed">
-      <body><span class="small-screen-title">ENGINES</span></body>
-      <div class="speed-graphs">
-        <div class="column">
-          <div class="column-filling" id="left-engine"></div>
+      <body><span class="small-screen-title pointer-text">ENGINES</span></body>
+      <div class="speed-graphs pointer-text">
+        <div class="column pointer-text">
+          <div class="column-filling pointer-text" id="left-engine"></div>
         </div>
-        <div class="column">
-          <div class="column-filling" id="right-engine"></div>
+        <div class="column pointer-text">
+          <div class="column-filling pointer-text" id="right-engine"></div>
         </div>
       </div>
     </div>
 
     <div class="ava-screen fuel-level-background" id="fuel-level">
-      <body><span class="small-screen-title">FUEL LEVEL</span></body>
-      <body><span class="small-screen-text" id="fuel-percent">82%</span></body>
-      <div class="bar">
-        <div class="fuel-bar-filling" id="fuel-bar-level"></div>
+      <body><span class="small-screen-title pointer-text">FUEL LEVEL</span></body>
+      <body><span class="small-screen-text pointer-text" id="fuel-percent">82%</span></body>
+      <div class="bar pointer-text">
+        <div class="fuel-bar-filling pointer-text" id="fuel-bar-level"></div>
       </div>
     </div>
   </div>
@@ -400,13 +413,13 @@
     <div class="pc">
 
       <div id="locked-screen">
-          <div class="welcome">
+          <div class="welcome default-text">
             <h3>WELCOME TO AXIOM 300</h3>
             <div class="password-field">
               <body>PASSWORD</body>
               <div class="enter-field">
                 <input type="text" id="password" name="password">
-                <div class="password-button"><div class="screen-button-text">
+                <div class="password-button"><div class="screen-button-text pointer-text">
                   ENTER
                 </div></div>
               </div>
@@ -423,27 +436,27 @@
         <div class="screen-buttons">
           <div class="screen-widget" id="autom-pilot">
             <div class="widget-text-container">
-              <div id="autopilot-title-status">
+              <div class="pointer-text" id="autopilot-title-status">
                 AUTOPILOT ON
               </div>
-              <body><span id="autopilot-status">AUTOPILOT ERROR</span></body>
+              <body><span class="pointer-text" id="autopilot-status">AUTOPILOT ERROR</span></body>
             </div>
           </div>
           <div class="screen-widget" id="contact-earth">
             <div class="widget-text-container">
-              <div id="autopilot-title-status">
+              <div class="pointer-text" id="autopilot-title-status">
                 CONTACT EARTH
               </div>
-              <body><span id="contact-earth-status">SIGNAL IS STABLE</span></body>
+              <body><span class="pointer-text" id="contact-earth-status">SIGNAL IS STABLE</span></body>
             </div>
           </div>
           <div class="screen-widget" id="ship-info">
             <div class="widget-text-container">
-              <div id="autopilot-title-status">
+              <div class="pointer-text" id="autopilot-title-status">
                 SHIP INFO
               </div>
-              <body><span id="enter-coordinates">ENTER COORDINATES</span></body>
-              <body><span id="system-ok">SYSTEM UP TO DATE</span></body>
+              <body><span class="pointer-text" id="enter-coordinates">ENTER COORDINATES</span></body>
+              <body><span class="pointer-text" id="system-ok">SYSTEM UP TO DATE</span></body>
             </div>
           </div>
         </div>
@@ -456,38 +469,38 @@
       <div id="info-screen">
           <div class="info-list">
             <div class="title-and-close">
-              <h2>SHIP INFORMATION</h2>
-              <img id=close-button src="img/x.svg" alt="close-button">
+              <h2 class="default-text">SHIP INFORMATION</h2>
+              <img class="pointer-text" id=close-button src="img/x.svg" alt="close-button">
             </div>
-            <body><span class="info-subtitle">SHIP NAME - AXIOM 300</span></body>
-            <body><span class="info-subtitle">AVA 9000 - ARTIFICIAL VITAL APPARATUS, DON’T PISS HER OFF</span></body>
-            <body><span class="info-subtitle">MISSION STS-157 LANDING COORDINATES - <span id="red-co">28°</span><span id="green-co">29′</span><span id="orange-co">09″</span>N</span></body>
-            <body><span class="info-subtitle">EARTH SENT COORDINATES - <span id="confidential">CONFIDENTIAL</span><span id="earth-coordinates"><span id="orange-co">80°</span><span id="red-co">32′</span><span id="green-co">40″</span>W</span></span></body>
+            <body><span class="info-subtitle default-text">SHIP NAME - AXIOM 300</span></body>
+            <body><span class="info-subtitle default-text">AVA 9000 - ARTIFICIAL VITAL APPARATUS, DON’T PISS HER OFF</span></body>
+            <body><span class="info-subtitle default-text">MISSION STS-157 LANDING COORDINATES - <span class="default-text" id="red-co">28°</span><span class="default-text" id="green-co">29′</span><span class="default-text" id="orange-co">09″</span>N</span></body>
+            <body><span class="info-subtitle default-text">EARTH SENT COORDINATES - <span class="default-text" id="confidential">CONFIDENTIAL</span><span class="default-text" id="earth-coordinates"><span class="default-text" id="orange-co">80°</span><span class="default-text" id="red-co">32′</span><span class="default-text" id="green-co">40″</span>W</span></span></body>
             <div class="coordinates-field">
-              <h2><span>COORDINATES EQUATION</span></h2>
+              <h2><span class="default-text">COORDINATES EQUATION</span></h2>
               <div id="coordinates-field" class="enter-field">
                 <input type="text" id="coordinates1" name="coordinates1">
                 <input type="text" id="coordinates2" name="coordinates2">
                 <input type="text" id="coordinates3" name="coordinates3">
-                <div id="enter-coordinate" class="coordinate-button"><div class="screen-button-text">
+                <div id="enter-coordinate" class="coordinate-button"><div class="screen-button-text pointer-text">
                   ENTER
                 </div></div>
                 <div id="change-coordinate" class="coordinate-button">DELETE</div>
               </div>
-              <div id=coordinate-error>THE COORDINATES ENTERED DON'T MATCH ANY LANDING PORTS</div>
-              <div id=coordinate-ok>THE COORDINATES MATCH AND HAVE BEEN LOGGED INTO THE SYSTEM</div>
+              <div class="default-text" id=coordinate-error>THE COORDINATES ENTERED DON'T MATCH ANY LANDING PORTS</div>
+              <div class="default-text" id=coordinate-ok>THE COORDINATES MATCH AND HAVE BEEN LOGGED INTO THE SYSTEM</div>
             </div>
           </div>
       </div>
 
       <div class="control-bar">
-        <div class="button" id="pc-button"><span class="real-button-text">PC</span>
+        <div class="button pointer-text" id="pc-button"><span class="real-button-text pointer-text">PC</span>
         </div>
 
-        <div class="button" id="ava-button"><span class="real-button-text">AVA</span>
+        <div class="button pointer-text" id="ava-button"><span class="real-button-text pointer-text">AVA</span>
         </div>
 
-        <div class="button" id="o2-button"><span class="real-button-text">O2</span>
+        <div class="button pointer-text" id="o2-button"><span class="real-button-text pointer-text">O2</span>
         </div>
 
         <div class="speaker" id="speaker">

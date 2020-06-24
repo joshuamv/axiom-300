@@ -101,6 +101,69 @@ body{
   min-height: 100vh;
 }
 
+/* landing game screen */
+
+.landing-game{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  font-family: sans-serif Condensed;
+  left: 0px;
+  top: 0px;
+  background-color: white;
+  z-index: 110;
+  display: block;
+}
+
+.fuel-landing{
+  position: fixed;
+  color: black;
+  top: 32.5px;
+  right: 30px;
+  z-index: 120;
+  display: flex;
+  justify-content: center;
+  width: auto;
+  max-width: 650px;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.ship-landing{
+  position: absolute;
+  top: 3vh;
+  left: 3vw;
+  width: 25px;
+  height: 25px;
+  background-color: black;
+}
+
+.dock-landing{
+  position: absolute;
+  bottom: 0px;
+  right: 5vw;
+  width: 5vw;
+  height: 10px;
+  background-color: black;
+}
+
+.text-landing{
+  font-weight: lighter;
+  position: fixed;
+  color: black;
+  top: 30px;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  z-index: 120;
+  display: flex;
+  justify-content: center;
+  width: auto;
+  max-width: 650px;
+}
 /* start screen */
 
 .start-screen{
@@ -255,7 +318,7 @@ body{
   background: #FFFFFF;
   box-shadow: 0px -4px 30px #212938;
   border-radius: 1000px;
-  cursor: pointer !important;
+  cursor: pointer;
 }
 
 .skip-text{
@@ -327,6 +390,7 @@ body{
   width: 75px;
   height: 165px;
   background: #2D3543;
+  cursor: inherit;
 }
 
 .ava-branding{
@@ -334,6 +398,7 @@ body{
   flex-direction: row;
   margin: 6px;
   margin-bottom: auto;
+  cursor: inherit;
 }
 
 .ava-text-background{
@@ -343,6 +408,7 @@ body{
   width: 28px;
   height: 10px;
   background: #4B7D9B;
+  cursor: inherit;
 }
 
 .ava-text{
@@ -355,6 +421,7 @@ body{
   line-height: 7px;
   margin-top: auto;
   margin-bottom: auto;
+  cursor: inherit;
 }
 
 .text-9000-background{
@@ -364,6 +431,7 @@ body{
   width: 28px;
   height: 10px;
   background: #16161B;
+  cursor: inherit;
 }
 
 .text-9000{
@@ -376,11 +444,13 @@ body{
   line-height: 7px;
   margin-top: auto;
   margin-bottom: auto;
+  cursor: inherit;
 }
 
 .ava-eye{
   margin-left: auto;
   margin-right: auto;
+  cursor: inherit;
 }
 
 .ava-eye-black{
@@ -396,6 +466,7 @@ body{
   justify-content: center;
   align-items: center;
   text-align: center;
+  cursor: inherit;
 }
 
 .ava-click:hover{
@@ -403,6 +474,7 @@ body{
   height: 50px;
   border-radius: 1000px;
   background-color: #72240B;
+  cursor: inherit;
 }
 
 .ava-eye-dark-red{
@@ -415,6 +487,7 @@ body{
   justify-content: center;
   align-items: center;
   text-align: center;
+  cursor: inherit;
 }
 
 .ava-eye-red-off{
@@ -428,6 +501,7 @@ body{
   justify-content: center;
   align-items: center;
   text-align: center;
+  cursor: inherit;
 }
 
 .ava-eye-light-red{
@@ -440,6 +514,7 @@ body{
   justify-content: center;
   align-items: center;
   text-align: center;
+  cursor: inherit;
 }
 
 .ava-eye-yellow{
@@ -452,12 +527,14 @@ body{
   justify-content: center;
   align-items: center;
   text-align: center;
+  cursor: inherit;
 }
 
 .ava-bottom{
   width: 75px;
   height: 40px;
   background: #6C6C6F;
+  cursor: inherit;
 }
 
 .ava-on{
@@ -584,43 +661,39 @@ body{
 }
 
 #left-cam{
-  /* background: #000000; */
   background-image: url(img/left-cam.svg);
   background-size: cover;
 }
 
 #front-cam{
-  /* background: #000000; */
   background-image: url(img/front-cam.svg);
   background-size: cover;
 }
 
 #back-cam{
-  /* background: #000000; */
   background-image: url(img/back-cam.svg);
   background-size: cover;
 }
 
 #right-cam{
-  /* background: #000000; */
   background-image: url(img/right-cam.svg);
   background-size: cover;
 }
 
 #left-cam:hover{
-  background: #212328;
+  background-image: url(img/left-cam-hover.svg);
 }
 
 #front-cam:hover{
-  background: #212328;
+  background-image: url(img/front-cam-hover.svg);
 }
 
 #back-cam:hover{
-  background: #212328;
+  background-image: url(img/back-cam-hover.svg);
 }
 
 #right-cam:hover{
-  background: #212328;
+  background-image: url(img/right-cam-hover.svg);
 }
 
 #speed{
@@ -1031,7 +1104,7 @@ input {
 }
 
 #ava-button:hover{
-  background: #DE3C08;
+  background: #C94921;
 }
 
 #o2-button:hover{
@@ -1093,6 +1166,14 @@ input {
 
 .error-background:hover{
   background: #C62B2D;
+}
+
+.pointer-text{
+  cursor: pointer;
+}
+
+.default-text{
+  cursor: default;
 }
 
 @media screen and (max-width: 1100px) and (min-width: 0px) {
