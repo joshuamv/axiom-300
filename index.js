@@ -34,7 +34,7 @@ var oxyUpInterval;
 
 $(document).ready(function() {
 
-  landingEngine(100);
+  // landingEngine(100);
 
   $("#game-over-screen").hide();
   // $("#landing-game").hide();
@@ -206,9 +206,24 @@ function landingEngine(speed) {
     if(gravity == 98) {
       clearInterval(landingDownInterval);
       checkLanding();
-      console.log("Axiom has landed");
       return;
     }
+    $(document).keydown(function(pk){
+      if(pk.keyCode == "37"){
+        //left arrow
+        --sidePosition;
+        if (sidePosition < 0) {
+          sidePosition = 0;
+        }
+      }
+      if(pk.keyCode == "39"){
+        //right arrow
+        ++sidePosition;
+        if (sidePosition > 98) {
+          sidePosition = 98;
+        }
+      }
+    });
     $('#ship-landing').css('top', gravity + "vh");
     $('#ship-landing').css('left', sidePosition + "vw");
   }, speed);
@@ -216,10 +231,13 @@ function landingEngine(speed) {
 
 function checkLanding() {
   if (sidePosition > 95 && sidePosition < 90) {
-    //show game over screen
-    //play game over sound
+    console.log("Axiom has landed");
+    //show game won screen
+    //play game won sound
     //show play again button
+    //show  fuel score
   } else {
+    console.log("Axiom has crashed");
     //show game over screen
     //play game over sound
     //show play again button
@@ -562,6 +580,7 @@ function avaBack() {
   }, 6500);
   setTimeout(function () {
     $("#landing-game").show();
+    landingEngine(100);
     return;
   }, 6600);
   return;
