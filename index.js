@@ -34,10 +34,11 @@ var oxyUpInterval;
 
 $(document).ready(function() {
 
+  //show landingEngine(100) and hide $("#landing-game").hide(); to debug landing game
   // landingEngine(100);
-
-  $("#game-over-screen").hide();
   $("#landing-game").hide();
+  
+  $("#game-over-screen").hide();
   $("#dizzy").hide();
   $("#pc-bar").hide();
   $("#loading-screen").show();
