@@ -37,7 +37,7 @@ $(document).ready(function() {
   // landingEngine(100);
 
   $("#game-over-screen").hide();
-  // $("#landing-game").hide();
+  $("#landing-game").hide();
   $("#dizzy").hide();
   $("#pc-bar").hide();
   $("#loading-screen").show();
