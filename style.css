@@ -49,7 +49,7 @@ body{
   top: 0px;
   background-image: url(img/dizzy.png);
   background-size: cover;
-  z-index: 100;
+  z-index: 99;
   display: block;
 }
 
@@ -247,7 +247,7 @@ body{
   position: fixed;
   bottom: 40px;
   right: 40px;
-  z-index: 99;
+  z-index: 102;
   justify-content: center;
   width: auto;
   height: auto;
@@ -283,7 +283,7 @@ body{
   right: 0;
   margin-left: auto;
   margin-right: auto;
-  z-index: 99;
+  z-index: 98;
   display: flex;
   justify-content: center;
   width: auto;
@@ -302,6 +302,7 @@ body{
   margin-right: auto;
   width: auto;
   height: auto;
+  z-index: 101;
   padding: 5px 15px;
   background: #1D1243;
   border-radius: 2000px;
@@ -939,10 +940,10 @@ body{
 input {
   font-family: Saira Condensed;
   font-style: normal;
+  text-align: center;
   font-weight: normal;
   font-size: 24px;
   line-height: 100.5%;
-  text-align: justify;
   letter-spacing: 0.3em;
   color: #FFFFFF;
   background-color: #090A0D;
