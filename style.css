@@ -273,6 +273,11 @@ body{
   color: #FFFFFF;
 }
 
+a{
+  color: white;
+  
+}
+
 .start-button{
   display: flex;
   margin: auto;
