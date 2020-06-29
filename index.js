@@ -11,6 +11,7 @@ var connectionLevel = true; //true = there's service, false call can't be made
 var autoPilot = true; //true = autopilot on
 var coordinatesStatus = false; //true = right coordinates entered
 var coordinatesEntered = []; //array with three items, each represents a coordinate pair of numbers
+var gameOverVar = false; //false = game hasn't been won yet. true = game won
 //on off buttons. true = on, false = off
 var oxygenLevel = 84;
 var fuelLevel = 46;
@@ -29,6 +30,8 @@ var speakingStartIntro;
 var speakingOverIntro;
 var oxyDownInterval;
 var oxyUpInterval;
+var earthIntroCC1;
+var earthIntroCC2;
 
 //////////////// load html /////////////////
 
@@ -37,8 +40,9 @@ $(document).ready(function() {
   //show landingEngine(100) and hide $("#landing-game").hide(); to debug landing game
   // landingEngine(100);
   $("#landing-game").hide();
-  
+  //show loading screen + welcome screen, and hide other screens
   $("#game-over-screen").hide();
+  $("#game-won-screen").hide();
   $("#dizzy").hide();
   $("#pc-bar").hide();
   $("#loading-screen").show();
@@ -72,8 +76,6 @@ $(document).ready(function() {
   var barFuelLevel = fuelLevel/1.5625; //map AVA screen values//
   $(".fuel-bar-filling").width(barFuelLevel);
   $("#fuel-percent").html(fuelLevel + "%");
-  fuelDownInterval(10000);
-
 
   //buttons click to run functions//
   $(".start-button").on("click", startGame);
@@ -100,6 +102,7 @@ $(document).ready(function() {
   $("#destination").on("click", destinationAva);
   $(".radar").on("click", radar);
   $("#skip-intro").on("click", skipIntro);
+  $("#reload-website").on("click", reloadWebsite);
 
   //password checks and reset//
   $(".password-button").click(function(){
@@ -151,6 +154,12 @@ function gameOver() {
   $('#gameover')[0].play();
 }
 
+function gameWon() {
+  $("#game-won-screen").fadeIn(500);
+  //play game won sound
+  $('#win')[0].play();
+}
+
 //text follow the cursor's x and y
 $(document).on('mousemove', function(e){
     $('#mouse-text').css({
@@ -176,6 +185,8 @@ function skipIntro() {
   clearTimeout(callIntro);
   clearTimeout(speakingStartIntro);
   clearTimeout(speakingOverIntro);
+  clearTimeout(earthIntroCC1);
+  clearTimeout(earthIntroCC2);
   callEnded();
   return;
 }
@@ -185,6 +196,8 @@ function startGame() {
   $('#gamebutton')[0].play();
   //play backgorund music
   $('#background')[0].play();
+  //start fuel down
+  fuelDownInterval(10000);
   $("#skip-intro").show();
   $("#pc-bar").show();
   speakingStarts();
@@ -199,6 +212,10 @@ function startGame() {
   speakingOverIntro = setTimeout(speakingOver, 32700);
 }
 
+function reloadWebsite() {
+  location.reload(true);
+}
+
 function landingEngine(speed) {
   gravity = 3;
   sidePosition = 3;
@@ -211,6 +228,8 @@ function landingEngine(speed) {
     }
     $(document).keydown(function(pk){
       if(pk.keyCode == "37"){
+        console.log("ship moved left");
+        console.log(sidePosition);
         //left arrow
         --sidePosition;
         if (sidePosition < 0) {
@@ -218,6 +237,8 @@ function landingEngine(speed) {
         }
       }
       if(pk.keyCode == "39"){
+        console.log("ship moved right");
+        console.log(sidePosition);
         //right arrow
         ++sidePosition;
         if (sidePosition > 98) {
@@ -231,17 +252,17 @@ function landingEngine(speed) {
 }
 
 function checkLanding() {
-  if (sidePosition > 95 && sidePosition < 90) {
+  if (sidePosition > 85 && sidePosition < 95) {
     console.log("Axiom has landed");
-    //show game won screen
-    //play game won sound
-    //show play again button
-    //show  fuel score
+    gameOverVar = true;
+    $("#high-score-number").html(fuelLevel + "%")
+    $("#score-number").html(fuelLevel)
+    setTimeout(gameWon);
   } else {
     console.log("Axiom has crashed");
-    //show game over screen
-    //play game over sound
-    //show play again button
+    gameOverVar = true;
+    $("#game-over-text").html("AXIOM 300 HAS CRASHED, YOU DIED :(")
+    setTimeout(gameOver);
   }
 }
 
@@ -398,6 +419,10 @@ function fuelDownInterval(speed){
       clearInterval(intervalUp);
       console.log("down stopped")
     }
+    if(gameOverVar == true) {
+      clearInterval(intervalUp);
+      return;
+    }
     fuelDown();
   }, speed);
 }
@@ -411,6 +436,7 @@ function fuelDown() {
     $("#fuel-level").removeClass(".fuel-level-background");
   }
   if (fuelLevel < 5) {
+    $('#alarm')[0].play();
     $("#fuel-level").addClass(".error-background");
     $("#fuel-level").removeClass(".fuel-level-background");
     $("#fuel-level").removeClass(".warning-background");
@@ -450,6 +476,7 @@ function oxyDown() {
     $("#o2-error").hide();
     $("#o2-low").show();
     $("#o2-low-but-on").hide();
+    $('#alarm')[0].play();
   }
   if (oxygenLevel == 0) {
     $("#dizzy").fadeIn(2000);
@@ -509,7 +536,7 @@ function oxygenButton() {
       $('#coordinates3').removeClass('wrong-password');
       $('#o2-button').toggleClass('o2-off');
       console.log("up stopped");
-      downInterval(1000);
+      downInterval(300);
     }
   } else {
     if (avaMental == true) {
@@ -543,8 +570,38 @@ function oxygenButton() {
   return;
 }
 
+function downIntervalError(speed){
+  var oxyDownInterval = setInterval(function(){
+    --oxygenLevel;
+    if(oxygenLevel === 0) {
+      clearInterval(oxyDownInterval);
+      console.log("down stopped")
+    }
+    if(oxygen == true) {
+      clearInterval(oxyDownInterval);
+      return;
+    }
+    oxyDownError();
+  }, speed);
+}
+
+function oxyDownError() {
+  $("#o2-percent-error").html(oxygenLevel + "%");
+  var barOxygenLevel = oxygenLevel/1.5625; //map AVA screen values//
+  $(".bar-filling").width(barOxygenLevel);
+  if (oxygenLevel < 20) {
+    $('#alarm')[0].play();
+  }
+  if (oxygenLevel == 0) {
+    $("#dizzy").fadeIn(2000);
+    setTimeout(gameOver, 2000);
+  }
+}
+
 function oxygenError() {
   avaMental = true;
+  //oxygen down
+  downIntervalError(300);
   $("#o2-level").hide();
   $("#o2-off").hide();
   $("#o2-error").show();
@@ -560,8 +617,6 @@ function oxygenError() {
   $("#subtitles").html("*alarm*");
   currentMission = 410;
   setTimeout(avaSpeech, 3000);
-  //oxygen down
-  downInterval(500);
   return;
 }
 
@@ -887,12 +942,12 @@ function earthSpeech(){
       return;
     }, 10);
     //axiom dialogue
-    setTimeout(function () {
+    earthIntroCC1 = setTimeout(function () {
       $("#subtitles").html("AXIOM 300: Earth from Axiom 300. The automatic pilot in the ship isn't working. Do you know what's going on?");
       return;
     }, 4700);
     //earth dialogue
-    setTimeout(function () {
+    earthIntroCC2 = setTimeout(function () {
       $("#subtitles").html("EARTH STATION: Earth here. I just got an emergency alert about it. You need to restart the ship's computer. There's a bug in the system, a restart should solve it.");
       return;
     }, 11500);

@@ -11,6 +11,13 @@
     <link href="https://fonts.googleapis.com/css2?family=Squada+One&display=swap" rel="stylesheet">
     <link rel='icon' href='favicon.ico' type='image/x-icon'/ >
     <meta charset="utf-8">
+    <meta name='og:description' content='Can you land the spaceship?'>
+    <meta name='og:title' content='Axiom 300'>
+    <meta name='og:url' content='img/fb.png'>
+    <meta name="description" content="Can you land the spaceship?">
+    <meta name="keywords" content="Axiom 300, Joshua, Milwer, Shenkar, HTML, CSS, JavaScript">
+    <meta name="author" content="Joshua Milwer">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 
     <!-- general audio files -->
@@ -55,6 +62,9 @@
     </audio>
     <audio id="gamebutton">
       <source src="audio/gamebutton.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="win">
+      <source src="audio/win.mp3" type="audio/mpeg">
     </audio>
 
     <!-- earth audio files -->
@@ -232,9 +242,51 @@
     WAIT...
   </div>
 
+  <div class="game-won" id="game-won-screen">
+    <!-- share links -->
+    <div class="notification">
+      <div class="game-won-text">
+        GAME WON
+      </div>
+      <div class="high-score">
+        <div class="score-text-big">
+          YOUR SCORE IS
+        </div>
+        <div class="score-text-big" id="score-number">
+          NUMBER
+        </div>
+      </div>
+      <div class="high-score">
+        <div class="score-text">
+          Good job!
+        </div>
+        <div class="score-text">
+          You landed with
+        </div>
+        <div class="score-text" id="high-score-number">
+          NUMBER AND %
+        </div>
+        <div class="score-text">
+          fuel left in the ship.
+        </div>
+      </div>
+    </div>
+    <div id="reload-website" class="reload-website-button pointer-text">
+      <div class="reload-website-text pointer-text">
+        PLAY AGAIN
+      </div>
+    </div>
+  </div>
+
   <div class="game-over" id="game-over-screen">
+    <!-- share links -->
     <div class="notification" id="game-over-text">
       DID YOU KNOW YOUR BRAIN CAN'T FUNCTION WITH LESS THAN 20% OXYGEN? YOU DIED :(
+    </div>
+    <div id="reload-website" class="reload-website-button pointer-text">
+      <div class="reload-website-text pointer-text">
+        PLAY AGAIN
+      </div>
     </div>
   </div>
 
@@ -269,6 +321,19 @@
   </div>
 
   <div class="start-screen">
+    <div class="share-container">
+      <div class="facebook">
+        <a href="https://www.facebook.com/sharer/sharer.php?u=https://joshuamv.github.io/axiom-300/" target="_blank">SHARE THIS</a>
+      </div>
+      <div class="twitter">
+
+      </div>
+    </div>
+    <div class="portfolio-container">
+      <div class="portfolio-title">
+        SEE ALL MY WORK
+      </div>
+    </div>
     <div class="start-container">
       <div class="sound-container">
         <img id=sound-icon src="img/sound-icon.svg" alt="sound-icon">
@@ -300,35 +365,35 @@
       <body><span class="small-screen-title pointer-text">O2 NORMAL</span></body>
       <body><span class="small-screen-text pointer-text" id="o2-percent">82%</span></body>
       <div class="bar pointer-text">
-        <div class="bar-filling pointer-text" id="o2-bar-level"></div>
+        <div class="bar-filling pointer-text"></div>
       </div>
     </div>
     <div class="ava-screen pointer-text" id="o2-error">
       <body><span class="small-screen-title pointer-text">O2 ERROR</span></body>
       <body><span class="small-screen-text pointer-text" id="o2-percent-error">82%</span></body>
       <div class="bar pointer-text">
-        <div class="bar-filling pointer-text" id="o2-bar-level"></div>
+        <div class="bar-filling pointer-text"></div>
       </div>
     </div>
     <div class="ava-screen pointer-text" id="o2-off">
       <body><span class="small-screen-title pointer-text">O2 OFF</span></body>
       <body><span class="small-screen-text pointer-text" id="o2-percent-off">82%</span></body>
       <div class="bar pointer-text">
-        <div class="bar-filling pointer-text" id="o2-bar-level"></div>
+        <div class="bar-filling pointer-text"></div>
       </div>
     </div>
     <div class="ava-screen pointer-text" id="o2-low">
       <body><span class="small-screen-title pointer-text">O2 LOW</span></body>
       <body><span class="small-screen-text pointer-text" id="o2-percent-low">82%</span></body>
       <div class="bar pointer-text">
-        <div class="bar-filling pointer-text" id="o2-bar-level"></div>
+        <div class="bar-filling pointer-text"></div>
       </div>
     </div>
     <div class="ava-screen pointer-text" id="o2-low-but-on">
       <body><span class="small-screen-title pointer-text">O2 RISING</span></body>
       <body><span class="small-screen-text pointer-text" id="o2-percent-rising">82%</span></body>
       <div class="bar pointer-text">
-        <div class="bar-filling pointer-text" id="o2-bar-level"></div>
+        <div class="bar-filling pointer-text"></div>
       </div>
     </div>
 
