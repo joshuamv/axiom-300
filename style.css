@@ -14,12 +14,43 @@ body{
 
 /* loading screens */
 
-.twitter-share-button{
+.small-button{
   z-index: 2000;
   position: absolute;
-  top: 10px;
-  left: 10px;
-  opacity: 0.9;
+  top: 25px;
+  color: white;
+  font-weight: normal;
+  padding: 12px;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  border-radius: 109px;
+  border-style: solid;
+  border-color: #414A58;
+  border-width: 2px;
+  font-size: 16px;
+  /* font-family: Saira; */
+  letter-spacing: 0.10em;
+  opacity: 0.8;
+}
+
+.share-container{
+  right: 25px;
+}
+
+.share-container:hover{
+  background-color: #414A58;
+}
+
+.portfolio-container{
+  left: 25px;
+}
+
+.portfolio-container:hover{
+  background-color: #414A58;
+}
+
+.small-button-text{
+  text-decoration: none;
 }
 
 .loading{
@@ -1321,15 +1352,5 @@ input {
     border-radius: 20px;
     border: 2px solid #FFFFFF;
     transition: 0.3s linear;
-  }
-}
-
-@media only screen and (device-width: 768px) {
-  /* For general iPad layouts */
-  /* zoom out */
-  body {
-      -moz-transform: scale(0.85); /* Moz-browsers */
-      zoom: 0.85; /* Other non-webkit browsers */
-      zoom: 85%; /* Webkit browsers */
   }
 }
