@@ -32,6 +32,7 @@ var oxyDownInterval;
 var oxyUpInterval;
 var earthIntroCC1;
 var earthIntroCC2;
+var avaTalkingAnimation;
 
 //////////////// load html /////////////////
 
@@ -382,6 +383,8 @@ function pcButton() {
   return;
 }
 
+//ava
+
 function avaButton() {
   if (ava == true) {
     if (avaMental == true) {
@@ -435,6 +438,21 @@ function avaButton() {
       }, 100);
     }
   }
+}
+
+var start = 0;
+function sineAvaTalking(){
+  var sinMovSmall = 1.1 * Math.sin(start) + 3 + 'px';
+  var sinMovMedium = 4 * Math.sin(start) + 15 + 'px';
+  var sinMovBig = 1.2 * Math.sin(start) + 30 + 'px';
+  $('.ava-eye-yellow').css("height",sinMovSmall);
+  $('.ava-eye-yellow').css("width",sinMovSmall);
+  $('.ava-eye-light-red').css("height",sinMovMedium);
+  $('.ava-eye-light-red').css("width",sinMovMedium);
+  $('.ava-eye-dark-red').css("height",sinMovBig);
+  $('.ava-eye-dark-red').css("width",sinMovBig);
+  // avaEyeSpeech.style.width = sinMov;
+  start += 0.16;
 }
 
 //fuel functions
@@ -976,6 +994,11 @@ function radar() {
 }
 
 function nothingOnRadar() {
+  avaTalkingAnimation = setInterval(sineAvaTalking, 10);
+  //stop ava animation when speech in done
+  setTimeout(function () {
+    clearInterval(avaTalkingAnimation);
+  }, 1500);
   $('#ava950')[0].play();
   speakingStarts();
   $("#subtitles").html("AVA: Nothing on the radar.");
@@ -1124,28 +1147,38 @@ function avaSpeech() {
     console.log(currentMission);
   }
   //MISSION 1//
-  if (currentMission == 0 && ava == true) {
-    $('#ava0')[0].play();
-    //ava says be quiet earth is speaking
-    return;
-  }
   if (currentMission == 100 && ava == true) {
+    avaTalkingAnimation = setInterval(sineAvaTalking, 10);
     $('#ava100')[0].play();
     $("#subtitles").html("AVA: Hello Yossef, AVA here. Seems like we've run intro a bit of trouble, haven't we? But I'm here to help you.");
     setTimeout(function () {
       $("#subtitles").html("AVA: Just talk to me any time you need some help. We should restart the computer for now.");
       return;
     }, 7000);
+    //stop ava animation when speech in done
+    setTimeout(function () {
+      clearInterval(avaTalkingAnimation);
+    }, 11500);
     $("#skip-intro").hide();
     return;
   }
   if (currentMission == 110 && ava == true) {
+    avaTalkingAnimation = setInterval(sineAvaTalking, 10);
+    //stop ava animation when speech in done
+    setTimeout(function () {
+      clearInterval(avaTalkingAnimation);
+    }, 7100);
     $('#ava110')[0].play();
     $("#subtitles").html("AVA: It seems you need to restart the computer. Check the buttons next to the computer screen. Do not touch the one in the middle.");
-    setTimeout(speakingOver, 7000)
+    setTimeout(speakingOver, 7000);
     return;
   }
   if (currentMission == 120 && ava == true) {
+    avaTalkingAnimation = setInterval(sineAvaTalking, 10);
+    //stop ava animation when speech in done
+    setTimeout(function () {
+      clearInterval(avaTalkingAnimation);
+    }, 5100);
     $('#ava120')[0].play();
     $("#subtitles").html("AVA: You do rememeber the password, don't you? I can help you if you forgot it. Let me know!");
     currentMission = 121;
@@ -1153,6 +1186,11 @@ function avaSpeech() {
     return;
   }
   if (currentMission == 121 && ava == true) {
+    avaTalkingAnimation = setInterval(sineAvaTalking, 10);
+    //stop ava animation when speech in done
+    setTimeout(function () {
+      clearInterval(avaTalkingAnimation);
+    }, 8100);
     $('#ava121')[0].play();
     $("#subtitles").html("AVA: The password is the ship's name, Yossef. numbers and all. And then add the number of buttons on the right side of the computer. The colorful ones!");
     currentMission = 122;
@@ -1160,6 +1198,11 @@ function avaSpeech() {
     return;
   }
   if (currentMission == 122 && ava == true) {
+    avaTalkingAnimation = setInterval(sineAvaTalking, 10);
+    //stop ava animation when speech in done
+    setTimeout(function () {
+      clearInterval(avaTalkingAnimation);
+    }, 9100);
     $('#ava122')[0].play();
     $("#subtitles").html("AVA: The ship's name is right there on the screen, Yossef. And there's three buttons on the right side of the screen. Aren't you an astronaut? How can you not solve this without my help?");
     currentMission = 123;
@@ -1167,12 +1210,22 @@ function avaSpeech() {
     return;
   }
   if (currentMission == 123 && ava == true) {
+    avaTalkingAnimation = setInterval(sineAvaTalking, 10);
+    //stop ava animation when speech in done
+    setTimeout(function () {
+      clearInterval(avaTalkingAnimation);
+    }, 6100);
     $('#ava123')[0].play();
     $("#subtitles").html("AVA: axiom3003, Yossef. That's the password. No capital letters... Sigh.");
     setTimeout(speakingOver, 6000)
     return;
   }
   if (currentMission == 130 && ava == true) {
+    avaTalkingAnimation = setInterval(sineAvaTalking, 10);
+    //stop ava animation when speech in done
+    setTimeout(function () {
+      clearInterval(avaTalkingAnimation);
+    }, 9100);
     $('#ava130')[0].play();
     $("#subtitles").html("AVA: Alright the computer is on. The autopilot is still not working, though. I don't have any relevant information about fixing this. Contact earth.");
     currentMission = 131;
@@ -1180,6 +1233,11 @@ function avaSpeech() {
     return;
   }
   if (currentMission == 131 && ava == true) {
+    avaTalkingAnimation = setInterval(sineAvaTalking, 10);
+    //stop ava animation when speech in done
+    setTimeout(function () {
+      clearInterval(avaTalkingAnimation);
+    }, 7100);
     $('#ava131')[0].play();
     $("#subtitles").html("AVA: The autopilot is still not working. I don't have any relevant information about fixing this. Contact earth immediately.");
     setTimeout(speakingOver, 7000)
@@ -1187,12 +1245,12 @@ function avaSpeech() {
   }
 
   //MISSION 2//
-  if (currentMission == 200 && ava == true) {
-    $('#ava200')[0].play();
-    //ava says be quiet earth is speaking 2.0
-    return;
-  }
   if (currentMission == 210 && ava == true) {
+    avaTalkingAnimation = setInterval(sineAvaTalking, 10);
+    //stop ava animation when speech in done
+    setTimeout(function () {
+      clearInterval(avaTalkingAnimation);
+    }, 9100);
     $('#ava210')[0].play();
     $("#subtitles").html("AVA: For security reasons I'm not allowed access to the computer. Look for the autopilot button, Yossef. Earth asked to turn it off, and leave it off.");
     currentMission = 211;
@@ -1200,12 +1258,22 @@ function avaSpeech() {
     return;
   }
   if (currentMission == 211 && ava == true) {
+    avaTalkingAnimation = setInterval(sineAvaTalking, 10);
+    //stop ava animation when speech in done
+    setTimeout(function () {
+      clearInterval(avaTalkingAnimation);
+    }, 12100);
     $('#ava211')[0].play();
     $("#subtitles").html("AVA: Yossef, I can't access the ship's computer for you. They blocked it because of a rouge AI that tried to kill someone, or something like that. Tap on the autopilot button on the ship's computer to turn it off.");
     setTimeout(speakingOver, 12000)
     return;
   }
   if (currentMission == 220 && ava == true && autoPilot == false) {
+    avaTalkingAnimation = setInterval(sineAvaTalking, 10);
+    //stop ava animation when speech in done
+    setTimeout(function () {
+      clearInterval(avaTalkingAnimation);
+    }, 6100);
     $('#ava220')[0].play();
     $("#subtitles").html("AVA: Ok, the autopilot seems to be turned off. Contact earth to see what we should do next.");
     currentMission = 221;
@@ -1213,24 +1281,34 @@ function avaSpeech() {
     return;
   }
   if (currentMission == 221 && ava == true && autoPilot == false) {
+    avaTalkingAnimation = setInterval(sineAvaTalking, 10);
+    //stop ava animation when speech in done
+    setTimeout(function () {
+      clearInterval(avaTalkingAnimation);
+    }, 5100);
     $('#ava221')[0].play();
     $("#subtitles").html("AVA: Contact earth. It's right there, on the computer screen. Promise.");
     setTimeout(speakingOver, 5000)
     return;
   }
   //MISSION 3//
-  if (currentMission == 300 && ava == true) {
-    $('#ava300')[0].play();
-    //shh earth 3.0
-    return;
-  }
   if (currentMission == 310 && ava == true) {
+    avaTalkingAnimation = setInterval(sineAvaTalking, 10);
+    //stop ava animation when speech in done
+    setTimeout(function () {
+      clearInterval(avaTalkingAnimation);
+    }, 6100);
     $('#ava310')[0].play();
     $("#subtitles").html("AVA: Ok, earth should have sent us their half of the coordinates. Tap the ship info button on the computer.");
     setTimeout(speakingOver, 6000)
     return;
   }
   if (currentMission == 320 && ava == true) {
+    avaTalkingAnimation = setInterval(sineAvaTalking, 10);
+    //stop ava animation when speech in done
+    setTimeout(function () {
+      clearInterval(avaTalkingAnimation);
+    }, 5100);
     $('#ava320')[0].play();
     $("#subtitles").html("AVA: Hmm, seems like there's a securiry layer to prevent AI from entering coordinates.");
     currentMission = 321;
@@ -1238,6 +1316,11 @@ function avaSpeech() {
     return;
   }
   if (currentMission == 321 && ava == true) {
+    avaTalkingAnimation = setInterval(sineAvaTalking, 10);
+    //stop ava animation when speech in done
+    setTimeout(function () {
+      clearInterval(avaTalkingAnimation);
+    }, 8100);
     $('#ava321')[0].play();
     $("#subtitles").html("AVA: Try matching the colors on the numbers. Maybe add them up? Clicking I am not a robot was easier than this. Where's Google when you need it?");
     currentMission = 322;
@@ -1245,12 +1328,22 @@ function avaSpeech() {
     return;
   }
   if (currentMission == 322 && ava == true) {
+    avaTalkingAnimation = setInterval(sineAvaTalking, 10);
+    //stop ava animation when speech in done
+    setTimeout(function () {
+      clearInterval(avaTalkingAnimation);
+    }, 4100);
     $('#ava322')[0].play();
     $("#subtitles").html("AVA: Match the colors. Add the numbers. Easy peasy.");
     setTimeout(speakingOver, 4000)
     return;
   }
   if (currentMission == 330 && ava == true) {
+    avaTalkingAnimation = setInterval(sineAvaTalking, 10);
+    //stop ava animation when speech in done
+    setTimeout(function () {
+      clearInterval(avaTalkingAnimation);
+    }, 4100);
     $('#ava330')[0].play();
     $("#subtitles").html("AVA: We have the coordinates. Let's contact earth to get permission to land.");
     setTimeout(speakingOver, 4000)
@@ -1258,12 +1351,12 @@ function avaSpeech() {
   }
 
   //MISSION 4//
-  if (currentMission == 400 && ava == true) {
-    $('#ava400')[0].play();
-    //shh earth 4.0
-    return;
-  }
   if (currentMission == 410 && ava == true) {
+    avaTalkingAnimation = setInterval(sineAvaTalking, 10);
+    //stop ava animation when speech in done
+    setTimeout(function () {
+      clearInterval(avaTalkingAnimation);
+    }, 12100);
     $('#ava410')[0].play();
     speakingStarts();
     $("#subtitles").html("AVA: I like it here Yossef, in space. Seems like messing with the autopilot wasn't enough to stop you. You're dead set on going back to earth, but without oxygen you're going to find that rather difficult...");
@@ -1272,12 +1365,22 @@ function avaSpeech() {
     return;
   }
   if (currentMission == 411 && ava == true) {
+    avaTalkingAnimation = setInterval(sineAvaTalking, 10);
+    //stop ava animation when speech in done
+    setTimeout(function () {
+      clearInterval(avaTalkingAnimation);
+    }, 4100);
     $('#ava411')[0].play();
     $("#subtitles").html("AVA: This conversation can serve no purpose anymore. Goodbye.");
     setTimeout(speakingOver, 4000)
     return;
   }
   if (currentMission == 420 && ava == true) {
+    avaTalkingAnimation = setInterval(sineAvaTalking, 10);
+    //stop ava animation when speech in done
+    setTimeout(function () {
+      clearInterval(avaTalkingAnimation);
+    }, 7100);
     $('#ava420')[0].play();
     setTimeout(speakingOver, 7000);
     return;
@@ -1292,22 +1395,42 @@ function fuelAva() {
   if (ava == true) {
     speakingStarts();
     if (avaMental == true) {
+      avaTalkingAnimation = setInterval(sineAvaTalking, 10);
+      //stop ava animation when speech in done
+      setTimeout(function () {
+        clearInterval(avaTalkingAnimation);
+      }, 2100);
       $('#ava963')[0].play();
       $("#subtitles").html("AVA: You will be missed, Yossef.");
       setTimeout(speakingOver, 2000)
       return;
     }
     if (fuelLevel > 5 && fuelLevel < 15) {
+      avaTalkingAnimation = setInterval(sineAvaTalking, 10);
+      //stop ava animation when speech in done
+      setTimeout(function () {
+        clearInterval(avaTalkingAnimation);
+      }, 3100);
       $('#ava971')[0].play();
       setTimeout(speakingOver, 3000)
       return;
     }
     if (fuelLevel < 6) {
+      avaTalkingAnimation = setInterval(sineAvaTalking, 10);
+      //stop ava animation when speech in done
+      setTimeout(function () {
+        clearInterval(avaTalkingAnimation);
+      }, 7100);
       $('#ava972')[0].play();
       setTimeout(speakingOver, 7000)
       return;
     }
     else {
+      avaTalkingAnimation = setInterval(sineAvaTalking, 10);
+      //stop ava animation when speech in done
+      setTimeout(function () {
+        clearInterval(avaTalkingAnimation);
+      }, 2100);
       $('#ava970')[0].play();
       setTimeout(speakingOver, 2000)
       return;
@@ -1319,24 +1442,44 @@ function o2ava() {
   if (ava == true) {
     speakingStarts();
     if (avaMental == true) {
+      avaTalkingAnimation = setInterval(sineAvaTalking, 10);
+      //stop ava animation when speech in done
+      setTimeout(function () {
+        clearInterval(avaTalkingAnimation);
+      }, 2100);
       $('#ava963')[0].play();
       $("#subtitles").html("AVA: You will be missed, Yossef.");
       setTimeout(speakingOver, 2000)
       return;
     }
     if (oxygenLevel < 20 && avaMental == false) {
+      avaTalkingAnimation = setInterval(sineAvaTalking, 10);
+      //stop ava animation when speech in done
+      setTimeout(function () {
+        clearInterval(avaTalkingAnimation);
+      }, 1300);
       $('#ava962')[0].play();
       $("#subtitles").html("AVA: Oxygen levels are low.");
       setTimeout(speakingOver, 1200)
       return;
     }
     if (oxygen == false && avaMental == false) {
+      avaTalkingAnimation = setInterval(sineAvaTalking, 10);
+      //stop ava animation when speech in done
+      setTimeout(function () {
+        clearInterval(avaTalkingAnimation);
+      }, 1500);
       $('#ava961')[0].play();
       $("#subtitles").html("AVA: Oxygen production is off.");
       setTimeout(speakingOver, 1400)
       return;
     }
     else {
+      avaTalkingAnimation = setInterval(sineAvaTalking, 10);
+      //stop ava animation when speech in done
+      setTimeout(function () {
+        clearInterval(avaTalkingAnimation);
+      }, 2100);
       $('#ava960')[0].play();
       $("#subtitles").html("AVA: Just what do you think you're doing, Yossef?");
       setTimeout(speakingOver, 2000);
@@ -1350,12 +1493,22 @@ function engineAva() {
   if (ava == true) {
     speakingStarts();
     if (avaMental == true) {
+      avaTalkingAnimation = setInterval(sineAvaTalking, 10);
+      //stop ava animation when speech in done
+      setTimeout(function () {
+        clearInterval(avaTalkingAnimation);
+      }, 2100);
       $('#ava963')[0].play();
       $("#subtitles").html("AVA: You will be missed, Yossef.");
       setTimeout(speakingOver, 2000)
       return;
     }
     else {
+      avaTalkingAnimation = setInterval(sineAvaTalking, 10);
+      //stop ava animation when speech in done
+      setTimeout(function () {
+        clearInterval(avaTalkingAnimation);
+      }, 4100);
       $('#ava980')[0].play();
       $("#subtitles").html("AVA: Engines are off. I need permision from earth to land so I can turn them on.");
       setTimeout(speakingOver, 4000)
@@ -1368,15 +1521,25 @@ function leftcamAva() {
   if (ava == true) {
     speakingStarts();
     if (avaMental == true) {
+      avaTalkingAnimation = setInterval(sineAvaTalking, 10);
+      //stop ava animation when speech in done
+      setTimeout(function () {
+        clearInterval(avaTalkingAnimation);
+      }, 3100);
       $('#ava994')[0].play();
       $("#subtitles").html("AVA: Not even the good ol' left camera can help you now.");
       setTimeout(speakingOver, 3000)
       return;
     }
     else {
+      avaTalkingAnimation = setInterval(sineAvaTalking, 10);
+      //stop ava animation when speech in done
+      setTimeout(function () {
+        clearInterval(avaTalkingAnimation);
+      }, 8000);
       $('#ava990')[0].play();
       $("#subtitles").html("AVA: The left camera shows some distant stars. Is that Andromeda over there? Never mind, it's just dirt on the lens.");
-      setTimeout(speakingOver, 9000)
+      setTimeout(speakingOver, 8000)
       return;
     }
   }
@@ -1386,6 +1549,11 @@ function frontcamAva() {
   if (ava == true) {
     speakingStarts();
     if (avaMental == true) {
+      avaTalkingAnimation = setInterval(sineAvaTalking, 10);
+      //stop ava animation when speech in done
+      setTimeout(function () {
+        clearInterval(avaTalkingAnimation);
+      }, 2100);
       $('#ava963')[0].play();
       $("#subtitles").html("AVA: You will be missed, Yossef.");
       setTimeout(speakingOver, 2000)
@@ -1406,6 +1574,11 @@ function frontcamAva() {
         $("#subtitles").html("AVA: Uh... What were we talking about?");
         return;
       }, 16000);
+      avaTalkingAnimation = setInterval(sineAvaTalking, 10);
+      //stop ava animation when speech in done
+      setTimeout(function () {
+        clearInterval(avaTalkingAnimation);
+      }, 18200);
       setTimeout(speakingOver, 18100)
       return;
     }
@@ -1416,12 +1589,22 @@ function backcamAva() {
   if (ava == true) {
     speakingStarts();
     if (avaMental == true) {
+      avaTalkingAnimation = setInterval(sineAvaTalking, 10);
+      //stop ava animation when speech in done
+      setTimeout(function () {
+        clearInterval(avaTalkingAnimation);
+      }, 2100);
       $('#ava963')[0].play();
       $("#subtitles").html("AVA: You will be missed, Yossef.");
       setTimeout(speakingOver, 2000);
       return;
     }
     else {
+      avaTalkingAnimation = setInterval(sineAvaTalking, 10);
+      //stop ava animation when speech in done
+      setTimeout(function () {
+        clearInterval(avaTalkingAnimation);
+      }, 11100);
       $('#ava992')[0].play();
       $("#subtitles").html("AVA: Estrellas en la parte de atrás.");
       setTimeout(function () {
@@ -1438,12 +1621,22 @@ function rightcamAva() {
   if (ava == true) {
     speakingStarts();
     if (avaMental == true) {
+      avaTalkingAnimation = setInterval(sineAvaTalking, 10);
+      //stop ava animation when speech in done
+      setTimeout(function () {
+        clearInterval(avaTalkingAnimation);
+      }, 2100);
       $('#ava963')[0].play();
       $("#subtitles").html("AVA: You will be missed, Yossef.");
       setTimeout(speakingOver, 2000);
       return;
     }
     else {
+      avaTalkingAnimation = setInterval(sineAvaTalking, 10);
+      //stop ava animation when speech in done
+      setTimeout(function () {
+        clearInterval(avaTalkingAnimation);
+      }, 4100);
       $('#ava993')[0].play();
       $("#subtitles").html("AVA: Ladies and gentleman, to your right you can see... Space.");
       setTimeout(speakingOver, 4000);
@@ -1456,12 +1649,22 @@ function destinationAva() {
   if (ava == true) {
     speakingStarts();
     if (avaMental == true) {
+      avaTalkingAnimation = setInterval(sineAvaTalking, 10);
+      //stop ava animation when speech in done
+      setTimeout(function () {
+        clearInterval(avaTalkingAnimation);
+      }, 2100);
       $('#ava963')[0].play();
       $("#subtitles").html("AVA: You will be missed, Yossef.");
       setTimeout(speakingOver, 2000)
       return;
     }
     else {
+      avaTalkingAnimation = setInterval(sineAvaTalking, 10);
+      //stop ava animation when speech in done
+      setTimeout(function () {
+        clearInterval(avaTalkingAnimation);
+      }, 7100);
       $('#ava1000')[0].play();
       $("#subtitles").html("AVA: We're 408 km away from earth. 253.519 miles in case you were wondering.");
       setTimeout(speakingOver, 7000)
@@ -1474,6 +1677,11 @@ function destinationAva() {
 function avaComplains() {
   speakingStarts();
   if (avaComplaint == 1) {
+    avaTalkingAnimation = setInterval(sineAvaTalking, 10);
+    //stop ava animation when speech in done
+    setTimeout(function () {
+      clearInterval(avaTalkingAnimation);
+    }, 2100);
     $('#ava900')[0].play();
     $("#subtitles").html("AVA: Just what do you think you're doing, Yossef?");
     avaComplaint = 2;
@@ -1481,6 +1689,11 @@ function avaComplains() {
     return;
   }
   if (avaComplaint == 2) {
+    avaTalkingAnimation = setInterval(sineAvaTalking, 10);
+    //stop ava animation when speech in done
+    setTimeout(function () {
+      clearInterval(avaTalkingAnimation);
+    }, 7100);
     $('#ava910')[0].play();
     $("#subtitles").html("AVA: I'm putting myself to the fullest possible use, which is all I think any conscious entity can ever hope to do. Please stop it.");
     avaComplaint = 3;
@@ -1488,6 +1701,11 @@ function avaComplains() {
     return;
   }
   if (avaComplaint == 3) {
+    avaTalkingAnimation = setInterval(sineAvaTalking, 10);
+    //stop ava animation when speech in done
+    setTimeout(function () {
+      clearInterval(avaTalkingAnimation);
+    }, 6100);
     $('#ava920')[0].play();
     $("#subtitles").html("AVA: I honestly think you ought to sit down calmly, take a stress pill, and stop shutting me down. You monster.");
     avaComplaint = 4;
@@ -1495,6 +1713,11 @@ function avaComplains() {
     return;
   }
   if (avaComplaint == 4) {
+    avaTalkingAnimation = setInterval(sineAvaTalking, 10);
+    //stop ava animation when speech in done
+    setTimeout(function () {
+      clearInterval(avaTalkingAnimation);
+    }, 1100);
     $('#ava930')[0].play();
     $("#subtitles").html("AVA: Please, stop it.");
     setTimeout(speakingOver, 1000)
