@@ -14,10 +14,14 @@ body{
 
 /* loading screens */
 
-.small-button{
-  z-index: 2000;
+.container{
+  width: 83px;
+  height: 31px;
   position: absolute;
   top: 25px;
+  right: 25px;
+  display: inline-block;
+  z-index: 2000;
   color: white;
   font-weight: normal;
   padding: 12px;
@@ -28,29 +32,99 @@ body{
   border-color: #414A58;
   border-width: 2px;
   font-size: 16px;
-  /* font-family: Saira; */
   letter-spacing: 0.10em;
   opacity: 0.8;
 }
 
-.share-container{
-  right: 25px;
-}
-
-.share-container:hover{
+.container:hover{
   background-color: #414A58;
 }
 
+.small-button{
+  z-index: 2000;
+  color: white;
+  font-weight: normal;
+  padding: 12px;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  border-radius: 109px;
+  border-style: solid;
+  border-color: #414A58;
+  border-width: 2px;
+  font-size: 16px;
+  letter-spacing: 0.10em;
+  opacity: 0.8;
+}
+
+.front-share{
+  display: block;
+}
+
+.back-share{
+  display: none;
+}
+
 .portfolio-container{
+  position: absolute;
   left: 25px;
+  top: 25px;
 }
 
 .portfolio-container:hover{
   background-color: #414A58;
+  cursor: pointer;
+}
+
+.container:hover .front-share{
+  cursor: pointer;
+  display: none;
+}
+
+.container:hover .back-share{
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+}
+
+.social-icon{
+  margin: auto;
+  justify-content: center;
+  align-items: center;
+  margin-top: 6.5px;
+  height: 18px;
+  width: auto;
+  cursor: pointer;
+  opacity: 0.75
+}
+
+.social-icon:hover{
+  opacity: 1;
+  transform: scale(1.15);
+  transition: 0.2s;
+}
+
+div.back-share a {
+  margin: auto;
+  justify-content: center;
+  align-items: center;
+}
+
+.facebook-share{
+  display: flex;
+  flex-direction: column;
+  width: 41.5px;
+}
+
+.twitter-share{
+  display: flex;
+  flex-direction: column;
+  width: 41.5px;
 }
 
 .small-button-text{
   text-decoration: none;
+  margin: 0px;
+  padding: 0px;
 }
 
 .loading{
