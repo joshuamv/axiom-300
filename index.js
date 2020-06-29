@@ -1609,7 +1609,7 @@ function backcamAva() {
       $('#ava992')[0].play();
       $("#subtitles").html("AVA: Estrellas en la parte de atrás.");
       setTimeout(function () {
-        $("#subtitles").html("AVA: Whoops. Wrong language file. I meant to say there's quite a lot of stars according to the back camera. Who would have thought?.");
+        $("#subtitles").html("AVA: Whoops. Wrong language file. I meant to say there's quite a lot of stars according to the back camera. Who would have thought?");
         return;
       }, 2600);
       setTimeout(speakingOver, 11000);
