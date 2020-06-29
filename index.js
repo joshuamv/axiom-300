@@ -440,6 +440,7 @@ function avaButton() {
   }
 }
 
+//ava talking animation
 var start = 0;
 function sineAvaTalking(){
   var sinMovSmall = 1.1 * Math.sin(start) + 3 + 'px';
