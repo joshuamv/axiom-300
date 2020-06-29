@@ -38,8 +38,8 @@ var earthIntroCC2;
 $(document).ready(function() {
 
   //show landingEngine(100) and hide $("#landing-game").hide(); to debug landing game
-  // landingEngine(100);
-  $("#landing-game").hide();
+  landingEngine(100);
+  // $("#landing-game").hide();
   //show loading screen + welcome screen, and hide other screens
   $("#game-over-screen").hide();
   $("#game-won-screen").hide();
@@ -145,51 +145,9 @@ $(document).ready(function() {
   //end of doc ready//
 });
 
-function loadingScreen() {
-  $("#loading-screen").hide();
-}
-
-function gameOver() {
-  $("#game-over-screen").fadeIn(500);
-  $('#gameover')[0].play();
-}
-
-function gameWon() {
-  $("#game-won-screen").fadeIn(500);
-  //play game won sound
-  $('#win')[0].play();
-}
-
-//text follow the cursor's x and y
-$(document).on('mousemove', function(e){
-    $('#mouse-text').css({
-       left:  e.pageX-20,
-       top:   e.pageY
-    });
-});
 
 
 ///////////////// functions ///////////////////
-
-function skipIntro() {
-  //button click
-  $('#gamebutton')[0].play();
-  $('#earth0')[0].pause();
-  $("#skip-intro").hide();
-  currentMission = 100;
-  setTimeout(function(){
-    speakingOver();
-    return;
-  }, 100);
-  clearTimeout(avaIntro);
-  clearTimeout(callIntro);
-  clearTimeout(speakingStartIntro);
-  clearTimeout(speakingOverIntro);
-  clearTimeout(earthIntroCC1);
-  clearTimeout(earthIntroCC2);
-  callEnded();
-  return;
-}
 
 function startGame() {
   //button click
@@ -206,12 +164,58 @@ function startGame() {
   currentMission = 0;
   callStarted();
   currentMission = 100;
+  //intro speeches timing
   avaIntro = setTimeout(avaSpeech, 21200);
-  callIntro = setTimeout(callEnded, 21202); //not working!!! :(
+  callIntro = setTimeout(callEnded, 21202);
   speakingStartIntro = setTimeout(speakingStarts, 21400);
   speakingOverIntro = setTimeout(speakingOver, 32700);
 }
 
+function skipIntro() {
+  $('#gamebutton')[0].play();
+  $('#earth0')[0].pause();
+  $("#skip-intro").hide();
+  currentMission = 100;
+  setTimeout(function(){
+    speakingOver();
+    return;
+  }, 100);
+  //stop subtitles and audio timeouts, stop them from from running and updating
+  clearTimeout(avaIntro);
+  clearTimeout(callIntro);
+  clearTimeout(speakingStartIntro);
+  clearTimeout(speakingOverIntro);
+  clearTimeout(earthIntroCC1);
+  clearTimeout(earthIntroCC2);
+  callEnded();
+  return;
+}
+
+//hides the loading screen after it is run. set timeout
+function loadingScreen() {
+  $("#loading-screen").hide();
+}
+
+function gameOver() {
+  $("#game-over-screen").fadeIn(500);
+  $('#gameover')[0].play();
+}
+
+function gameWon() {
+  $("#game-won-screen").fadeIn(500);
+  //play game won sound
+  $('#win')[0].play();
+}
+
+//wait text follows the cursor's x and y
+$(document).on('mousemove', function(e){
+    $('#mouse-text').css({
+       left:  e.pageX-20,
+       top:   e.pageY
+    });
+});
+
+//replay the game reloads the website
 function reloadWebsite() {
   location.reload(true);
 }
@@ -226,6 +230,7 @@ function landingEngine(speed) {
       checkLanding();
       return;
     }
+    //link arrow keys to movement of ship
     $(document).keydown(function(pk){
       if(pk.keyCode == "37"){
         console.log("ship moved left");
@@ -251,14 +256,25 @@ function landingEngine(speed) {
   }, speed);
 }
 
+//see if landed on platform
 function checkLanding() {
-  if (sidePosition > 85 && sidePosition < 95) {
+  //landed
+  if (sidePosition > 84 && sidePosition < 94) {
     console.log("Axiom has landed");
     gameOverVar = true;
     $("#high-score-number").html(fuelLevel + "%")
     $("#score-number").html(fuelLevel)
     setTimeout(gameWon);
-  } else {
+  }
+    //close to landing but lost
+  if (sidePosition == 82 || sidePosition == 83 || sidePosition == 84 || sidePosition == 96 || sidePosition == 95 || sidePosition == 94) {
+    console.log("Axiom has crashed");
+    gameOverVar = true;
+    $("#game-over-text").html("THAT WAS SO CLOSE BUT AXIOM 300 HAS CRASHED, YOU DIED :(")
+    setTimeout(gameOver);
+  }
+  //crashed the ship
+  if (sidePosition < 82 || sidePosition > 96){
     console.log("Axiom has crashed");
     gameOverVar = true;
     $("#game-over-text").html("AXIOM 300 HAS CRASHED, YOU DIED :(")
@@ -287,6 +303,7 @@ function speakingStarts() {
 function speakingOver() {
   setTimeout(function () {
     hideSubtitles();
+    //set mouse to pointer where needed
     $("#mouse-text").hide();
     $('*').css('cursor', 'auto');
     $('.ava-screen').css('cursor', 'pointer');
@@ -297,10 +314,9 @@ function speakingOver() {
     $('.button').css('cursor', 'pointer');
     $('.start-button').css('cursor', 'pointer');
     $('.skip-button').css('cursor', 'pointer');
-    $('.ava-on').css('cursor', 'pointer');
     $('.pointer-text').css('cursor', 'pointer');
     $('.default-text').css('cursor', 'default');
-    $('.ava-off').css('cursor', 'default');
+    //turn the click back on
     $('*').on('click');
     return;
   }, 150);
@@ -323,12 +339,14 @@ function pcButton() {
   pcUnlocked = false;
   if (pc == true) {
     if (avaMental == true) {
+      //ava disables everything
       $('#phybutton')[0].play();
       $('#ava420')[0].play();
       speakingStarts();
       $("#subtitles").html("AVA: I'm sorry Yossef, I'm affraid I can't let you do that...");
       setTimeout(avaBack, 6000);
     }else{
+      //pc off
       $('#phybutton')[0].play();
       $(".screen").hide();
       $("#locked-screen").hide();
@@ -340,12 +358,14 @@ function pcButton() {
     }
   } else {
     if (avaMental == true) {
+      //ava disables everything
       $('#phybutton')[0].play();
       $('#ava420')[0].play();
       speakingStarts();
       $("#subtitles").html("AVA: I'm sorry Yossef, I'm affraid I can't let you do that...");
       setTimeout(avaBack, 6000);
     }else{
+      //pc on goes to locked screen
       $('#phybutton')[0].play();
       $("#locked-screen").show();
       $(".screen").hide();
@@ -365,12 +385,14 @@ function pcButton() {
 function avaButton() {
   if (ava == true) {
     if (avaMental == true) {
+      //ava disables everything
       $('#phybutton')[0].play();
       $('#ava420')[0].play();
       speakingStarts();
       $("#subtitles").html("AVA: I'm sorry Yossef, I'm affraid I can't let you do that...");
       setTimeout(avaBack, 6000);
     }else {
+      //ava off
       $('#phybutton')[0].play();
       $('#ava').toggleClass('ava-on ava-off');
       $('#ava-light').removeClass('ava-eye-dark-red');
@@ -387,6 +409,7 @@ function avaButton() {
     }
   } else {
     if (avaMental == true) {
+      //ava disables everything
       $('#phybutton')[0].play();
       $('#ava420')[0].play();
       speakingStarts();
@@ -394,6 +417,7 @@ function avaButton() {
       setTimeout(avaBack, 6000);
       return;
     }else {
+      //ava on
       $('#phybutton')[0].play();
       $('#ava').toggleClass('ava-on ava-off');
       $('#ava-light').addClass('ava-eye-dark-red');
@@ -403,6 +427,7 @@ function avaButton() {
       $('#ava-light').removeClass('ava-eye-red-off');
       $('#ava-button').removeClass('ava-off');
       ava = true;
+      //ava complains after being turned off
       setTimeout(function(){
         $('#avaon')[0].play();
         setTimeout(avaComplains, 1700);
@@ -412,13 +437,17 @@ function avaButton() {
   }
 }
 
+//fuel functions
+
 function fuelDownInterval(speed){
   var intervalUp = setInterval(function(){
     --fuelLevel;
+    //stop fuel from going below 0
     if(fuelLevel === 0) {
       clearInterval(intervalUp);
       console.log("down stopped")
     }
+    //stop fuel going down after game is over
     if(gameOverVar == true) {
       clearInterval(intervalUp);
       return;
@@ -431,94 +460,31 @@ function fuelDown() {
   var barFuelLevel = fuelLevel/1.5625; //map AVA screen values//
   $(".fuel-bar-filling").width(barFuelLevel);
   $("#fuel-percent").html(fuelLevel + "%");
+  //warning fuel <15%
   if (fuelLevel < 15) {
     $("#fuel-level").addClass(".warning-background");
     $("#fuel-level").removeClass(".fuel-level-background");
   }
+  //warning fuel <5%!
   if (fuelLevel < 5) {
     $('#alarm')[0].play();
     $("#fuel-level").addClass(".error-background");
     $("#fuel-level").removeClass(".fuel-level-background");
     $("#fuel-level").removeClass(".warning-background");
   }
+  //game over
   if (fuelLevel == 0) {
     $("#game-over-text").html("NO FUEL = NO OXYGEN PRODUCTION, YOU DIED :(")
     setTimeout(gameOver);
   }
 }
 
-function downInterval(speed){
-  var oxyDownInterval = setInterval(function(){
-    --oxygenLevel;
-    if(oxygenLevel === 0) {
-      clearInterval(oxyDownInterval);
-      console.log("down stopped")
-    }
-    if(oxygen == true) {
-      clearInterval(oxyDownInterval);
-      return;
-    }
-    oxyDown();
-  }, speed);
-}
-
-function oxyDown() {
-  $("#o2-percent").html(oxygenLevel + "%");
-  $("#o2-percent-error").html(oxygenLevel + "%");
-  $("#o2-percent-off").html(oxygenLevel + "%");
-  $("#o2-percent-low").html(oxygenLevel + "%");
-  $("#o2-percent-rising").html(oxygenLevel + "%");
-  var barOxygenLevel = oxygenLevel/1.5625; //map AVA screen values//
-  $(".bar-filling").width(barOxygenLevel);
-  if (oxygenLevel < 20) {
-    $("#o2-level").hide();
-    $("#o2-off").hide();
-    $("#o2-error").hide();
-    $("#o2-low").show();
-    $("#o2-low-but-on").hide();
-    $('#alarm')[0].play();
-  }
-  if (oxygenLevel == 0) {
-    $("#dizzy").fadeIn(2000);
-    setTimeout(gameOver, 2000);
-  }
-}
-
-function upInterval(speed){
-  var oxyUpInterval = setInterval(function(){
-    ++oxygenLevel;
-    if(oxygenLevel === 84){
-      console.log("down stopped")
-      clearInterval(oxyUpInterval);
-    }
-    if(oxygen == false) {
-      clearInterval(oxyUpInterval);
-      return;
-    }
-    oxyUp();
-  }, speed);
-}
-
-function oxyUp() {
-  $("#o2-percent").html(oxygenLevel + "%");
-  $("#o2-percent-error").html(oxygenLevel + "%");
-  $("#o2-percent-off").html(oxygenLevel + "%");
-  $("#o2-percent-low").html(oxygenLevel + "%");
-  $("#o2-percent-rising").html(oxygenLevel + "%");
-  var barOxygenLevel = oxygenLevel/1.5625; //map AVA screen values//
-  $(".bar-filling").width(barOxygenLevel);
-  if (oxygenLevel > 20) {
-    $("#o2-level").show();
-    $("#o2-off").hide();
-    $("#o2-error").hide();
-    $("#o2-low").hide();
-    $("#o2-low-but-on").hide();
-  }
-}
+//oxygen functions
 
 function oxygenButton() {
   if (oxygen == true) {
     if (avaMental == true) {
+      //ava disables everything
       $('#phybutton')[0].play();
       $('#ava420')[0].play();
       speakingStarts();
@@ -540,6 +506,7 @@ function oxygenButton() {
     }
   } else {
     if (avaMental == true) {
+      //ava disables everything
       $('#phybutton')[0].play();
       $('#ava420')[0].play();
       speakingStarts();
@@ -570,6 +537,84 @@ function oxygenButton() {
   return;
 }
 
+function downInterval(speed){
+  var oxyDownInterval = setInterval(function(){
+    --oxygenLevel;
+    //stop oxygen from going below 0
+    if(oxygenLevel === 0) {
+      clearInterval(oxyDownInterval);
+      console.log("down stopped")
+    }
+    //if oxygen is turned on, stop the down interval otherwise it gets stuck in the same number
+    if(oxygen == true) {
+      clearInterval(oxyDownInterval);
+      return;
+    }
+    oxyDown();
+  }, speed);
+}
+
+//update oxygen screen every interval
+function oxyDown() {
+  $("#o2-percent").html(oxygenLevel + "%");
+  $("#o2-percent-error").html(oxygenLevel + "%");
+  $("#o2-percent-off").html(oxygenLevel + "%");
+  $("#o2-percent-low").html(oxygenLevel + "%");
+  $("#o2-percent-rising").html(oxygenLevel + "%");
+  var barOxygenLevel = oxygenLevel/1.5625; //map AVA screen values//
+  $(".bar-filling").width(barOxygenLevel);
+  //if oxygen is low display error
+  if (oxygenLevel < 20) {
+    $("#o2-level").hide();
+    $("#o2-off").hide();
+    $("#o2-error").hide();
+    $("#o2-low").show();
+    $("#o2-low-but-on").hide();
+    $('#alarm')[0].play();
+  }
+  //if oxygen is 0 game over
+  if (oxygenLevel == 0) {
+    $("#dizzy").fadeIn(2000);
+    setTimeout(gameOver, 2000);
+  }
+}
+
+function upInterval(speed){
+  var oxyUpInterval = setInterval(function(){
+    ++oxygenLevel;
+    //stop oxygen from going over 84, thats the default level
+    if(oxygenLevel === 84){
+      console.log("down stopped")
+      clearInterval(oxyUpInterval);
+    }
+    //if oxygen is turned off, stop the up interval otherwise it gets stuck in the same number
+    if(oxygen == false) {
+      clearInterval(oxyUpInterval);
+      return;
+    }
+    oxyUp();
+  }, speed);
+}
+
+//update oxygen screen every interval
+function oxyUp() {
+  $("#o2-percent").html(oxygenLevel + "%");
+  $("#o2-percent-error").html(oxygenLevel + "%");
+  $("#o2-percent-off").html(oxygenLevel + "%");
+  $("#o2-percent-low").html(oxygenLevel + "%");
+  $("#o2-percent-rising").html(oxygenLevel + "%");
+  var barOxygenLevel = oxygenLevel/1.5625; //map AVA screen values//
+  $(".bar-filling").width(barOxygenLevel);
+  if (oxygenLevel > 20) {
+    $("#o2-level").show();
+    $("#o2-off").hide();
+    $("#o2-error").hide();
+    $("#o2-low").hide();
+    $("#o2-low-but-on").hide();
+  }
+}
+
+//oxygen stops working
 function downIntervalError(speed){
   var oxyDownInterval = setInterval(function(){
     --oxygenLevel;
@@ -677,6 +722,7 @@ function checkPassword() {
   }
 }
 
+//when enter is pressed submit password
 $('input').bind("enterKey",function(e){
   alert("Enter");
 });
@@ -700,6 +746,7 @@ $( function () {
     });
 });
 
+//calling earth
 function contactEarth() {
   $('#simon-beep')[0].play();
   if (ongoingCall == false && connectionLevel == true) {
@@ -733,6 +780,7 @@ function callEnded() {
   }
 }
 
+//autopilot button
 function automPilot() {
   $('#simon-beep')[0].play();
   if (autoPilot == false) {
@@ -761,6 +809,7 @@ function autoPilotOn() {
   if (currentMission > 220 && ava == false) {
     currentMission = 210;
   }
+  //go back a step in the mission if autopilot is turned on
   if (currentMission > 220 && ava == true) {
     currentMission = 210;
     $('#ava940')[0].play();
@@ -789,6 +838,7 @@ function shipInfo() {
   }
 }
 
+//go back home when the "x" is pressed in the ship info menu
 function homeScreen() {
   $('#simon-beep')[0].play();
   $("#locked-screen").hide();
@@ -834,6 +884,7 @@ function coordinatesCheck() {
     $('#coordinates3').toggleClass('wrong-password');
     $("#enter-coordinates").show();
     $("#system-ok").hide();
+    //clear input when wrong when they're clicked
     $('#coordinates1').focus(
       function(){
           $(this).val('');
@@ -851,6 +902,8 @@ function coordinatesCheck() {
     }
   }
 }
+
+//link enter key to enter button on screen to submit coordinates
 
 $( function () {
     console.log($("input"));
@@ -894,6 +947,7 @@ $( function () {
     });
 });
 
+//delete previously entered coordinates
 function deleteCoordinates() {
   $('#simon-beep')[0].play();
   $("#change-coordinate").hide();
