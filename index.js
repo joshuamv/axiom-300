@@ -38,8 +38,8 @@ var earthIntroCC2;
 $(document).ready(function() {
 
   //show landingEngine(100) and hide $("#landing-game").hide(); to debug landing game
-  landingEngine(100);
-  // $("#landing-game").hide();
+  // landingEngine(100);
+  $("#landing-game").hide();
   //show loading screen + welcome screen, and hide other screens
   $("#game-over-screen").hide();
   $("#game-won-screen").hide();
