@@ -33,8 +33,7 @@ var earthIntroCC1;
 var earthIntroCC2;
 var avaTalkingAnimation;
 var barOxygenLevel;
-var barFuelLevel;
-var oxyDownEndGameInterval;
+var barFuelLevel
 
 //////////////// load html /////////////////
 
@@ -701,7 +700,7 @@ function oxyUp() {
 }
 
 function oxygenError() {
-  console.log("oxygen error!");
+  oxygen = false;
   avaMental = true;
   $("#o2-level").hide();
   $("#o2-off").hide();
@@ -709,7 +708,8 @@ function oxygenError() {
   $("#o2-low").hide();
   $("#o2-low-but-on").hide();
   //oxygen down
-  oxyDownEndGame();
+  console.log("oxygen error!");
+  downInterval(300);
   //pc doesn't work
   $("#autom-pilot").hide();
   $("#contact-earth").hide();
@@ -721,17 +721,6 @@ function oxygenError() {
   currentMission = 410;
   setTimeout(avaSpeech, 3000);
   return;
-}
-
-function oxyDownEndGame() {
-  while (oxygenLevel > 0) {
-    oxygenLevel--;
-    console.log(oxygenLevel);
-    if (oxygenLevel == 0) {
-      console.log("ovah");
-      return;
-    }
-  }
 }
 
 function avaBack() {
