@@ -379,9 +379,9 @@ div.back-share a {
 }
 
 .intro-text{
-  margin-bottom: 20px;
-  font-size: 30px;
-  line-height: 140%;
+  margin-bottom: 18px;
+  font-size: 24px;
+  line-height: 130%;
 }
 
 .sound-on-caption{
@@ -389,7 +389,7 @@ div.back-share a {
   font-family: Saira;
   font-style: normal;
   font-weight: 300;
-  font-size: 20px;
+  font-size: 18px;
   line-height: 140%;
   letter-spacing: 0.02em;
 }
@@ -399,7 +399,7 @@ div.back-share a {
   font-family: Saira;
   font-style: normal;
   font-weight: 500;
-  font-size: 16px;
+  font-size: 15px;
   line-height: 130.5%;
   letter-spacing: 0.02em;
 }
@@ -407,7 +407,7 @@ div.back-share a {
 #sound-icon{
   align-self: center;
   margin-right: 10px;
-  width: 25px;
+  width: 22px;
   height: auto;
 }
 
@@ -423,7 +423,7 @@ h1{
   font-family: Saira;
   font-style: normal;
   font-weight: 600;
-  font-size: 60px;
+  font-size: 48px;
   line-height: 130.5%;
   letter-spacing: 0.02em;
   color: #FFFFFF;
@@ -433,7 +433,7 @@ h2{
   font-family: Saira Condensed;
   font-style: normal;
   font-weight: 600;
-  font-size: 24px;
+  font-size: 20px;
   line-height: 130.5%;
   letter-spacing: 0.02em;
   color: #FFFFFF;
@@ -443,7 +443,7 @@ h3{
   font-family: Saira Condensed;
   font-style: normal;
   font-weight: 600;
-  font-size: 38px;
+  font-size: 30px;
   line-height: 130.5%;
   letter-spacing: 0.02em;
   color: #FFFFFF;
@@ -467,11 +467,11 @@ a{
 .start-button{
   display: flex;
   margin: auto;
-  margin-top: 90px;
+  margin-top: 60px;
   justify-content: center;
   width: 244px;
   height: 67px;
-  padding: 10px 40px;
+  padding: 5px 35px;
   background: #FFFFFF;
   box-shadow: 0px -4px 30px #000000;
   border-radius: 1000px;

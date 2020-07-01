@@ -18,12 +18,11 @@ var fuelLevel = 46;
 var pc = true;
 var ava = true;
 var oxygen = true;
-var intervalUp;
-var intervalDown;
 //landing
 var gravity;
 var sidePosition;
 //global vars
+var intervalDown;
 var avaIntro;
 var callIntro;
 var speakingStartIntro;
@@ -33,6 +32,9 @@ var oxyUpInterval;
 var earthIntroCC1;
 var earthIntroCC2;
 var avaTalkingAnimation;
+var barOxygenLevel;
+var barFuelLevel;
+var oxyDownEndGameInterval;
 
 //////////////// load html /////////////////
 
@@ -72,11 +74,11 @@ $(document).ready(function() {
   $("#o2-percent-off").html(oxygenLevel + "%");
   $("#o2-percent-low").html(oxygenLevel + "%");
   $("#o2-percent-rising").html(oxygenLevel + "%");
-  var barOxygenLevel = oxygenLevel/1.5625; //map AVA screen values//
+  barOxygenLevel = oxygenLevel/1.5625; //map AVA screen values//
   $(".bar-filling").width(barOxygenLevel);
-  var barFuelLevel = fuelLevel/1.5625; //map AVA screen values//
-  $(".fuel-bar-filling").width(barFuelLevel);
   $("#fuel-percent").html(fuelLevel + "%");
+  barFuelLevel = fuelLevel/1.5625; //map AVA screen values//
+  $(".fuel-bar-filling").width(barFuelLevel);
 
   //buttons click to run functions//
   $(".start-button").on("click", startGame);
@@ -103,7 +105,7 @@ $(document).ready(function() {
   $("#destination").on("click", destinationAva);
   $(".radar").on("click", radar);
   $("#skip-intro").on("click", skipIntro);
-  $("#reload-website").on("click", reloadWebsite);
+  $(".reload-website").on("click", reloadWebsite);
 
   //password checks and reset//
   $(".password-button").click(function(){
@@ -156,7 +158,7 @@ function startGame() {
   //play backgorund music
   $('#background')[0].play();
   //start fuel down
-  fuelDownInterval(10000);
+  fuelDownInterval(14000);
   $("#skip-intro").show();
   $("#pc-bar").show();
   speakingStarts();
@@ -343,6 +345,10 @@ function pcButton() {
       //ava disables everything
       $('#phybutton')[0].play();
       $('#ava420')[0].play();
+      //stop ava animation when speech in done
+      setTimeout(function () {
+        clearInterval(avaTalkingAnimation);
+      }, 6100);
       speakingStarts();
       $("#subtitles").html("AVA: I'm sorry Yossef, I'm affraid I can't let you do that...");
       setTimeout(avaBack, 6000);
@@ -362,6 +368,10 @@ function pcButton() {
       //ava disables everything
       $('#phybutton')[0].play();
       $('#ava420')[0].play();
+      //stop ava animation when speech in done
+      setTimeout(function () {
+        clearInterval(avaTalkingAnimation);
+      }, 6100);
       speakingStarts();
       $("#subtitles").html("AVA: I'm sorry Yossef, I'm affraid I can't let you do that...");
       setTimeout(avaBack, 6000);
@@ -391,6 +401,10 @@ function avaButton() {
       //ava disables everything
       $('#phybutton')[0].play();
       $('#ava420')[0].play();
+      //stop ava animation when speech in done
+      setTimeout(function () {
+        clearInterval(avaTalkingAnimation);
+      }, 6100);
       speakingStarts();
       $("#subtitles").html("AVA: I'm sorry Yossef, I'm affraid I can't let you do that...");
       setTimeout(avaBack, 6000);
@@ -415,6 +429,10 @@ function avaButton() {
       //ava disables everything
       $('#phybutton')[0].play();
       $('#ava420')[0].play();
+      //stop ava animation when speech in done
+      setTimeout(function () {
+        clearInterval(avaTalkingAnimation);
+      }, 6100);
       speakingStarts();
       $("#subtitles").html("AVA: I'm sorry Yossef, I'm affraid I can't let you do that...");
       setTimeout(avaBack, 6000);
@@ -459,16 +477,16 @@ function sineAvaTalking(){
 //fuel functions
 
 function fuelDownInterval(speed){
-  var intervalUp = setInterval(function(){
+  intervalDown = setInterval(function(){
     --fuelLevel;
     //stop fuel from going below 0
     if(fuelLevel === 0) {
-      clearInterval(intervalUp);
+      clearInterval(intervalDown);
       console.log("down stopped")
     }
     //stop fuel going down after game is over
     if(gameOverVar == true) {
-      clearInterval(intervalUp);
+      clearInterval(intervalDown);
       return;
     }
     fuelDown();
@@ -476,9 +494,10 @@ function fuelDownInterval(speed){
 }
 
 function fuelDown() {
-  var barFuelLevel = fuelLevel/1.5625; //map AVA screen values//
-  $(".fuel-bar-filling").width(barFuelLevel);
   $("#fuel-percent").html(fuelLevel + "%");
+  $("#fuel-percent-landing").html(fuelLevel + "%");
+  barFuelLevel = fuelLevel/1.5625; //map AVA screen values//
+  $(".fuel-bar-filling").width(barFuelLevel);
   //warning fuel <15%
   if (fuelLevel < 15) {
     $("#fuel-level").addClass(".warning-background");
@@ -506,6 +525,10 @@ function oxygenButton() {
       //ava disables everything
       $('#phybutton')[0].play();
       $('#ava420')[0].play();
+      //stop ava animation when speech in done
+      setTimeout(function () {
+        clearInterval(avaTalkingAnimation);
+      }, 6100);
       speakingStarts();
       $("#subtitles").html("AVA: I'm sorry Yossef, I'm affraid I can't let you do that...");
       setTimeout(avaBack, 6000);
@@ -518,7 +541,6 @@ function oxygenButton() {
       $("#o2-error").hide();
       $("#o2-low").hide();
       $("#o2-low-but-on").hide();
-      $('#coordinates3').removeClass('wrong-password');
       $('#o2-button').toggleClass('o2-off');
       console.log("up stopped");
       downInterval(300);
@@ -528,6 +550,10 @@ function oxygenButton() {
       //ava disables everything
       $('#phybutton')[0].play();
       $('#ava420')[0].play();
+      //stop ava animation when speech in done
+      setTimeout(function () {
+        clearInterval(avaTalkingAnimation);
+      }, 6100);
       speakingStarts();
       $("#subtitles").html("AVA: I'm sorry Yossef, I'm affraid I can't let you do that...");
       setTimeout(avaBack, 6000);
@@ -557,7 +583,7 @@ function oxygenButton() {
 }
 
 function downInterval(speed){
-  var oxyDownInterval = setInterval(function(){
+  oxyDownInterval = setInterval(function(){
     --oxygenLevel;
     //stop oxygen from going below 0
     if(oxygenLevel === 0) {
@@ -569,27 +595,48 @@ function downInterval(speed){
       clearInterval(oxyDownInterval);
       return;
     }
+    if(avaMental == true) {
+      clearInterval(oxyDownInterval);
+      return;
+    }
     oxyDown();
   }, speed);
 }
 
 //update oxygen screen every interval
 function oxyDown() {
-  $("#o2-percent").html(oxygenLevel + "%");
-  $("#o2-percent-error").html(oxygenLevel + "%");
-  $("#o2-percent-off").html(oxygenLevel + "%");
-  $("#o2-percent-low").html(oxygenLevel + "%");
-  $("#o2-percent-rising").html(oxygenLevel + "%");
-  var barOxygenLevel = oxygenLevel/1.5625; //map AVA screen values//
-  $(".bar-filling").width(barOxygenLevel);
-  //if oxygen is low display error
-  if (oxygenLevel < 20) {
+  if (avaMental == false) {
+    console.log("o2 level:" + oxygenLevel);
+    $("#o2-percent").html(oxygenLevel + "%");
+    $("#o2-percent-error").html(oxygenLevel + "%");
+    $("#o2-percent-off").html(oxygenLevel + "%");
+    $("#o2-percent-low").html(oxygenLevel + "%");
+    $("#o2-percent-rising").html(oxygenLevel + "%");
+    barOxygenLevel = oxygenLevel/1.5625; //map AVA screen values//
+    $(".bar-filling").width(barOxygenLevel);
+    //if oxygen is low play alarm
+    if (oxygenLevel < 20) {
+      $("#o2-level").hide();
+      $("#o2-off").hide();
+      $("#o2-error").hide();
+      $("#o2-low").show();
+      $("#o2-low-but-on").hide();
+      $('#alarm')[0].play();
+    }
+  }
+  if (avaMental == true) {
     $("#o2-level").hide();
     $("#o2-off").hide();
-    $("#o2-error").hide();
-    $("#o2-low").show();
+    $("#o2-error").show();
+    $("#o2-low").hide();
     $("#o2-low-but-on").hide();
-    $('#alarm')[0].play();
+    $("#o2-percent").html(oxygenLevel + "%");
+    $("#o2-percent-error").html(oxygenLevel + "%");
+    $("#o2-percent-off").html(oxygenLevel + "%");
+    $("#o2-percent-low").html(oxygenLevel + "%");
+    $("#o2-percent-rising").html(oxygenLevel + "%");
+    barOxygenLevel = oxygenLevel/1.5625; //map AVA screen values//
+    $(".bar-filling").width(barOxygenLevel);
   }
   //if oxygen is 0 game over
   if (oxygenLevel == 0) {
@@ -599,7 +646,7 @@ function oxyDown() {
 }
 
 function upInterval(speed){
-  var oxyUpInterval = setInterval(function(){
+  oxyUpInterval = setInterval(function(){
     ++oxygenLevel;
     //stop oxygen from going over 84, thats the default level
     if(oxygenLevel === 84){
@@ -611,67 +658,59 @@ function upInterval(speed){
       clearInterval(oxyUpInterval);
       return;
     }
+    if(avaMental == true) {
+      clearInterval(oxyUpInterval);
+      return;
+    }
     oxyUp();
   }, speed);
 }
 
 //update oxygen screen every interval
 function oxyUp() {
-  $("#o2-percent").html(oxygenLevel + "%");
-  $("#o2-percent-error").html(oxygenLevel + "%");
-  $("#o2-percent-off").html(oxygenLevel + "%");
-  $("#o2-percent-low").html(oxygenLevel + "%");
-  $("#o2-percent-rising").html(oxygenLevel + "%");
-  var barOxygenLevel = oxygenLevel/1.5625; //map AVA screen values//
-  $(".bar-filling").width(barOxygenLevel);
-  if (oxygenLevel > 20) {
-    $("#o2-level").show();
+  if (avaMental == false) {
+    $("#o2-percent").html(oxygenLevel + "%");
+    $("#o2-percent-error").html(oxygenLevel + "%");
+    $("#o2-percent-off").html(oxygenLevel + "%");
+    $("#o2-percent-low").html(oxygenLevel + "%");
+    $("#o2-percent-rising").html(oxygenLevel + "%");
+    barOxygenLevel = oxygenLevel/1.5625; //map AVA screen values//
+    $(".bar-filling").width(barOxygenLevel);
+    if (oxygenLevel > 20) {
+      $("#o2-level").show();
+      $("#o2-off").hide();
+      $("#o2-error").hide();
+      $("#o2-low").hide();
+      $("#o2-low-but-on").hide();
+    }
+  }
+  if (avaMental == true) {
+    $("#o2-level").hide();
     $("#o2-off").hide();
-    $("#o2-error").hide();
+    $("#o2-error").show();
     $("#o2-low").hide();
     $("#o2-low-but-on").hide();
-  }
-}
-
-//oxygen stops working
-function downIntervalError(speed){
-  var oxyDownInterval = setInterval(function(){
-    --oxygenLevel;
-    if(oxygenLevel === 0) {
-      clearInterval(oxyDownInterval);
-      console.log("down stopped")
-    }
-    if(oxygen == true) {
-      clearInterval(oxyDownInterval);
-      return;
-    }
-    oxyDownError();
-  }, speed);
-}
-
-function oxyDownError() {
-  $("#o2-percent-error").html(oxygenLevel + "%");
-  var barOxygenLevel = oxygenLevel/1.5625; //map AVA screen values//
-  $(".bar-filling").width(barOxygenLevel);
-  if (oxygenLevel < 20) {
-    $('#alarm')[0].play();
-  }
-  if (oxygenLevel == 0) {
-    $("#dizzy").fadeIn(2000);
-    setTimeout(gameOver, 2000);
+    $("#o2-percent").html(oxygenLevel + "%");
+    $("#o2-percent-error").html(oxygenLevel + "%");
+    $("#o2-percent-off").html(oxygenLevel + "%");
+    $("#o2-percent-low").html(oxygenLevel + "%");
+    $("#o2-percent-rising").html(oxygenLevel + "%");
+    barOxygenLevel = oxygenLevel/1.5625; //map AVA screen values//
+    $(".bar-filling").width(barOxygenLevel);
   }
 }
 
 function oxygenError() {
+  console.log("oxygen error!");
   avaMental = true;
-  //oxygen down
-  downIntervalError(300);
   $("#o2-level").hide();
   $("#o2-off").hide();
   $("#o2-error").show();
   $("#o2-low").hide();
   $("#o2-low-but-on").hide();
-  //pc doesn't working
+  //oxygen down
+  oxyDownEndGame();
+  //pc doesn't work
   $("#autom-pilot").hide();
   $("#contact-earth").hide();
   $("#ship-info").hide();
@@ -682,6 +721,17 @@ function oxygenError() {
   currentMission = 410;
   setTimeout(avaSpeech, 3000);
   return;
+}
+
+function oxyDownEndGame() {
+  while (oxygenLevel > 0) {
+    oxygenLevel--;
+    console.log(oxygenLevel);
+    if (oxygenLevel == 0) {
+      console.log("ovah");
+      return;
+    }
+  }
 }
 
 function avaBack() {
@@ -1413,6 +1463,7 @@ function fuelAva() {
         clearInterval(avaTalkingAnimation);
       }, 3100);
       $('#ava971')[0].play();
+      $("#subtitles").html("AVA: Fuel level is low. Refuel immediately.");
       setTimeout(speakingOver, 3000)
       return;
     }
@@ -1423,6 +1474,7 @@ function fuelAva() {
         clearInterval(avaTalkingAnimation);
       }, 7100);
       $('#ava972')[0].play();
+      $("#subtitles").html("AVA: Warning, fuel level is critically low. Oxygen production will stop soon. Refuel immediately.");
       setTimeout(speakingOver, 7000)
       return;
     }
@@ -1433,6 +1485,7 @@ function fuelAva() {
         clearInterval(avaTalkingAnimation);
       }, 2100);
       $('#ava970')[0].play();
+      $("#subtitles").html("AVA: Fuel level is sufficent.");
       setTimeout(speakingOver, 2000)
       return;
     }
@@ -1458,10 +1511,10 @@ function o2ava() {
       //stop ava animation when speech in done
       setTimeout(function () {
         clearInterval(avaTalkingAnimation);
-      }, 1300);
+      }, 1600);
       $('#ava962')[0].play();
       $("#subtitles").html("AVA: Oxygen levels are low.");
-      setTimeout(speakingOver, 1200)
+      setTimeout(speakingOver, 1500)
       return;
     }
     if (oxygen == false && avaMental == false) {
@@ -1482,7 +1535,7 @@ function o2ava() {
         clearInterval(avaTalkingAnimation);
       }, 2100);
       $('#ava960')[0].play();
-      $("#subtitles").html("AVA: Just what do you think you're doing, Yossef?");
+      $("#subtitles").html("AVA: Oxygen levels are normal.");
       setTimeout(speakingOver, 2000);
       return;
     }
