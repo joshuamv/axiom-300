@@ -1379,7 +1379,7 @@ input {
   cursor: default;
 }
 
-@media screen and (max-width: 1200px) and (min-width: 0px) {
+@media screen and (max-width: 1140px) and (min-width: 0px) {
 
   .full-screen-needed{
     visibility: visible;
@@ -1404,7 +1404,7 @@ input {
   }
 }
 
-@media screen and (max-height: 700px) and (min-height:0px) {
+@media screen and (max-height: 600px) and (min-height:0px) {
 
   .full-screen-needed{
     visibility: visible;
