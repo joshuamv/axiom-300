@@ -374,8 +374,8 @@ div.back-share a {
 .intro-container{
   display: flex;
   flex-direction: column;
-  margin-left: 220px;
-  margin-right: 220px;
+  margin-left: 250px;
+  margin-right: 250px;
 }
 
 .intro-text{
@@ -1379,6 +1379,31 @@ input {
   cursor: default;
 }
 
+@media screen and (max-height: 600px) and (min-height:0px) {
+
+  .full-screen-needed{
+    visibility: visible;
+    position: fixed;
+    bottom: 30px;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    z-index: 100;
+    display: flex;
+    justify-content: center;
+    width: auto;
+    max-width: 650px;
+    height: 50px;
+    padding: 5px 10px;
+    background: #1D1243;
+    box-shadow: 0px -4px 30px #000000;
+    border-radius: 20px;
+    border: 2px solid #FFFFFF;
+    transition: 0.3s linear;
+  }
+}
+
 @media screen and (max-width: 1140px) and (min-width: 0px) {
 
   .full-screen-needed{
@@ -1404,27 +1429,26 @@ input {
   }
 }
 
-@media screen and (max-height: 600px) and (min-height:0px) {
+@media screen and (max-width: 1340px) and (min-width: 1241px) {
 
-  .full-screen-needed{
-    visibility: visible;
-    position: fixed;
-    bottom: 30px;
-    left: 0;
-    right: 0;
-    margin-left: auto;
-    margin-right: auto;
-    z-index: 100;
-    display: flex;
-    justify-content: center;
-    width: auto;
-    max-width: 650px;
-    height: 50px;
-    padding: 5px 10px;
-    background: #1D1243;
-    box-shadow: 0px -4px 30px #000000;
-    border-radius: 20px;
-    border: 2px solid #FFFFFF;
-    transition: 0.3s linear;
+  .intro-container{
+    margin-left: 280px;
+    margin-right: 280px;
+  }
+}
+
+@media screen and (max-width: 1400px) and (min-width: 1341px) {
+
+  .intro-container{
+    margin-left: 300px;
+    margin-right: 300px;
+  }
+}
+
+@media screen and (max-width: 3540px) and (min-width: 1401px) {
+
+  .intro-container{
+    margin-left: 330px;
+    margin-right: 330px;
   }
 }
